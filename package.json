@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.0.0",
     "express": "^4.16.3",
     "knex": "^0.16.5",
     "pg": "^7.11.0",
