@@ -13,6 +13,9 @@ class Creature extends Component {
         <div className="eyes">
           <DeliverSvg fileName="eye3" color="purple" />
         </div>
+        <div className="ears">
+          <DeliverSvg fileName="ear1" color="brown" size="30%" />
+        </div>
       </div>
     )
   }

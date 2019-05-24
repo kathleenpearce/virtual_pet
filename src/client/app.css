@@ -39,3 +39,19 @@ body {
   position: absolute;
   z-index: 4
 }
+
+.earL svg{
+  position: absolute;
+  /*height: 30%;*/
+  right: 70%;
+  bottom: 85%;
+  z-index: -2;
+}
+
+.earR svg{
+  position: absolute;
+  /*height: 30%;*/
+  left: 50%;
+  bottom: 85%;
+  z-index: -2;
+}
