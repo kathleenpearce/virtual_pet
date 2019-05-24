@@ -14,7 +14,7 @@ class Creature extends Component {
           <DeliverSvg fileName="eye3" color="purple" />
         </div>
         <div className="ears">
-          <DeliverSvg fileName="ear1" color="brown" size="30%" />
+          <DeliverSvg fileName="ear3" color="brown" size="20%" />
         </div>
       </div>
     )
