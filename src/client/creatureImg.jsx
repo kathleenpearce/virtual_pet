@@ -8,19 +8,19 @@ class Creature extends Component {
     return(
       <div className="creature">
         <div className="body">
-          <DeliverSvg fileName="body" color="rgb(250, 250, 250)" />
+          <DeliverSvg fileName="body" color="rgb(150, 150, 250)" />
         </div>
         <div className="eyes">
           <DeliverSvg fileName="eye2" color="rgb(255, 150, 150)" />
         </div>
         <div className="ears">
-          <DeliverSvg fileName="ear2" color="rgb(150, 250, 250)" size="30%" />
+          <DeliverSvg fileName="ear1" color="rgb(250, 200, 100)" size="35%" />
         </div>
         <div className="feet">
           <DeliverSvg fileName="feet1" />
         </div>
         <div className="pattern">
-          <DeliverSvg fileName="pattern2" color="rgb(250, 105, 100)" />
+          <DeliverSvg fileName="pattern3" color="rgb(250, 200, 100)" />
         </div>
         <div className="mouth">
           <DeliverSvg fileName="mouth1" />

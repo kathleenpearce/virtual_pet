@@ -1,0 +1,106 @@
+.creature {
+  width: 200px;
+  height: 266px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.body {
+  position: absolute;
+  z-index: -1;
+  height: 80%;
+  width: 80%;
+}
+
+.bodyOutline {
+  position: absolute;
+  height: 80%;
+  width: 80%;
+
+}
+
+.pattern {
+  position: absolute;
+  z-index: -1;
+  height: 80%;
+  width: 80%;
+}
+
+.eyes {
+  position: absolute;
+  top: 25%;
+  left: 0%;
+  width: 50%;
+}
+
+
+.eye svg{
+  position: absolute;
+  z-index: 3
+}
+
+.eye img{
+  position: absolute;
+  z-index: 4
+}
+
+.earL svg{
+  position: absolute;
+  right: 60%;
+  bottom: 85%;
+  z-index: -2;
+}
+.earL img{
+  position: absolute;
+  right: 60%;
+  bottom: 85%;
+  z-index: -2;
+}
+
+.earR svg{
+  position: absolute;
+  left: 60%;
+  bottom: 85%;
+  z-index: -2;
+}
+
+.earR img{
+  position: absolute;
+  left: 60%;
+  bottom: 85%;
+  z-index: -2;
+}
+
+.feet img {
+  position: absolute;
+  height: 20%;
+  left: 16%;
+  top: 70%;
+  z-index: -2;
+}
+
+.feet .foot_left {
+  left: 27%;
+}
+
+.mouth img {
+  position: absolute;
+  width: 25%;
+  left: 38%;
+  top: 45%;
+}
+
+.nose img {
+  position: absolute;
+  width: 15%;
+  left: 43%;
+  top: 35%;
+}
+
+.freckles img {
+  position: absolute;
+  width: 40%;
+  left: 31%;
+  top: 38%;
+}

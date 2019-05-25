@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
+import './creature.css'
+import './creatureCard.css'
 import ReactImage from './react.png';
 import CreatureCard from './CreatureCard.jsx'
 
