@@ -70,6 +70,30 @@ class deliverSvg extends Component {
 
         )
     }
+    else if (this.props.fileName === "feet1") {
+      return (
+        <div>
+          <img src="../../lib/img/feet1.svg" />
+        </div>
+
+        )
+    }
+    else if (this.props.fileName === "feet2") {
+      return (
+        <div>
+          <img className="foot_left" src="../../lib/img/feet2.svg" />
+        </div>
+
+        )
+    }
+    else if (this.props.fileName === "feet3") {
+      return (
+        <div>
+          <img src="../../lib/img/feet3.svg" />
+        </div>
+
+        )
+    }
   }
 }
 
