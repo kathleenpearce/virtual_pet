@@ -20,13 +20,13 @@ class Creature extends Component {
           <DeliverSvg fileName="feet1" />
         </div>
         <div className="pattern">
-          <DeliverSvg fileName="pattern3" color="rgb(250, 200, 100)" />
+          <DeliverSvg fileName="pattern3" color="rgba(150, 100, 100, .8)" />
         </div>
         <div className="mouth">
           <DeliverSvg fileName="mouth1" />
         </div>
         <div className="nose">
-          <DeliverSvg fileName="nose3" />
+          <DeliverSvg fileName="nose2" />
         </div>
         <div className="freckles">
           <DeliverSvg fileName="freckles" />

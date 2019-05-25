@@ -11,7 +11,7 @@ import BrowseUsers from './BrowseUsers'
 import Login from './Login'
 import BreedFirst from './BreedFirst'
 import Footer from './Footer'
-import Creature from './creatureImg.jsx'
+import Creature from './CreatureImg.jsx'
 
 export default class App extends Component {
   state = { username: null };

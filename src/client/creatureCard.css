@@ -1,31 +1,51 @@
 .cardBackground {
   position: relative;
-  height: 400px;
+  height: 450px;
   width: 300px;
   background-color: grey;
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 2em;
-  padding: 1em;
+  color: white;
 }
 
 .nameContainer {
   width: 90%;
+  z-index: 20;
+}
+
+.nameBackground {
+  width:100%;
+  height:90%;
+  background-color: rgba(128,128,128,0.3);
 }
 
 .name {
   float: left;
-  z-index: 20;
+  margin-top: 10px;
 }
 
 .creatureWindow {
   width: 90%;
+  height: 260px;
   background-color: white;
   z-index: 5;
   display: flex;
   justify-content: center;
   padding-top: 1em;
+}
+
+.creatureStats {
+  width:90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.creatureStats img {
+  height: 32px;
+  width: 32px;
 }
