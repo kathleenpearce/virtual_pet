@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import ReactImage from './react.png';
-import Creature from './creatureImg.jsx'
+import CreatureCard from './CreatureCard.jsx'
 
 export default class App extends Component {
   state = { username: null };
@@ -16,7 +16,12 @@ export default class App extends Component {
     const { username } = this.state;
     return (
       <div>
-        <Creature username = {username} />
+        <div>
+          <CreatureCard />
+        </div>
+        <div>
+          <CreatureCard />
+        </div>
       </div>
     );
   }

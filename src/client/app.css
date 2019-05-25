@@ -10,7 +10,7 @@ body {
 .creature {
   height: 800px;
   width: 600px;
-  position: absolute;
+  position: relative;
 }
 
 .body {

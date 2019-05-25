@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import ReactImage from './react.png';
-import DeliverSvg from './deliver_svg.jsx'
+import DeliverSvg from './Deliver_svg.jsx'
 
 class Creature extends Component {
   render() {
@@ -14,13 +14,13 @@ class Creature extends Component {
           <DeliverSvg fileName="eye2" color="rgb(255, 150, 150)" />
         </div>
         <div className="ears">
-          <DeliverSvg fileName="ear3" color="rgb(150, 250, 250)" size="30%" />
+          <DeliverSvg fileName="ear2" color="rgb(150, 250, 250)" size="30%" />
         </div>
         <div className="feet">
           <DeliverSvg fileName="feet1" />
         </div>
         <div className="pattern">
-          <DeliverSvg fileName="pattern3" color="rgb(150, 175, 250)" />
+          <DeliverSvg fileName="pattern2" color="rgb(250, 105, 100)" />
         </div>
         <div className="mouth">
           <DeliverSvg fileName="mouth1" />
