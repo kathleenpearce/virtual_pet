@@ -22,10 +22,19 @@ body {
   width: 80%;
 }
 
+.bodyOutline {
+  position: absolute;
+  top:0%;
+  left:0%;
+  height: 80%;
+  width: 80%;
+
+}
+
 .pattern {
   position: absolute;
-  top:1%;
-  left:.5%;
+  top:1.5%;
+  left:.75%;
   z-index: -1;
   height: 80%;
   width: 80%;
@@ -55,8 +64,21 @@ body {
   bottom: 85%;
   z-index: -2;
 }
+.earL img{
+  position: absolute;
+  right: 70%;
+  bottom: 85%;
+  z-index: -2;
+}
 
 .earR svg{
+  position: absolute;
+  left: 50%;
+  bottom: 85%;
+  z-index: -2;
+}
+
+.earR img{
   position: absolute;
   left: 50%;
   bottom: 85%;

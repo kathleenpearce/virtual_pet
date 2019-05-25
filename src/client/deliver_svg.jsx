@@ -40,6 +40,12 @@ class deliverSvg extends Component {
           <div className="ear earR">
             <svg height={this.props.size} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.12 125.51"><title>earR1</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path fill={this.props.color} d="M4.57,124.1c-6.13-3.39-7-18.52,9.26-63.16-4.36-31.35,2.31-56,14.63-59.88,15.06-4.72,41,20.8,43.89,46.76C77.13,90.81,18.28,131.67,4.57,124.1Z"/><path fill={this.props.color} d="M8.79,125.51a9.17,9.17,0,0,1-4.46-1c-7.93-4.37-5-25.19,9-63.64C9.05,30,15.35,4.65,28.31.58c4.9-1.53,11.23,0,17.82,4.29,11.77,7.68,24.72,24.88,26.72,42.9,2.93,26.42-18.22,53.24-40.49,68.1C23,122.11,14.53,125.51,8.79,125.51ZM32.31,1a12.35,12.35,0,0,0-3.7.54C16.3,5.4,10.16,30.91,14.33,60.88l0,.12,0,.12C.67,98.57-2.52,119.62,4.82,123.66h0c4.67,2.58,15.26-.8,27-8.62,22-14.69,42.94-41.16,40.05-67.16-2-17.71-14.7-34.62-26.26-42.17C40.83,2.61,36.25,1,32.31,1Z"/></g></g></svg>
           </div>
+          <div className="ear earL">
+            <img height={this.props.size} src="../../lib/img/earL1outline.svg" />
+          </div>
+          <div className="ear earR">
+            <img height={this.props.size} src="../../lib/img/earR1outline.svg" />
+          </div>
         </div>
 
         )
@@ -53,6 +59,12 @@ class deliverSvg extends Component {
           <div className="ear earR">
             <svg height={this.props.size} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.06 140.95"><title>earR2</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path fill={this.props.color} d="M129,96.25c-2.44,6.27-13.63,35-39.32,43.13-7.4,2.35-8.14.5-46.77-2.43-30.43-2.31-34.25-1.48-38.48-5.85-8.9-9.2,0-21.26,0-57.21,0-30.83-6.47-36.72-.08-48.7C15.82,3.74,48.1,1.16,53,.76c27-2.16,64.19,9.33,77.64,40.48C141.05,65.24,132,88.62,129,96.25Z"/><path fill={this.props.color} d="M83.3,141c-2.46,0-5.68-.33-11.15-.89-6.05-.62-15.2-1.55-29.24-2.62-6.37-.48-11.64-.83-15.87-1.11-16.1-1.07-19.45-1.29-22.93-4.89-5.4-5.58-4.49-12.07-2.83-23.86A226.7,226.7,0,0,0,4,73.89,193.24,193.24,0,0,0,2,46.11c-1.2-9-1.86-14,1.94-21.16C14.36,5.4,41.71,1.17,53,.26,82.06-2.06,118.25,11.19,131.14,41c10.5,24.31,1.37,47.7-1.63,55.39-8.84,22.7-22.91,38.12-39.64,43.42A19.37,19.37,0,0,1,83.3,141ZM59.61,1q-3.31,0-6.53.25C42,2.16,15,6.31,4.81,25.42,1.17,32.26,1.81,37.13,3,46A193.11,193.11,0,0,1,5,73.89a226.8,226.8,0,0,1-2.68,33.83c-1.61,11.48-2.5,17.8,2.56,23,3.21,3.31,6.12,3.51,22.28,4.58,4.23.28,9.5.63,15.88,1.12,14,1.06,23.21,2,29.26,2.62,10.77,1.1,12.71,1.29,17.32-.17,16.43-5.21,30.28-20.42,39-42.84h0c3-7.59,12-30.69,1.64-54.63C118.47,14.22,87,1,59.61,1Z"/></g></g></svg>
           </div>
+          <div className="ear earL">
+            <img height={this.props.size} src="../../lib/img/earL2outline.svg" />
+          </div>
+          <div className="ear earR">
+            <img height={this.props.size} src="../../lib/img/earR2outline.svg" />
+          </div>
         </div>
 
         )
@@ -65,6 +77,12 @@ class deliverSvg extends Component {
           </div>
           <div className="ear earR">
             <svg height={this.props.size} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.54 167.11"><title>earR3</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path fill={this.props.color} d="M104.31,93C93,126.11,67.38,162.67,58.14,165.93c-23.26,8.23-62.66-28.7-57.71-48,2-7.74,29.63-27,46.26-41.93C58.84,65.06,66,54.59,74.53,42c19-28,21.19-42.58,27.56-42,7.83.73,12.67,23.62,13.38,39.55C115.81,47.42,115.46,60.31,104.31,93Z"/></g></g></svg>
+          </div>
+          <div className="ear earL">
+            <img height={this.props.size} src="../../lib/img/earL3outline.svg" />
+          </div>
+          <div className="ear earR">
+            <img height={this.props.size} src="../../lib/img/earR3outline.svg" />
           </div>
         </div>
 
