@@ -4,6 +4,14 @@ import './creature.css'
 import './creatureCard.css'
 import ReactImage from './react.png';
 import CreatureCard from './CreatureCard.jsx'
+import Home from './Home';
+import Navbar from './Navbar';
+import PetProfile from './PetProfile';
+import BrowseUsers from './BrowseUsers'
+import Login from './Login'
+import BreedFirst from './BreedFirst'
+import Footer from './Footer'
+import Creature from './creatureImg.jsx'
 
 export default class App extends Component {
   state = { username: null };
@@ -24,6 +32,13 @@ export default class App extends Component {
         <div>
           <CreatureCard />
         </div>
+        {/*<Navbar />
+
+        <PetProfile />
+
+
+        <Footer />*/}
+
       </div>
     );
   }
