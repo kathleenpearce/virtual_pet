@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
+import './Home.css'
 
 export default class Navbar extends Component {
   render () {
     return (
 
-        <nav className="navbar navbar-inverse">
-      <div className="container-fluid">
-            <div className="navbar-header">
-               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-               <span className="icon-bar"></span>
-               <span className="icon-bar"></span>
-               <span className="icon-bar"></span>
-               </button>
-               <br />
-            </div>
-            <div className="collapse navbar-collapse" id="myNavbar">
-               <ul className="nav navbar-nav top-nav-links">
-                  <li><a href="#" >SELECTION</a></li>
-                  <li><a href="#" >User Profile</a></li>
-                  <li><a href="#">Browse Users</a></li>
-               </ul>
-               <ul className="nav navbar-nav navbar-right">
-                  <li><a href="#"><span className="glyphicon glyphicon-log-in"></span>  Logout</a></li>
-               </ul>
-            </div>
-         </div>
-      </nav>
+      <div>
+  <body>
+    <div className='menu-container'>
+      <div className='menu'>
+        <div className='date'>SELECTION</div>
+        <div className='nav-links'>
+        <div className='browse-users'>Browse Users</div><div></div>
+        <div className='logout'>Logout</div></div>
+      </div>
+    </div>
+  </body>
+  </div>
 
 
 

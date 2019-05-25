@@ -7,6 +7,9 @@ import PetProfile from './PetProfile';
 import BrowseUsers from './BrowseUsers'
 import Login from './Login'
 import BreedFirst from './BreedFirst'
+import CreatureCard from './CreatureCard'
+import Footer from './Footer'
+import Creature from './creatureImg.jsx'
 
 export default class App extends Component {
   state = { username: null };
@@ -23,7 +26,11 @@ export default class App extends Component {
       <div>
         <Navbar />
 
-        <BreedFirst />
+        <PetProfile />
+
+
+        <Footer />
+
       </div>
     );
   }

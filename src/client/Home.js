@@ -1,72 +1,62 @@
 import React, { Component } from 'react';
 
 import './Home.css'
+import Creature from './creatureimg.jsx'
+import CreatureCard from './CreatureCard.jsx'
+
 
 export default class Home extends Component {
 
   render(){
     return (
-      <div className="home-page">
-   <div className="logo-top">
-      <div className="container text-cen">
-         <h3>SELECTION</h3>
-      </div>
-   </div>
-   <div className="username-profile">
-      <div className="page-header">
-         <div className="container text-left">
-            <div className="col-sm-4">
-               <h3>UserName</h3>
-               <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "75%"}} alt="Image" />
-            </div>
-         </div>
-         <a href="#" className="button">Buy New Pet</a>
-      </div>
-   </div>
-   <div className="col-xs-9 bg-3 text-center">
-      <div align="left">
+<div>
+<div className='header-container'>
+  <div className='header'>
+  <div className='logo'><img src="https://placehold.it/150x80?text=IMAGE"/></div>
+    <div className='subscribe'>Username</div><div className="avatar-info">
+    </div>
+    <a href="#" className="new-pet-button" >Buy New Pet</a>
+  </div>
+</div>
 
 
-      </div>
-      <div className="row">
-         <div className="col-sm-4">
-            <p>Pet Name</p>
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" />
-         </div>
-         <div className="col-sm-4">
-            <p>Pet Name</p>
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" />
-         </div>
-         <div className="col-sm-4">
-            <p>Pet Name</p>
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" />
-         </div>
-      </div>
-      <br />
-      <div className="row">
-         <div className="col-sm-4">
-            <p>Pet Name</p>
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" />
-         </div>
-         <div className="col-sm-4">
-            <p>Pet Name</p>
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" />
-         </div>
-         <div className="col-sm-4">
-            <p>Pet Name</p>
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" />
-         </div>
-      </div>
-   </div>
-   <div className="col-xs-3">
-    <div className="current-jobs">
-            <h4>Current Jobs</h4>
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" />
-         </div>
-   </div>
-   <br /><br />
-   <footer className="container-fluid text-center">
-   </footer>
+<br /><br />
+<div className="flex-home-page-elements-container">
+<div className="title-align"><p className='creature-card-title'><h4>Your Pets</h4></p>
+<div className='creature-card-container'></div>
+    <div className='creature-menu'>
+    <div className='creature-grid-item'><CreatureCard /></div>
+    <div className='creature-grid-item'><CreatureCard /></div>
+    <div className='creature-grid-item'><CreatureCard /></div>
+    <div className='creature-grid-item'><CreatureCard /></div>
+    <div className='creature-grid-item'><CreatureCard /></div>
+    <div className='creature-grid-item'><CreatureCard /></div>
+
+  </div>
+</div>
+<br /><br /><br />
+
+<div className='job-card-container'>
+<p className='job-card-title'><h4>Current Jobs</h4></p>
+  <div className='job-menu'>
+    <div className='job-grid-item'>JOB 1</div>
+    <div className='job-grid-item'>JOB 2</div>
+    <div className='job-grid-item'>JOB 3</div>
+
+  </div>
+</div>
+</div>
+
+
+
+<br /><br /><br />
+
+<div class='footer'>
+  <div class='footer-item footer-one'></div>
+
+</div>
+
+
 </div>
     )
   }

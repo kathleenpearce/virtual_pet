@@ -1,29 +1,6 @@
-.home-page .top-nav-links {
-  color: blue;
-}
-
-
-.navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #778899;
-
-    }
-.navbar-inverse .navbar-nav>li>a {
-    color: black!important;
-
-}
-
-.container {
-    padding-right: 15px;
-    padding-left: 0px;
-    margin-right: auto;
-
-}
-
-/*all button styles*/
+/*all generic button styles*/
 a.button {
-background-color: #CD5C5C;
+background-color: #A3C7B0;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -33,12 +10,8 @@ background-color: #CD5C5C;
   font-size: 16px;
   border-radius: 4px;
   margin: 15px;
+  box-shadow: 3px 3px grey;
 }
-
-
-
-
-
 /*
 pet profile page CSS*/
 
@@ -61,7 +34,8 @@ pet profile page CSS*/
 
 /*set free button diff color to differentiate */
 a.button-free {
-background-color: grey;
+  background-color: grey;
+  box-shadow: 3px 3px grey;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -78,10 +52,6 @@ background-color: grey;
 .username-list {
   font-weight: bold;
 }
-
-
-
-
 .box{
   background:white;
   width:300px;
@@ -109,11 +79,7 @@ background-color: grey;
 /*breed page w one animal selected */
 
 .pet-breed {
-
-
-
 }
-
 .first-pet-card {
   margin-top: 50px;
   border-left: 25px;
@@ -131,4 +97,232 @@ background-color: grey;
 .plus-icon {
   height: 15px;
   weight: 15px;
+}
+
+/*// creature card*/
+.title-align {
+
+
+}
+.creature-card-title {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.creature-card-container {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+   margin-right: 25px;
+}
+
+.creature-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.creature-grid-item {
+  display: flex;
+  border: 1px solid black;
+  width: 300px;
+  height: 300px;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+
+/*job card container */
+
+.job-card-title {
+   display: flex;
+  justify-content: right;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.job-card-container {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: right;
+}
+
+.job-menu {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+}
+
+.job-grid-item {
+  display: flex;
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.flex-home-page-elements-container {
+  width: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-left: 10vw;
+  padding-right: 10vw;
+
+
+
+}
+
+/*navbar css*/
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.menu-container {
+  display: flex;
+  color: #fff;
+  background-color: #A7B5C4;
+  padding: 20px 0;
+  justify-content: center;
+  color: black;
+
+}
+
+.menu {
+
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: space-evenly;
+
+}
+
+.logout {
+  margin-left: 20px;
+}
+
+
+
+/*
+header (username and avatar)*/
+
+.header-container {
+  color: #black;
+  background-color: #D3D3D4;
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+
+}
+
+.header {
+  width: 900px;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+
+.avatar-info,
+.new-pet-button {
+
+  margin-bottom: 20px;
+}
+
+
+.new-pet-button {
+  display: flex;
+  background-color: #A3C7B0;
+  border: 1px solid black;
+  box-shadow: 3px 3px grey;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  justify-content: space-between;
+
+
+}
+
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-item {
+  border: 1px solid #fff;
+  background-color: #A7B5C4;
+  height: 100px;
+  flex: 1;
+}
+
+
+
+/*pet profile page*/
+
+.pet-profile-creature-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pet-profile-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.pet-profile-info {
+  width: 50%;
+}
+
+.pet-profile-name {
+  width: 25%;
+}
+
+.pet-profile-buttons {
+  width: 94%;
 }
