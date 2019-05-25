@@ -74,3 +74,24 @@ body {
 .feet .foot_left {
   left: 15%;
 }
+
+.mouth img {
+  position: absolute;
+  width: 25%;
+  left: 27%;
+  top: 45%;
+}
+
+.nose img {
+  position: absolute;
+  width: 15%;
+  left: 32%;
+  top: 35%;
+}
+
+.freckles img {
+  position: absolute;
+  width: 40%;
+  left: 20%;
+  top: 38%;
+}
