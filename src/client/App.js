@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './app.css';
 import ReactImage from './react.png';
+import Home from './Home';
+import Navbar from './Navbar';
+import PetProfile from './PetProfile';
+import BrowseUsers from './BrowseUsers'
+import Login from './Login'
+import BreedFirst from './BreedFirst'
 
 export default class App extends Component {
   state = { username: null };
@@ -15,8 +21,9 @@ export default class App extends Component {
     const { username } = this.state;
     return (
       <div>
-      {username ? <h1>{`Hello ${username} d`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
+        <Navbar />
+
+        <BreedFirst />
       </div>
     );
   }

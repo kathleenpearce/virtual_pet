@@ -1,0 +1,29 @@
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #778899;
+
+    }
+.navbar-inverse .navbar-nav>li>a {
+    color: black!important;
+
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+
+}
+
+a.button {
+background-color: #CD5C5C;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}

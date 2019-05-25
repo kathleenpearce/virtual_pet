@@ -1,0 +1,134 @@
+.home-page .top-nav-links {
+  color: blue;
+}
+
+
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #778899;
+
+    }
+.navbar-inverse .navbar-nav>li>a {
+    color: black!important;
+
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+
+}
+
+/*all button styles*/
+a.button {
+background-color: #CD5C5C;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  margin: 15px;
+}
+
+
+
+
+
+/*
+pet profile page CSS*/
+
+.pet-profile-stats {
+  margin-top: 30px!important;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.pet-profile-name {
+  font-size: 24px;
+}
+
+.pet-profile-img {
+  margin-left: 50px;
+  margin-top: 30px!important;
+}
+
+/*set free button diff color to differentiate */
+a.button-free {
+background-color: grey;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  margin: 15px;
+}
+
+
+/*browse all users page*/
+.username-list {
+  font-weight: bold;
+}
+
+
+
+
+.box{
+  background:white;
+  width:300px;
+  border-radius:6px;
+  margin: 0 auto 0 auto;
+  margin-top: 45px;
+  maring-top: 40px;
+  padding:0px 0px 70px 0px;
+  border: #black 2px solid;
+}
+
+.email{
+  background:#ecf0f1;
+  border: #ccc 1px solid;
+  border-bottom: #ccc 2px solid;
+  padding: 8px;
+  width:250px;
+  color:#AAAAAA;
+  margin-top:10px;
+  font-size:1em;
+  border-radius:4px;
+}
+
+
+/*breed page w one animal selected */
+
+.pet-breed {
+
+
+
+}
+
+.first-pet-card {
+  margin-top: 50px;
+  border-left: 25px;
+
+}
+
+.second-pet-card {
+  margin-top: 50px;
+}
+
+.heart-icon {
+  margin-top: 80px;
+}
+
+.plus-icon {
+  height: 15px;
+  weight: 15px;
+}
