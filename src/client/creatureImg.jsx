@@ -8,16 +8,19 @@ class Creature extends Component {
     return(
       <div className="creature">
         <div className="body">
-          <DeliverSvg fileName="body" color="aqua" />
+          <DeliverSvg fileName="body" color="teal" />
         </div>
         <div className="eyes">
           <DeliverSvg fileName="eye3" color="purple" />
         </div>
         <div className="ears">
-          <DeliverSvg fileName="ear3" color="brown" size="20%" />
+          <DeliverSvg fileName="ear1" color="brown" size="20%" />
         </div>
         <div className="feet">
-          <DeliverSvg fileName="feet2" />
+          <DeliverSvg fileName="feet1" />
+        </div>
+        <div className="pattern">
+          <DeliverSvg fileName="pattern3" color="purple" />
         </div>
       </div>
     )
