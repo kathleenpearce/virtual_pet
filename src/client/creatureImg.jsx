@@ -11,16 +11,16 @@ class Creature extends Component {
           <DeliverSvg fileName="body" color="rgb(250, 250, 250)" />
         </div>
         <div className="eyes">
-          <DeliverSvg fileName="eye2" color="red" />
+          <DeliverSvg fileName="eye2" color="rgb(255, 150, 150)" />
         </div>
         <div className="ears">
-          <DeliverSvg fileName="ear3" color="rgb(50, 250, 250)" size="30%" />
+          <DeliverSvg fileName="ear3" color="rgb(150, 250, 250)" size="30%" />
         </div>
         <div className="feet">
           <DeliverSvg fileName="feet1" />
         </div>
         <div className="pattern">
-          <DeliverSvg fileName="pattern3" color="rgb(250, 250, 250)" />
+          <DeliverSvg fileName="pattern3" color="rgb(150, 175, 250)" />
         </div>
         <div className="mouth">
           <DeliverSvg fileName="mouth1" />
