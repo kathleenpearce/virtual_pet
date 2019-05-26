@@ -7,7 +7,7 @@ class CreatureCard extends Component {
       <div>
         <div className='cardBackground'>
           <div className='nameContainer'>
-            <h2 className='name'> {this.props.petStatus.name} </h2>
+            <h2 className='name'> {this.props.petStatus.name} - {this.props.petStatus.id} </h2>
             <div className='nameBackground'>
             </div>
           </div>
