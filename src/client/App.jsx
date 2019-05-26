@@ -10,6 +10,7 @@ import BreedFirst from './BreedFirst'
 import CreatureCard from './CreatureCard'
 import Footer from './Footer'
 import Creature from './creatureImg.jsx'
+import MateFound from './MateFound'
 
 export default class App extends Component {
   state = { username: null };
@@ -26,7 +27,7 @@ export default class App extends Component {
       <div>
         <Navbar />
 
-        <BreedFirst />
+        <MateFound />
 
 
         <Footer />
