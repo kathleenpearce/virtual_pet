@@ -13,7 +13,6 @@ const knexLogger  = require('knex-logger');
 app.use(express.static('dist'));
 app.get('/api/getPets', (req, res) => {
   knex.from('pets').where('user_id', 1).select('*').asCallback(function(err, pets){
-    console.log(pets)
     res.send(pets)
   })
 })
