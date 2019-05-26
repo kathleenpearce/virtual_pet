@@ -14,23 +14,24 @@ import Footer from './Footer'
 import Creature from './CreatureImg.jsx'
 
 export default class App extends Component {
-  state = { username: null };
+  state = { petlist: [] };
 
   componentDidMount() {
-    fetch('/api/getUsername')
+    fetch('/api/getPets')
       .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+      .then(pets => this.setState({ petlist: pets }))
+
   }
 
   render() {
-    const { username } = this.state;
     return (
       <div>
         <div>
-          <CreatureCard />
-        </div>
-        <div>
-          <CreatureCard />
+        {this.state.petlist.map(pet => {
+          return (
+            <CreatureCard petStatus={pet}/>
+          )
+        })}
         </div>
         {/*<Navbar />
 

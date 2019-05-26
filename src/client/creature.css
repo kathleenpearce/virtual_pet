@@ -23,6 +23,7 @@
 .pattern {
   position: absolute;
   z-index: -1;
+  top: 1.5%;
   height: 80%;
   width: 80%;
 }
