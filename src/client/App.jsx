@@ -26,7 +26,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className='dynamicPets'>
         {this.state.petlist.map(pet => {
           return (
             <CreatureCard petStatus={pet}/>
