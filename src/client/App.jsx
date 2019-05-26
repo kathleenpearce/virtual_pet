@@ -26,7 +26,7 @@ export default class App extends Component {
       <div>
         <Navbar />
 
-        <PetProfile />
+        <BreedFirst />
 
 
         <Footer />

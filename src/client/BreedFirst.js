@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
 
 import './Home.css'
+import CreatureCard from './CreatureCard'
 
 export default class BreedFirst extends Component{
   render () {
     return (
       <div>
 
-      <div className="row">
-         <div className="col-sm-4">
-            <p className="first-pet-card">Pet Name
-            <img src="https://placehold.it/150x80?text=IMAGE" className="img-responsive" style={{width: "100%"}} alt="Image" /></p>
-         </div>
+      <br /><br />
+      <div className="breed-first-content">
+<div className="pet-profile-content">
+<div className="pet-profile-creature-card">
+<div className='creature-grid-item'><CreatureCard /></div>
+</div></div>
+<div className="heart-icon">
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRph-g6gNjVYjR2YHXGOBzEMwMtgIK66y4Rd9kwnOePc4fNFrk" width="200" height="200"/></p><br /><br />
+</div>
+<div className="pet-profile-content">
+<div className="pet-profile-creature-card">
+<div className='add-mate'> <a href="url" className="add-mate-link">+</a></div>
 
-
-         <div className="col-sm-2">
-         <p className="heart-icon">
-          <img src="http://www.clker.com/cliparts/y/U/t/I/6/O/white-heart-outline.svg" className="img-responsive" style={{width: "100%"}} alt="Image" /></p>
-         </div>
-
-
-         <div className="col-sm-4">
-            <p className="second-pet-card">Pet Name</p>
-            <p className="plus-icon"><img src="https://cdn.shopify.com/s/files/1/0005/8700/6067/files/PlusIcon_Small_Gray-1.png?574168035634333567" className="img-responsive" style={{width: "100%"}} alt="Image" /></p>
-         </div></div>
-
+</div></div>
+</div>
+<a href="#" className="button">Breed</a>
 
       </div>
     )
