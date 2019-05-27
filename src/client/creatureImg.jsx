@@ -23,7 +23,7 @@ class Creature extends Component {
           <DeliverSvg fileName={"pattern" + this.props.petStatus.body_pattern_gene} color={"rgb(" + this.props.petStatus.body_pattern_gene_red + ", " + this.props.petStatus.body_pattern_gene_green + ", " + this.props.petStatus.body_pattern_gene_blue + ")"} />
         </div>
         <div className="mouth">
-          <DeliverSvg fileName="mouth1" />
+          <DeliverSvg fileName={"mouth" + this.props.happyStatus } />
         </div>
         <div className="nose">
           <DeliverSvg fileName={"nose" + this.props.petStatus.nose_type_gene} />
