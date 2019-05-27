@@ -340,3 +340,37 @@ header (username and avatar)*/
 
 
 
+/*feeding options*/
+
+.feeding-container {
+  height: 25vw;
+  width: 75%;
+  display: flex;
+  background-color: GhostWhite;
+  justify-content: space-evenly;
+  border: 3px solid black;
+  padding-right: -15vw;
+  align-items: center;
+  position: relative;
+
+
+}
+
+.food-3,
+.food-2,
+.food-1 {
+  display: flex;
+  border: 1px solid black;
+  align-items: center;
+
+}
+
+
+.feeding-page-content {
+display: flex;
+position: relative;
+margin-left: 30vw;
+margin-top: -30vw;
+width: 50vw;
+
+}

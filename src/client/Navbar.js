@@ -9,10 +9,10 @@ export default class Navbar extends Component {
   <body>
     <div className='menu-container'>
       <div className='menu'>
-        <div className='date'>SELECTION</div>
+        <a href="http://example.com"><div className='date'>SELECTION</div></a>
         <div className='nav-links'>
-        <div className='browse-users'>Browse Users</div><div></div>
-        <div className='logout'>Logout</div></div>
+        <a href="http://example.com"><div className='browse-users'>Browse Users</div></a><div></div>
+        <a href="http://example.com"><div className='logout'>Logout</div></a></div>
       </div>
     </div>
   </body>
@@ -24,3 +24,4 @@ export default class Navbar extends Component {
   }
 
 }
+

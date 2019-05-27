@@ -11,6 +11,9 @@ import CreatureCard from './CreatureCard'
 import Footer from './Footer'
 import Creature from './creatureImg.jsx'
 import MateFound from './MateFound'
+import SelectMate from './SelectMate'
+import Feed from './Feed'
+import MateChosen from './MateChosen'
 
 export default class App extends Component {
   state = { username: null };
@@ -27,10 +30,11 @@ export default class App extends Component {
       <div>
         <Navbar />
 
-        <MateFound />
+        <Home />
+        <Footer/>
 
 
-        <Footer />
+
 
       </div>
     );
