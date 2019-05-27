@@ -27,8 +27,19 @@ export default class App extends Component {
           petlist: [],
           pet1: '',
           pet2: '',
+          time: new Date()
         };
       }
+
+  currentTime(){
+    this.setState({
+      time: new Date()
+    })
+  }
+
+  componentWillMount(){
+    setInterval(() => this.currentTime(),1000)
+  }
 
   // onChange = (e) => {
   //   this.setState({ [e.target.name]: e.target.value });
@@ -58,6 +69,7 @@ export default class App extends Component {
     const { pet1, pet2 } = this.state;
     return (
       <div>
+
         <div>
           {/*<form onSubmit={this.onSubmit}>
             <input
@@ -89,7 +101,7 @@ export default class App extends Component {
         <div className='dynamicPets'>
         {this.state.petlist.map(pet => {
           return (
-            <CreatureCard petStatus={pet}/>
+            <CreatureCard petStatus={pet} time={this.state.time}/>
           )
         })}
         </div>
