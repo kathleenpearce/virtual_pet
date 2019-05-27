@@ -61,7 +61,7 @@ export default class App extends Component {
   componentDidMount() {
     fetch('/api/getPets')
       .then(res => res.json())
-      .then(pets => this.setState({ petlist: pets }))
+      .then(pets => this.setState({ petlist: pets.reverse() }))
 
   }
 
@@ -95,7 +95,14 @@ export default class App extends Component {
               type="text"
               name="pet2"
             />
-            <button type="submit">Submit</button>
+            <button type="submit" >Submit</button>
+           </form>
+           <form className='jobsTestForm' method='POST' action='/api/jobs'>
+            <input
+              type="text"
+              name="pet"
+            />
+            <button type="submit" >Send To Work</button>
            </form>
           </div>
         <div className='dynamicPets'>

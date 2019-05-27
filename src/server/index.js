@@ -13,6 +13,8 @@ const knex        = require("knex")(knexConfig[ENV]);
 const knexLogger  = require('knex-logger');
 
 const breed = require('../scripts/breeder.js')
+const caculateHungerHappy = require ('../scripts/caculate_hunger_and_happiness.js')
+
 
 
 app.use(express.static('dist'));
@@ -28,6 +30,15 @@ app.post('/api/breed', (req, res) => {
     knex.insert(baby).into('pets').asCallback(function(err){
       res.redirect('/')
     })
+  })
+})
+
+app.post('/api/jobs', (req, res) => {
+  knex.from('pets').where('id', req.body.pet).select('time_last_fed_or_work', 'hunger_at_time_last_fed', 'happiness_at_time_last_fed', 'strength_gene', 'intelligence_gene').asCallback(function(err, status){
+    const time = new Date()
+    const jobStart = caculateHungerHappy(time, status[0].time_last_fed_or_work, status[0].hunger_at_time_last_fed, status[0].happiness_at_time_last_fed, status[0].strength_gene, status[0].intelligence_gene, true)
+    console.log(jobStart)
+    res.redirect('/')
   })
 })
 
