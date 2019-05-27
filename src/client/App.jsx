@@ -14,6 +14,10 @@ import BrowseUsers from './BrowseUsers'
 import Login from './Login'
 import BreedFirst from './BreedFirst'
 import Footer from './Footer'
+import MateFound from './MateFound'
+import SelectMate from './SelectMate'
+import Feed from './Feed'
+import MateChosen from './MateChosen'
 import Creature from './CreatureImg.jsx'
 
 export default class App extends Component {
@@ -65,6 +69,7 @@ export default class App extends Component {
     const { pet1, pet2 } = this.state;
     return (
       <div>
+
         <div>
           {/*<form onSubmit={this.onSubmit}>
             <input
@@ -100,12 +105,7 @@ export default class App extends Component {
           )
         })}
         </div>
-        {/*<Navbar />
 
-        <PetProfile />
-
-
-        <Footer />*/}
 
       </div>
     );

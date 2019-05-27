@@ -78,32 +78,41 @@ a.button-free {
 
 /*breed page w one animal selected */
 
-.pet-breed {
-}
-.first-pet-card {
-  margin-top: 50px;
-  border-left: 25px;
-
+.breed-first-content {
+display: flex;
+justify-content: space-between;
+height: 30vw;
 }
 
-.second-pet-card {
-  margin-top: 50px;
+
+.add-mate {
+  display: flex;
+  border: 1px solid black;
+  width: 300px;
+  height: 300px;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+
+.add-mate-link {
+ font-size: 4em;
 }
 
 .heart-icon {
-  margin-top: 80px;
+  display: flex;
+  padding-top: 9vw;
 }
 
-.plus-icon {
-  height: 15px;
-  weight: 15px;
-}
-
-/*// creature card*/
-.title-align {
 
 
-}
+
+/*creature card container*/
+
+
+
+
+
 .creature-card-title {
   display: flex;
   justify-content: center;
@@ -325,4 +334,43 @@ header (username and avatar)*/
 
 .pet-profile-buttons {
   width: 94%;
+}
+
+
+
+
+
+/*feeding options*/
+
+.feeding-container {
+  height: 25vw;
+  width: 75%;
+  display: flex;
+  background-color: GhostWhite;
+  justify-content: space-evenly;
+  border: 3px solid black;
+  padding-right: -15vw;
+  align-items: center;
+  position: relative;
+
+
+}
+
+.food-3,
+.food-2,
+.food-1 {
+  display: flex;
+  border: 1px solid black;
+  align-items: center;
+
+}
+
+
+.feeding-page-content {
+display: flex;
+position: relative;
+margin-left: 30vw;
+margin-top: -30vw;
+width: 50vw;
+
 }

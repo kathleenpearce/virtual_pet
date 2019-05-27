@@ -15,6 +15,7 @@ class CreatureCard extends Component {
 
     let time_at_half_hunger = -(.5 * maxHunger - this.props.petStatus.hunger_at_time_last_fed)/(this.props.petStatus.strength_gene/10)*1000 + parseInt(this.props.petStatus.time_last_fed_or_work)
 
+
     if (hunger < 0){
       hunger = 0
     }
