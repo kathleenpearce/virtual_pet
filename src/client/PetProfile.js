@@ -17,13 +17,15 @@
     <div className="pet-profile-info">
     <div className="pet-profile-name"><h2>Pet Name</h2></div>
 
-                <div class="pet-profile-stats">
-                <ul> Energy:  </ul><br />
-                <ul> Strength: </ul><br />
-                <ul>Hunger: </ul><br />
-                <ul> Intelligence: </ul><br />
-                <ul>Happiness: </ul><br />
-                <ul> Gender:</ul><br />
+
+            <div className="pet-profile-stats">
+            <ul> Energy:  </ul><br />
+            <ul> Strength: </ul><br />
+            <ul>Hunger: </ul><br />
+            <ul> Intelligence: </ul><br />
+            <ul>Happiness: </ul><br />
+            <ul> Gender:</ul><br />
+
 
             </div>
 

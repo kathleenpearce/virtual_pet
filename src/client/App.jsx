@@ -1,39 +1,98 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import './app.css';
+import './creature.css'
+import './creatureCard.css'
+
 import ReactImage from './react.png';
+import CreatureCard from './CreatureCard.jsx'
 import Home from './Home';
 import Navbar from './Navbar';
 import PetProfile from './PetProfile';
 import BrowseUsers from './BrowseUsers'
 import Login from './Login'
 import BreedFirst from './BreedFirst'
-import CreatureCard from './CreatureCard'
 import Footer from './Footer'
-import Creature from './creatureImg.jsx'
 import MateFound from './MateFound'
 import SelectMate from './SelectMate'
 import Feed from './Feed'
 import MateChosen from './MateChosen'
+import Creature from './CreatureImg.jsx'
 
 export default class App extends Component {
-  state = { username: null };
+  constructor() {
+        super();
+        this.state = {
+          petlist: [],
+          pet1: '',
+          pet2: '',
+        };
+      }
+
+  // onChange = (e) => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
+
+  // onSubmit = (e) => {
+  //   e.preventDefault();
+  //   // get our form data out of state
+  //   const { pet1, pet2} = this.state;
+
+  //   axios.post('/api/breed', { pet1, pet2})
+  //     .then((result) => {
+  //       //access the results here....
+  //     });
+  // }
+
+
 
   componentDidMount() {
-    fetch('/api/getUsername')
+    fetch('/api/getPets')
       .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+      .then(pets => this.setState({ petlist: pets }))
+
   }
 
   render() {
-    const { username } = this.state;
+    const { pet1, pet2 } = this.state;
     return (
       <div>
-        <Navbar />
-
-        <Home />
-        <Footer/>
-
-
+        <div>
+          {/*<form onSubmit={this.onSubmit}>
+            <input
+              type="text"
+              name="pet1"
+              value={pet1}
+              onChange={this.onChange}
+            />
+            <input
+              type="text"
+              name="pet2"
+              value={pet2}
+              onChange={this.onChange}
+            />
+            <button type="submit">Submit</button>
+           </form>*/}
+           <form className='geneTestForm' method='POST' action='/api/breed'>
+            <input
+              type="text"
+              name="pet1"
+            />
+            <input
+              type="text"
+              name="pet2"
+            />
+            <button type="submit">Submit</button>
+           </form>
+          </div>
+        <div className='dynamicPets'>
+        {this.state.petlist.map(pet => {
+          return (
+            <CreatureCard petStatus={pet}/>
+          )
+        })}
+        </div>
 
 
       </div>

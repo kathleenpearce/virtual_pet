@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './Home.css'
-import Creature from './creatureimg.jsx'
+import Creature from './CreatureImg.jsx'
 import CreatureCard from './CreatureCard.jsx'
 
 
@@ -51,8 +51,8 @@ export default class Home extends Component {
 
 <br /><br /><br />
 
-<div class='footer'>
-  <div class='footer-item footer-one'></div>
+<div className='footer'>
+  <div className='footer-item footer-one'></div>
 
 </div>
 

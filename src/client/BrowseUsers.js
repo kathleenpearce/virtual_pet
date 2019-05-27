@@ -26,4 +26,5 @@ export default class BrowseUsers extends Component {
   </div>
   )
 }
+
 }

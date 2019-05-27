@@ -10,8 +10,8 @@ export default class Footer extends Component {
       <div>
 <br /><br /><br />
 
-<div class='footer'>
-  <div class='footer-item footer-one'></div>
+<div className='footer'>
+  <div className='footer-item footer-one'></div>
 
 </div></div>
       )
