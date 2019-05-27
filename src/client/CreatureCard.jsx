@@ -2,24 +2,10 @@ import React, { Component } from 'react';
 import Creature from './CreatureImg.jsx'
 
 class CreatureCard extends Component {
-  constructor() {
-    super()
-    this.state={time: new Date()}
-  }
-
-  currentTime(){
-    this.setState({
-      time: new Date()
-    })
-  }
-
-  componentWillMount(){
-    setInterval(() => this.currentTime(),1000)
-  }
 
   render() {
 
-    let timer = (this.state.time.getTime() - this.props.petStatus.time_last_fed_or_work) / 1000
+    let timer = (this.props.time.getTime() - this.props.petStatus.time_last_fed_or_work) / 1000
 
     let maxHunger = 200
     let maxHappy = 200
@@ -42,9 +28,9 @@ class CreatureCard extends Component {
 
     let happiness
     if (hunger > 50){
-      happiness = (((this.state.time.getTime() - this.props.petStatus.time_last_fed_or_work)/1000) * (maxHappy/60)) + this.props.petStatus.happiness_at_time_last_fed
+      happiness = (((this.props.time.getTime() - this.props.petStatus.time_last_fed_or_work)/1000) * (maxHappy/3600)) + this.props.petStatus.happiness_at_time_last_fed
     } else {
-      happiness = -(((this.state.time.getTime() - time_at_half_hunger)/1000) * (maxHappy/60)) + happiness_at_half
+      happiness = -(((this.props.time.getTime() - time_at_half_hunger)/1000) * (this.props.petStatus.intelligence_gene/10)) + happiness_at_half
     }
 
 
