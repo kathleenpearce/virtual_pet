@@ -19,6 +19,7 @@ import SelectMate from './SelectMate'
 import Feed from './Feed'
 import MateChosen from './MateChosen'
 import Creature from './CreatureImg.jsx'
+import CreatureContainer from './CreatureContainer'
 
 export default class App extends Component {
   constructor() {
@@ -69,6 +70,8 @@ export default class App extends Component {
     const { pet1, pet2 } = this.state;
     return (
       <div>
+      <Navbar />
+      <Home petlist={this.state.petlist} time={this.state.time}/>
 
         <div>
           {/*<form onSubmit={this.onSubmit}>
@@ -85,7 +88,7 @@ export default class App extends Component {
               onChange={this.onChange}
             />
             <button type="submit">Submit</button>
-           </form>*/}
+           </form>
            <form className='geneTestForm' method='POST' action='/api/breed'>
             <input
               type="text"
@@ -103,7 +106,7 @@ export default class App extends Component {
           return (
             <CreatureCard petStatus={pet} time={this.state.time}/>
           )
-        })}
+        })}*/}
         </div>
 
 

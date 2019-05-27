@@ -252,6 +252,7 @@ header (username and avatar)*/
   background-color: #D3D3D4;
   display: flex;
   justify-content: center;
+  height: 8vw;
   align-content: space-around;
 
 }

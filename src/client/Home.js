@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './Home.css'
 import Creature from './CreatureImg.jsx'
 import CreatureCard from './CreatureCard.jsx'
+import CreatureContainer from './CreatureContainer'
 
 
 export default class Home extends Component {
@@ -22,18 +23,7 @@ export default class Home extends Component {
 
 <br /><br />
 <div className="flex-home-page-elements-container">
-<div className="title-align"><p className='creature-card-title'><h4>Your Pets</h4></p>
-<div className='creature-card-container'></div>
-    <div className='creature-menu'>
-    <div className='creature-grid-item'><CreatureCard /></div>
-    <div className='creature-grid-item'><CreatureCard /></div>
-    <div className='creature-grid-item'><CreatureCard /></div>
-    <div className='creature-grid-item'><CreatureCard /></div>
-    <div className='creature-grid-item'><CreatureCard /></div>
-    <div className='creature-grid-item'><CreatureCard /></div>
-
-  </div>
-</div>
+<CreatureContainer petlist={this.props.petlist} time={this.props.time}/>
 <br /><br /><br />
 
 <div className='job-card-container'>
