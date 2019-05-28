@@ -97,10 +97,15 @@ export default class App extends Component {
             />
             <button type="submit" >Submit</button>
            </form>
+           <br/>
            <form className='jobsTestForm' method='POST' action='/api/jobs'>
             <input
               type="text"
               name="pet"
+            />
+            <input
+              type="text"
+              name="job_type"
             />
             <button type="submit" >Send To Work</button>
            </form>
