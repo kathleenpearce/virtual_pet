@@ -1,45 +1,45 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-import './app.css';
-import './creature.css'
-import './creatureCard.css'
+import "./app.css";
+import "./creature.css";
+import "./creatureCard.css";
+import "./Home.css";
 
-import ReactImage from './react.png';
-import CreatureCard from './CreatureCard.jsx'
-import Home from './Home';
-import Navbar from './Navbar';
-import PetProfile from './PetProfile';
-import BrowseUsers from './BrowseUsers'
-import Login from './Login'
-import BreedFirst from './BreedFirst'
-import Footer from './Footer'
-import MateFound from './MateFound'
-import SelectMate from './SelectMate'
-import Feed from './Feed'
-import MateChosen from './MateChosen'
-import Creature from './CreatureImg.jsx'
-import CreatureContainer from './CreatureContainer'
+import ReactImage from "./react.png";
+import CreatureCard from "./CreatureCard.jsx";
+import Home from "./Home";
+import Navbar from "./Navbar";
+import PetProfile from "./PetProfile";
+import BrowseUsers from "./BrowseUsers";
+import Login from "./Login";
+import BreedFirst from "./BreedFirst";
+import Footer from "./Footer";
+import MateFound from "./MateFound";
+import SelectMate from "./SelectMate";
+import Feed from "./Feed";
+import Creature from "./CreatureImg.jsx";
+import CreatureContainer from "./CreatureContainer";
 
 export default class App extends Component {
   constructor() {
-        super();
-        this.state = {
-          petlist: [],
-          pet1: '',
-          pet2: '',
-          time: new Date()
-        };
-      }
-
-  currentTime(){
-    this.setState({
+    super();
+    this.state = {
+      petlist: [],
+      pet1: null,
+      pet2: null,
       time: new Date()
-    })
+    };
   }
 
-  componentWillMount(){
-    setInterval(() => this.currentTime(),1000)
+  currentTime() {
+    this.setState({
+      time: new Date()
+    });
+  }
+
+  componentWillMount() {
+    setInterval(() => this.currentTime(), 1000);
   }
 
   // onChange = (e) => {
@@ -57,59 +57,48 @@ export default class App extends Component {
   //     });
   // }
 
-
-
   componentDidMount() {
-    fetch('/api/getPets')
+    fetch("/api/getPets")
       .then(res => res.json())
-      .then(pets => this.setState({ petlist: pets }))
-
+      .then(pets => {
+        this.setState({ petlist: pets });
+      });
   }
 
   render() {
     const { pet1, pet2 } = this.state;
     return (
       <div>
-      <Navbar />
-      <Home petlist={this.state.petlist} time={this.state.time}/>
+        <Navbar />
 
-        <div>
-          {/*<form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              name="pet1"
-              value={pet1}
-              onChange={this.onChange}
-            />
-            <input
-              type="text"
-              name="pet2"
-              value={pet2}
-              onChange={this.onChange}
-            />
-            <button type="submit">Submit</button>
-           </form>
-           <form className='geneTestForm' method='POST' action='/api/breed'>
-            <input
-              type="text"
-              name="pet1"
-            />
-            <input
-              type="text"
-              name="pet2"
-            />
-            <button type="submit">Submit</button>
-           </form>
-          </div>
-        <div className='dynamicPets'>
-        {this.state.petlist.map(pet => {
-          return (
-            <CreatureCard petStatus={pet} time={this.state.time}/>
-          )
-        })}*/}
-        </div>
-
-
+        {pet1 && pet2 ? (
+          <MateFound
+            left={pet1}
+            right={pet2}
+            time={this.state.time}
+            onNewBaby={baby =>
+              this.setState(prev => ({
+                petlist: prev.petlist.concat(baby)
+              }))
+            }
+          />
+        ) : (
+          <CreatureContainer
+            petlist={this.state.petlist}
+            time={this.state.time}
+            onSelect={pet => {
+              if (this.state.pet1 === null) {
+                this.setState({
+                  pet1: pet
+                });
+              } else if (this.state.pet2 === null) {
+                this.setState({
+                  pet2: pet
+                });
+              }
+            }}
+          />
+        )}
       </div>
     );
   }
