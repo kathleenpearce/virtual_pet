@@ -21,12 +21,20 @@ const maxHappy = 200
 
 
 app.use(express.static('dist'));
-const refrenceTime = new Date().getTime()
+
 app.get('/api/getPets', (req, res) => {
+  const refrenceTime = new Date().getTime()
   knex.from('pets').where('user_id', 1).select('*').asCallback(function(err, pets){
     res.send({pets, refrenceTime})
   })
 })
+
+app.get('/api/getJobs', (req, res) => {
+  knex.from('jobs').join('pets', 'pets.id', '=', 'jobs.pet_id').where('user_id', 1).select('*').asCallback(function(err, jobs){
+    res.send(jobs)
+  })
+})
+
 
 app.post('/api/breed', (req, res) => {
   knex.from('pets').where('id', req.body.pet1).orWhere('id', req.body.pet2).select('*').asCallback(function(err, mates){
@@ -41,7 +49,7 @@ app.post('/api/jobs', (req, res) => {
   knex.from('pets').where('id', req.body.pet).select('time_last_fed_or_work', 'hunger_at_time_last_fed', 'happiness_at_time_last_fed', 'strength_gene', 'intelligence_gene').asCallback(function(err, status){
     const time = new Date().getTime()
     const jobStart = caculateHungerHappy(time, status[0].time_last_fed_or_work, status[0].hunger_at_time_last_fed, status[0].happiness_at_time_last_fed, status[0].strength_gene, status[0].intelligence_gene, false)
-    const data = {job_start_time: time.getTime(), pet_id: parseInt(req.body.pet), hunger_at_start: Math.round(jobStart.hunger*maxHunger/100), happy_at_start: Math.round(jobStart.happiness*maxHappy/100), job_type: parseInt(req.body.job_type)}
+    const data = {job_start_time: time, pet_id: parseInt(req.body.pet), hunger_at_start: Math.round(jobStart.hunger*maxHunger/100), happy_at_start: Math.round(jobStart.happiness*maxHappy/100), job_type: parseInt(req.body.job_type)}
     knex.insert(data).into('jobs').asCallback(function(err){
       console.log(data)
       res.redirect('/')
