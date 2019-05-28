@@ -41,7 +41,7 @@ export default class App extends Component {
   }
 
   componentWillMount(){
-    setInterval(() => this.currentTime(),1000)
+    setInterval(() => this.currentTime(),16)
   }
 
   componentDidMount() {

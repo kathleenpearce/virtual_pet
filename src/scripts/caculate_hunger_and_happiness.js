@@ -19,15 +19,17 @@ const caculateHungerHappy = function(timeNow, timeLast, hungerStart, happyStart,
   // (time_at_half_hunger - this.props.petStatus.time_last_fed_or_work)/1000 TIME IT TAKES TO GET TO 50%
 
   let happiness_at_half = (((time_at_half_hunger - timeLast)/1000) * (maxHappy/60)) + happyStart
-  if (happiness_at_half > 100) {
-    happiness_at_half = 100
+  if (happiness_at_half > maxHappy) {
+    happiness_at_half = maxHappy
   }
 
   let happiness
   if ((hunger > 50) && !working){
-    happiness = (((timeNow - timeLast)/1000) * (maxHappy/3600)) + happyStart
+    happiness = ((((timer) * (maxHappy/3600)) + happyStart)/maxHappy)*100
+  } else if (working) {
+    happiness = ((-((timer) * (int/10)) + happyStart)/maxHappy)*100
   } else {
-    happiness = -(((timeNow - time_at_half_hunger)/1000) * (int/10)) + happiness_at_half
+    happiness = ((-(((timeNow - time_at_half_hunger)/1000) * (int/10)) + happiness_at_half)/maxHappy)*100
   }
 
 
