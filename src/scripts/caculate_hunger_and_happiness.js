@@ -1,7 +1,7 @@
 
 const caculateHungerHappy = function(timeNow, timeLast, hungerStart, happyStart, str, int, working){
 
-  let timer = (timeNow.getTime() - timeLast) / 1000
+  let timer = (timeNow - timeLast) / 1000
 
   let maxHunger = 200
   let maxHappy = 200
@@ -25,9 +25,9 @@ const caculateHungerHappy = function(timeNow, timeLast, hungerStart, happyStart,
 
   let happiness
   if ((hunger > 50) && !working){
-    happiness = (((timeNow.getTime() - timeLast)/1000) * (maxHappy/3600)) + happyStart
+    happiness = (((timeNow - timeLast)/1000) * (maxHappy/3600)) + happyStart
   } else {
-    happiness = -(((timeNow.getTime() - time_at_half_hunger)/1000) * (int/10)) + happiness_at_half
+    happiness = -(((timeNow - time_at_half_hunger)/1000) * (int/10)) + happiness_at_half
   }
 
 

@@ -27,13 +27,15 @@ export default class App extends Component {
           petlist: [],
           pet1: '',
           pet2: '',
-          time: new Date()
+          startTime: new Date().getTime(),
+          time: new Date().getTime(),
+          trueTime: new Date().getTime()
         };
       }
 
   currentTime(){
     this.setState({
-      time: new Date()
+      time: this.state.trueTime + new Date().getTime() - this.state.startTime
     })
   }
 
@@ -41,27 +43,11 @@ export default class App extends Component {
     setInterval(() => this.currentTime(),1000)
   }
 
-  // onChange = (e) => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // }
-
-  // onSubmit = (e) => {
-  //   e.preventDefault();
-  //   // get our form data out of state
-  //   const { pet1, pet2} = this.state;
-
-  //   axios.post('/api/breed', { pet1, pet2})
-  //     .then((result) => {
-  //       //access the results here....
-  //     });
-  // }
-
-
-
   componentDidMount() {
     fetch('/api/getPets')
       .then(res => res.json())
-      .then(pets => this.setState({ petlist: pets.reverse() }))
+      .then(pets => this.setState({ petlist: pets.pets.reverse() }))
+      .then(serverTime => this.setState({ trueTime: serverTime.refrenceTime }))
 
   }
 
@@ -71,21 +57,6 @@ export default class App extends Component {
       <div>
 
         <div>
-          {/*<form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              name="pet1"
-              value={pet1}
-              onChange={this.onChange}
-            />
-            <input
-              type="text"
-              name="pet2"
-              value={pet2}
-              onChange={this.onChange}
-            />
-            <button type="submit">Submit</button>
-           </form>*/}
            <form className='geneTestForm' method='POST' action='/api/breed'>
             <input
               type="text"
