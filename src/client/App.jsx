@@ -36,7 +36,8 @@ export default class App extends Component {
 
   currentTime(){
     this.setState({
-      time: this.state.trueTime + new Date().getTime() - this.state.startTime
+      time: this.state.trueTime + new Date().getTime() - this.state.startTime,
+      delta: (new Date().getTime() - this.state.startTime)/1000
     })
   }
 
