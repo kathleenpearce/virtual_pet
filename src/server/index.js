@@ -20,6 +20,7 @@ app.get("/api/getPets", (req, res) => {
     .from("pets")
     .where("user_id", 1)
     .select("*")
+    .orderBy("time_at_birth")
     .asCallback(function(err, pets) {
       res.send(pets);
     });
@@ -40,6 +41,20 @@ app.post("/api/breed", (req, res) => {
           res.status(201).json(baby);
         });
     });
+});
+
+app.put("/api/pets/:id", (req, res) => {
+  const pet = req.body;
+
+  var query = knex("pets")
+    .where("id", Number(req.params.id))
+    .update(pet);
+
+  console.log(query.toString());
+
+  query.asCallback(function(err) {
+    res.status(204).send();
+  });
 });
 
 app.listen(process.env.PORT || 8080, () =>

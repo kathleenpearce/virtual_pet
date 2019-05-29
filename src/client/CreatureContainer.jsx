@@ -22,6 +22,7 @@ export default class CreatureContainer extends Component {
                 petStatus={pet}
                 time={this.props.time}
                 onSelect={this.props.onSelect}
+                editPet={this.props.editPet}
               />
             );
           })}

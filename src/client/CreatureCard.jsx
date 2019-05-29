@@ -2,6 +2,34 @@ import React, { Component } from "react";
 import Creature from "./CreatureImg.jsx";
 
 class CreatureCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false,
+      name: ""
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onKeyPressEnter = this.onKeyPressEnter.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ name: event.target.value }); // call post
+  }
+
+  handleSubmit(event) {
+    alert("A name wasn't submitted, please " + this.state.name);
+    event.preventDefault();
+  }
+
+  onKeyPressEnter(event) {
+    if (event.key === "Enter") {
+      this.props.editPet({ ...this.props.petStatus, name: this.state.name });
+      this.setState({ isEditing: false });
+    }
+  }
+
   render() {
     let timer =
       (this.props.time.getTime() - this.props.petStatus.time_last_fed_or_work) /
@@ -70,15 +98,47 @@ class CreatureCard extends Component {
 
     return (
       <div>
-        <div
-          className="cardBackground"
-          onClick={() => this.props.onSelect(this.props.petStatus)}
-        >
+        <div className="cardBackground">
           <div className="nameContainer">
             <h2 className="name">
-              {" "}
-              {this.props.petStatus.name} - {this.props.petStatus.id}{" "}
+              {/*<form className="name-form" onSubmit={this.handleSubmit}>
+                <label className="edit-name-field">
+                  <textarea
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <input
+                  className="confirm-name-button"
+                  type="submit"
+                  value="Confirm Name"
+                />
+              </form>*/}
             </h2>
+            {this.state.isEditing ? (
+              <label className="edit-name-field">
+                <input
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  onKeyPress={this.onKeyPressEnter}
+                />
+              </label>
+            ) : (
+              <h2 className="name">
+                {" "}
+                {this.props.petStatus.name}{" "}
+                <button
+                  className="edit-name-button"
+                  type="submit"
+                  name="Edit Name"
+                  onClick={() => this.setState({ isEditing: true })}
+                >
+                  {" "}
+                  Edit Name{" "}
+                </button>
+              </h2>
+            )}
+
             <div className="nameBackground" />
           </div>
           <div className="creatureWindow">
@@ -98,10 +158,18 @@ class CreatureCard extends Component {
               <p>{hunger.toFixed(2)}%</p>
               <h4>Str: {this.props.petStatus.strength_gene}</h4>
             </div>
-            <div className="breed-button-container">
-              <button className="breed-button" onClick={this.breedPets}>
-                Select this pet to breed!
-              </button>
+
+            <div className="breed-work-feed">
+              <div className="breed-button-container">
+                <button
+                  className="breed-button"
+                  onClick={() => this.props.onSelect(this.props.petStatus)}
+                >
+                  Breed this pet
+                </button>
+                <button className="breed-button">Send to Work</button>
+                <button className="breed-button">Feed</button>
+              </div>
             </div>
           </div>
         </div>

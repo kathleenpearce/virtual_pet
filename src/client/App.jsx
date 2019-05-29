@@ -15,21 +15,45 @@ import BrowseUsers from "./BrowseUsers";
 import Login from "./Login";
 import BreedFirst from "./BreedFirst";
 import Footer from "./Footer";
-import MateFound from "./MateFound";
 import SelectMate from "./SelectMate";
 import Feed from "./Feed";
 import Creature from "./CreatureImg.jsx";
-import CreatureContainer from "./CreatureContainer";
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       petlist: [],
-      pet1: null,
-      pet2: null,
       time: new Date()
     };
+
+    this.editPet = this.editPet.bind(this);
+  }
+
+  addNewPet(pet) {
+    this.setState(prev => {
+      return {
+        petlist: [pet, ...prev.petlist]
+      };
+    });
+  }
+
+  editPet(pet) {
+    /* Going to want to make an axios request */
+    /* PUT /pets/${pet.id} */
+
+    axios.put(`/api/pets/${pet.id}`, pet).then(response => {
+      this.setState(prev => {
+        const index = prev.petlist.findIndex(item => item.id === pet.id);
+        return {
+          petlist: [
+            ...this.state.petlist.slice(0, index),
+            pet,
+            ...this.state.petlist.slice(index + 1)
+          ]
+        };
+      });
+    });
   }
 
   currentTime() {
@@ -66,39 +90,15 @@ export default class App extends Component {
   }
 
   render() {
-    const { pet1, pet2 } = this.state;
     return (
       <div>
         <Navbar />
-
-        {pet1 && pet2 ? (
-          <MateFound
-            left={pet1}
-            right={pet2}
-            time={this.state.time}
-            onNewBaby={baby =>
-              this.setState(prev => ({
-                petlist: prev.petlist.concat(baby)
-              }))
-            }
-          />
-        ) : (
-          <CreatureContainer
-            petlist={this.state.petlist}
-            time={this.state.time}
-            onSelect={pet => {
-              if (this.state.pet1 === null) {
-                this.setState({
-                  pet1: pet
-                });
-              } else if (this.state.pet2 === null) {
-                this.setState({
-                  pet2: pet
-                });
-              }
-            }}
-          />
-        )}
+        <Home
+          petlist={this.state.petlist}
+          time={this.state.time}
+          addNewPet={this.addNewPet}
+          editPet={this.editPet}
+        />
       </div>
     );
   }
