@@ -5,6 +5,7 @@ import Creature from "./CreatureImg.jsx";
 import CreatureCard from "./CreatureCard.jsx";
 import CreatureContainer from "./CreatureContainer";
 import MateFound from "./MateFound";
+import CurrentJobs from "./CurrentJobs.js";
 
 export default class Home extends Component {
   state = {
@@ -47,7 +48,8 @@ export default class Home extends Component {
               petlist={this.props.petlist}
               time={this.props.time}
               editPet={this.props.editPet}
-              deletePet={this.props.delete}
+              deletePet={this.props.deletePet}
+              sendToWork={this.props.sendToWork}
               onSelect={pet => {
                 if (this.state.pet1 === null) {
                   this.setState({
@@ -66,9 +68,7 @@ export default class Home extends Component {
             <h4>Current Jobs</h4>
           </p>
           <div className="job-menu">
-            <div className="job-grid-item">JOB 1</div>
-            <div className="job-grid-item">JOB 2</div>
-            <div className="job-grid-item">JOB 3</div>
+            <CurrentJobs time={this.props.time} />
           </div>
         </div>
 

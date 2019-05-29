@@ -6,7 +6,6 @@ import "./creature.css";
 import "./creatureCard.css";
 import "./Home.css";
 
-import ReactImage from "./react.png";
 import CreatureCard from "./CreatureCard.jsx";
 import Home from "./Home";
 import Navbar from "./Navbar";
@@ -18,13 +17,17 @@ import Footer from "./Footer";
 import SelectMate from "./SelectMate";
 import Feed from "./Feed";
 import Creature from "./CreatureImg.jsx";
+import CurrentJobs from "./CurrentJobs.js";
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       petlist: [],
-      time: new Date()
+      pet1: "",
+      pet2: "",
+      time: new Date().getTime(),
+      latency: 0
     };
 
     this.editPet = this.editPet.bind(this);
@@ -64,36 +67,33 @@ export default class App extends Component {
     });
   }
 
+  sendToWork(pet) {
+    console.log(pet);
+    axios.post(`/api/pets/${pet}/work`, {}).then(response => {
+      this.setState(prev => {
+        return {};
+      });
+    });
+  }
+
   currentTime() {
     this.setState({
-      time: new Date()
+      time: new Date().getTime() - this.state.latency
     });
   }
 
   componentWillMount() {
-    setInterval(() => this.currentTime(), 1000);
+    setInterval(() => this.currentTime(), 16);
   }
-
-  // onChange = (e) => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // }
-
-  // onSubmit = (e) => {
-  //   e.preventDefault();
-  //   // get our form data out of state
-  //   const { pet1, pet2} = this.state;
-
-  //   axios.post('/api/breed', { pet1, pet2})
-  //     .then((result) => {
-  //       //access the results here....
-  //     });
-  // }
 
   componentDidMount() {
     fetch("/api/getPets")
       .then(res => res.json())
       .then(pets => {
-        this.setState({ petlist: pets });
+        this.setState({
+          petlist: pets.pets.reverse(),
+          latency: new Date().getTime() - pets.refrenceTime
+        });
       });
   }
 
@@ -107,6 +107,7 @@ export default class App extends Component {
           addNewPet={this.addNewPet}
           editPet={this.editPet}
           deletePet={this.deletePet}
+          sendToWork={this.sendToWork}
         />
       </div>
     );

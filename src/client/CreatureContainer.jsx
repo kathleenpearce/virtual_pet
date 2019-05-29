@@ -22,6 +22,7 @@ export default class CreatureContainer extends Component {
                 onSelect={this.props.onSelect}
                 editPet={this.props.editPet}
                 deletePet={this.props.deletePet}
+                sendToWork={this.props.sendToWork}
               />
             );
           })}
