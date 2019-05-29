@@ -28,16 +28,14 @@ export default class App extends Component {
           petlist: [],
           pet1: '',
           pet2: '',
-          startTime: new Date().getTime(),
           time: new Date().getTime(),
-          trueTime: new Date().getTime()
+          latency: 0
         };
       }
 
   currentTime(){
     this.setState({
-      time: this.state.trueTime + new Date().getTime() - this.state.startTime,
-      delta: (new Date().getTime() - this.state.startTime)/1000
+      time: (new Date().getTime() - this.state.latency),
     })
   }
 
@@ -48,9 +46,9 @@ export default class App extends Component {
   componentDidMount() {
     fetch('/api/getPets')
       .then(res => res.json())
-      .then(pets => this.setState({ petlist: pets.pets.reverse() }))
-      .then(serverTime => this.setState({ trueTime: serverTime.refrenceTime }))
-
+      .then(pets => {
+        this.setState({ petlist: pets.pets.reverse(), latency: (new Date().getTime() - pets.refrenceTime)});
+       });
   }
 
   render() {
