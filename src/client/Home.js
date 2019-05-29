@@ -20,7 +20,11 @@ export default class Home extends Component {
           <div className="header">
             <div className="logo">
               <div className="subscribe">Username</div>
-              <img src="https://placehold.it/150x80?text=IMAGE" />
+              <br />
+
+              <div className="avatar-img">
+                <img src="https://placehold.it/150x80?text=IMAGE" />
+              </div>
             </div>
             <div className="new-pet-button-container">
               <a href="#" className="new-pet-button">
@@ -43,7 +47,7 @@ export default class Home extends Component {
               petlist={this.props.petlist}
               time={this.props.time}
               editPet={this.props.editPet}
-              deletePet={this.props.deletePet}
+              deletePet={this.props.delete}
               onSelect={pet => {
                 if (this.state.pet1 === null) {
                   this.setState({

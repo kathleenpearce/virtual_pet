@@ -1,3 +1,63 @@
+@import url(//fonts.googleapis.com/css?family=Archivo+Narrow|Pacifico);
+
+/*navbar css*/
+
+.selection {
+  font-family: "Pacifico", cursive;
+  color: white;
+  font-size: 3vw;
+}
+
+.browse-users,
+.logout {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  font-size: 1.5vw;
+}
+
+.logout {
+  margin-left: 3vw;
+}
+
+.browse-users:hover,
+.logout:hover {
+  font-size: 1.5vw;
+  color: black;
+  text-shadow: 2px 2px 5px white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.menu-container {
+  display: flex;
+  color: #fff;
+  background-color: #971034;
+  padding: 20px 0;
+  justify-content: center;
+  color: black;
+}
+
+.menu {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: space-around;
+  font-family: "Archivo Narrow", sans-serif;
+  color: white;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
 /*all generic button styles*/
 a.button {
   background-color: #a3c7b0;
@@ -74,7 +134,7 @@ a.button-free {
   border-radius: 4px;
 }
 
-/*breed page w one animal selected */
+/*breed page */
 
 .breed-first-content {
   display: flex;
@@ -189,58 +249,32 @@ a.button-free {
   padding-right: 10vw;
 }
 
-/*navbar css*/
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.menu-container {
-  display: flex;
-  color: #fff;
-  background-color: #a7b5c4;
-  padding: 20px 0;
-  justify-content: center;
-  color: black;
-}
-
-.menu {
-  width: 900px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: flex-end;
-  justify-content: space-evenly;
-}
-
-.logout {
-  margin-left: 20px;
-}
-
 /*
 header (username and avatar)*/
 
+.subscribe {
+  margin-top: 1vw;
+}
+
 .header-container {
   color: black;
-  background-color: #d3d3d4;
+  background-color: white;
   display: flex;
-  justify-content: center;
-  height: 8vw;
-  align-content: space-around;
+  justify-content: flex-start;
+  height: 9vw;
+  align-content: space-between;
 }
 
 .header {
+  margin-top: 2vw;
   color: black;
-  background-color: #d3d3d4;
+  background-color: white;
+  border: 1px solid black;
   display: flex;
   justify-content: center;
-  height: 8vw;
-  justify-content: space-between;
+  height: 10vw;
+  width: 40vw;
+  justify-content: space-around;
 }
 
 .avatar-info,
@@ -251,9 +285,9 @@ header (username and avatar)*/
 
 .new-pet-button-container {
   color: black;
-  background-color: #d3d3d4;
+  background-color: white;
   display: flex;
-  height: 8vw;
+  margin-top: 3vw;
   justify-content: space-between;
 }
 
@@ -261,7 +295,7 @@ header (username and avatar)*/
   display: flex;
   background-color: #a3c7b0;
   border: 1px solid black;
-  box-shadow: 3px 3px grey;
+  /*box-shadow: 3px 3px grey;*/
   color: black;
   padding: 15px 32px;
   text-align: center;

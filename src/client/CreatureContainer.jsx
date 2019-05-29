@@ -9,9 +9,7 @@ export default class CreatureContainer extends Component {
       <div className="title-align">
         <p className="creature-card-title">
           <br />
-          <div className="your-pets-title">
-            <h4>Your Pets</h4>
-          </div>
+          <div className="your-pets-title">{/*<h4>Your Pets</h4>*/}</div>
         </p>
         <div className="creature-card-container" />
         <div className="creature-menu">

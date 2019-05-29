@@ -9,15 +9,16 @@ export default class Navbar extends Component {
           <div className="menu-container">
             <div className="menu">
               <a href="/">
-                <div className="date">SELECTION</div>
+                <div className="selection">Selection</div>
               </a>
               <div className="nav-links">
                 <a href="http://example.com">
                   <div className="browse-users">Browse Users</div>
                 </a>
-                <div />
-                <a href="http://example.com">
+
+                <a href="/">
                   <div className="logout">Logout</div>
+                  <div />
                 </a>
               </div>
             </div>
