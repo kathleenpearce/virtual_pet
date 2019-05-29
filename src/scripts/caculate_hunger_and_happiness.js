@@ -7,13 +7,14 @@ const caculateHungerHappy = function(
   int,
   working
 ) {
+  // how much time since the last feeding or job in seconds
   let timer = (timeNow - timeLast) / 1000;
 
   let maxHunger = 200;
   let maxHappy = 200;
-
+// calculates how much hunger was lost either at end of a job or the last feeding
   let hunger = ((hungerStart - (str / 10) * timer) / maxHunger) * 100;
-
+// when hunger is 50%, returns the time
   let time_at_half_hunger =
     (-(0.5 * maxHunger - hungerStart) / (str / 10)) * 1000 + parseInt(timeLast);
 
@@ -21,14 +22,13 @@ const caculateHungerHappy = function(
     hunger = 0;
   }
 
-  // (time_at_half_hunger - this.props.petStatus.time_last_fed_or_work)/1000 TIME IT TAKES TO GET TO 50%
-
+  // calculates how happy the pet is when it reaches 50% hunger which tells us it's peak happiness
   let happiness_at_half =
     ((time_at_half_hunger - timeLast) / 1000) * (maxHappy / 60) + happyStart;
   if (happiness_at_half > maxHappy) {
     happiness_at_half = maxHappy;
   }
-
+// happiness increases by a set value when hunger is above 50%, and decreases by a factor of their intelligence - when they are hungry/at work
   let happiness;
   if (hunger > 50 && !working) {
     happiness = ((timer * (maxHappy / 3600) + happyStart) / maxHappy) * 100;
@@ -45,7 +45,7 @@ const caculateHungerHappy = function(
   if (happiness > 100) {
     happiness = 100;
   }
-
+// happyId controls the mouth graphic
   let happyId = 1;
 
   if (happiness > 50) {

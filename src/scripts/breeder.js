@@ -1,3 +1,4 @@
+// builds a object dynamically
 const newPet_start = require('./newpet_start.js')
 const geneMixer = require('./gene_mixer.js')
 

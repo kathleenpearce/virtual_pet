@@ -9,7 +9,7 @@ import CurrentJobs from "./CurrentJobs.js";
 
 export default class Home extends Component {
   state = {
-    pet1: null,
+    pet1: null, //state holds pets to be bred together
     pet2: null
   };
 
@@ -34,7 +34,6 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-
         <div className="flex-home-page-elements-container">
           {pet1 && pet2 ? (
             <MateFound
@@ -71,7 +70,6 @@ export default class Home extends Component {
             <CurrentJobs time={this.props.time} />
           </div>
         </div>
-
         <div className="footer">
           <div className="footer-item footer-one" />
         </div>

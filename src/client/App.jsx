@@ -33,6 +33,8 @@ export default class App extends Component {
     this.editPet = this.editPet.bind(this);
   }
 
+  // takes any new pet and adds it to the petlist
+
   addNewPet(pet) {
     this.setState(prev => {
       return {
@@ -40,6 +42,8 @@ export default class App extends Component {
       };
     });
   }
+
+  // changes name of pet
 
   editPet(pet) {
     /* Going to want to make an axios request */
@@ -59,6 +63,8 @@ export default class App extends Component {
     });
   }
 
+  // changes the owener ID of pet to negative
+
   deletePet(pet) {
     axios.post(`/api/pets/${pet.id}/release`, pet).then(response => {
       this.setState(prev => {
@@ -66,6 +72,8 @@ export default class App extends Component {
       });
     });
   }
+
+  // creates a new entery in the jobs table for the petID
 
   sendToWork(pet) {
     console.log(pet);
@@ -76,16 +84,18 @@ export default class App extends Component {
     });
   }
 
+  // updates global timer
+
   currentTime() {
     this.setState({
       time: new Date().getTime() - this.state.latency
     });
   }
-
+  // refreshes the timer every 16 MS
   componentWillMount() {
     setInterval(() => this.currentTime(), 16);
   }
-
+  // inits the timer, loads all pets that a user has
   componentDidMount() {
     fetch("/api/getPets")
       .then(res => res.json())

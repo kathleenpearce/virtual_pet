@@ -15,6 +15,8 @@ class CreatureCard extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onKeyPressEnter = this.onKeyPressEnter.bind(this);
   }
+
+  // doesn't re-render elements that are off screen
   cardRef = React.createRef();
 
   shouldComponentUpdate() {
@@ -44,6 +46,7 @@ class CreatureCard extends Component {
   }
 
   render() {
+
     let status = caculateHungerHappy(
       this.props.time,
       this.props.petStatus.time_last_fed_or_work,
@@ -82,7 +85,6 @@ class CreatureCard extends Component {
                 </button>
               </h2>
             )}
-
             <div className="nameBackground" />
           </div>
           <div className="creatureWindow">

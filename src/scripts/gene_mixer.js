@@ -1,6 +1,7 @@
 const mutator = require('./mutator.js')
 
 // takes a particular gene and slects one at random, mutating it and correcting if it goes out of range
+//mutatorType is how much variation there is one standard deviation
 const geneMixer = function(pet1, pet2, gene, mutatorType, range) {
   let variation = (Math.random() < .5 ? pet1[gene] : pet2[gene]) + mutator(mutatorType)
 
@@ -11,6 +12,7 @@ const geneMixer = function(pet1, pet2, gene, mutatorType, range) {
       variation = range[1]
     }
   }
+  //returns a part of a JSON object
   return `"${gene}" : ${variation}`
 }
 

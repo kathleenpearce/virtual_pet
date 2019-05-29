@@ -1,3 +1,4 @@
+// this inits a new pet, giving a random gender, full starting hunger/happiness, setting owner to current user, setting all times to now
 const newPet_start = function(owner) {
   const timeNow = new Date().getTime()
   return {

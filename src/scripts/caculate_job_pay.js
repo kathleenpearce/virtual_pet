@@ -1,3 +1,4 @@
+// dynamically calculates how much money a pet has made while they were at work
 const caculateHungerHappy = require("./caculate_hunger_and_happiness.js");
 const jobPayPerStat = require("./job_pay_per_stat.js");
 
@@ -22,10 +23,10 @@ const caculateJobPay = function(time, payRate, jobStatus) {
   ];
 
   const timer = (time - job_start_time) / 1000;
-
+// payoutRatio is how much money the pet makes per second - when at full happiness/hunger
   const payoutRatio =
     job_multiplier_str * strength_gene + job_multiplier_int * intelligence_gene;
-
+// calculates each pets hunger and happiness since job start
   const status = caculateHungerHappy(
     time,
     job_start_time,
@@ -35,14 +36,10 @@ const caculateJobPay = function(time, payRate, jobStatus) {
     intelligence_gene,
     true
   );
-  // console.log("time", typeof time);
-  // console.log("job start time", typeof job_start_time);
-  // console.log("hunger at start", typeof hunger_at_start);
-  // console.log("strength gene", typeof strength_gene);
-  // console.log("intelligence gene", typeof intelligence_gene);
+
   const hunger = status.hunger;
   const happiness = status.happiness;
-
+// payoutHunger accounts for the decrease in efficency based on their increase of hunger
   const payoutHunger = jobPayPerStat(
     timer,
     hunger_at_start,
@@ -51,7 +48,7 @@ const caculateJobPay = function(time, payRate, jobStatus) {
     maxHunger,
     hunger
   );
-
+// payoutHappy accounts for the decrease in efficency based on the decrease of happiness
   const payoutHappy = jobPayPerStat(
     timer,
     happy_at_start,
@@ -60,7 +57,7 @@ const caculateJobPay = function(time, payRate, jobStatus) {
     maxHappy,
     happiness
   );
-
+// combines previous two functions
   const payout = payoutHunger + payoutHappy;
 
   return { payout, hunger, happiness };
