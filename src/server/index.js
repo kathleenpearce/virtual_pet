@@ -57,6 +57,26 @@ app.put("/api/pets/:id", (req, res) => {
   });
 });
 
+app.post("/api/pets/:id/release", (req, res) => {
+  const pet = req.body;
+  console.log("releasing pet", req.params.id);
+
+  knex
+    .from("pets")
+    .where("id", req.params.id)
+    .select("user_id")
+    .asCallback(function(err, user) {
+      knex
+        .from("pets")
+        .where("id", req.params.id)
+        .update("user_id", -user[0].user_id)
+        .asCallback(function(err) {
+          console.log(err);
+          res.status(204).send();
+        });
+    });
+});
+
 app.listen(process.env.PORT || 8080, () =>
   console.log(`Listening on port ${process.env.PORT || 8080}!`)
 );

@@ -85,3 +85,20 @@
   height: 20px;
   font-size: 10px;
 }
+
+.delete-button {
+  background-color: ;
+  box-shadow: 3px 3px grey;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  margin: 15px;
+  font-size: 12px;
+  box-sizing: border-box;
+  line-height: 2vw;
+}

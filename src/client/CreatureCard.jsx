@@ -6,7 +6,8 @@ class CreatureCard extends Component {
     super(props);
     this.state = {
       isEditing: false,
-      name: ""
+      name: "",
+      isDeleting: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -167,8 +168,38 @@ class CreatureCard extends Component {
                 >
                   Breed this pet
                 </button>
+
                 <button className="breed-button">Send to Work</button>
                 <button className="breed-button">Feed</button>
+
+                {this.state.isDeleting ? (
+                  <label className="delete-pet-field">
+                    <button
+                      value={this.state.pet}
+                      onClick={() => {
+                        this.props.deletePet(this.props.petStatus);
+                        window.location.reload();
+                      }}
+                    >
+                      {" "}
+                      Click to confirm deletion{" "}
+                    </button>
+                  </label>
+                ) : (
+                  <h2 className="delete-pet">
+                    {" "}
+                    {this.props.petStatus.pet}{" "}
+                    <button
+                      className="breed-button"
+                      type="submit"
+                      name="Delete Pet"
+                      onClick={() => this.setState({ isDeleting: true })}
+                    >
+                      {" "}
+                      Set Free{" "}
+                    </button>
+                  </h2>
+                )}
               </div>
             </div>
           </div>

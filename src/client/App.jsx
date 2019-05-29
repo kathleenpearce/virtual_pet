@@ -56,6 +56,14 @@ export default class App extends Component {
     });
   }
 
+  deletePet(pet) {
+    axios.post(`/api/pets/${pet.id}/release`, pet).then(response => {
+      this.setState(prev => {
+        return {};
+      });
+    });
+  }
+
   currentTime() {
     this.setState({
       time: new Date()
@@ -98,6 +106,7 @@ export default class App extends Component {
           time={this.state.time}
           addNewPet={this.addNewPet}
           editPet={this.editPet}
+          deletePet={this.deletePet}
         />
       </div>
     );

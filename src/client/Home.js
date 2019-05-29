@@ -43,6 +43,7 @@ export default class Home extends Component {
               petlist={this.props.petlist}
               time={this.props.time}
               editPet={this.props.editPet}
+              deletePet={this.props.deletePet}
               onSelect={pet => {
                 if (this.state.pet1 === null) {
                   this.setState({
