@@ -20,7 +20,11 @@ import SelectMate from "./SelectMate";
 import Feed from "./Feed";
 import Creature from "./CreatureImg.jsx";
 import CurrentJobs from "./CurrentJobs.js";
-import BuyNewPet from "./BuyNewPet"
+import BuyNewPet from "./BuyNewPet";
+import MateFound from "./MateFound";
+
+
+
 
 
 export default class App extends Component {
@@ -131,6 +135,7 @@ export default class App extends Component {
           <Route path="/browseusers" component={BrowseUsers}/>
           <Route path="/login" component={Login}/>
           <Route path="/buynewpet" component={BuyNewPet} />
+
 
           <Route path="/" component={() => {
           return (<Home

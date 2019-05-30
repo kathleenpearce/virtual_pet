@@ -52,9 +52,22 @@
 
 
       <div className="pet-profile-buttons">
-      <button onClick={() => this.props.deletePet(this.props.match.params.petid)} >
+
+
+
+
+      <button className="breed-button" onClick={() => {this.props.deletePet(this.props.match.params.petid);
+        alert("By pressing ok you will permanently delete this pet!");
+        this.props.history.goBack();
+
+      }} >
       Set Free
       </button>
+
+
+
+
+
 
 
      </div>

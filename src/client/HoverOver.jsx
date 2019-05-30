@@ -28,34 +28,7 @@ class HoverOver extends Component {
             </button><p></p>
             <button className="breed-button">Feed</button>
 
-            {this.props.isDeleting ? (
-              <label className="delete-pet-field">
-                <button
-                  value={this.props.pet}
-                  onClick={() => {
-                    this.props.deletePet(this.props.petStatus);
-                    window.location.reload();
-                  }}
-                >
-                  {" "}
-                  Click to confirm deletion{" "}
-                </button>
-              </label>
-            ) : (
-              <h2 className="delete-pet">
-                {" "}
-                {this.props.petStatus.pet}{" "}
-                <button
-                  className="breed-button"
-                  type="submit"
-                  name="Delete Pet"
-                  onClick={() => this.setState({ isDeleting: true })}
-                >
-                  {" "}
-                  Set Free{" "}
-                </button>
-              </h2>
-            )}
+            <div></div>
           </div>
         </div>
     )
