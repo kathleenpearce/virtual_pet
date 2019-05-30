@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Creature from "./CreatureImg.jsx";
+
 
 import caculateHungerHappy from '../scripts/caculate_hunger_and_happiness.js'
 import caculateJobPay from '../scripts/caculate_job_pay.js'
@@ -15,7 +17,8 @@ export default class JobCard extends Component {
 
     return (
       <div>
-      {Math.round(payoutTotal.payout)} {Math.round(payoutTotal.hunger)} {Math.round(payoutTotal.happiness)}
+      {Math.round(payoutTotal.payout)} {Math.round(payoutTotal.hunger)} {Math.round(payoutTotal.happiness)} {payoutTotal.instPayout}
+        <Creature petStatus={this.props.jobStatus}/>
       </div>
       )
   }

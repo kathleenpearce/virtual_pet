@@ -7,6 +7,9 @@
   color: white;
   font-size: 3vw;
 }
+.page_test {
+  display: flex;
+}
 
 .browse-users,
 .logout {
@@ -221,6 +224,7 @@ a.button-free {
 }
 
 .job-menu {
+  width: 100px;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;

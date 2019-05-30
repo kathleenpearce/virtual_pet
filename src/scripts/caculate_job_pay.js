@@ -59,6 +59,7 @@ const caculateJobPay = function(time, payRate, jobStatus) {
   );
 // combines previous two functions
   const payout = payoutHunger + payoutHappy;
+  //const instPayout = payoutHunger[1] + payoutHappy[1]
 
   return { payout, hunger, happiness };
 };

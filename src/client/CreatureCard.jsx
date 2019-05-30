@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Creature from "./CreatureImg.jsx";
+import HoverOver from "./HoverOver.jsx"
 
 import caculateHungerHappy from "../scripts/caculate_hunger_and_happiness.js";
 
@@ -9,7 +10,8 @@ class CreatureCard extends Component {
     this.state = {
       isEditing: false,
       name: "",
-      isDeleting: false
+      isDeleting: false,
+      isHovering: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,6 +47,10 @@ class CreatureCard extends Component {
     }
   }
 
+
+
+
+
   render() {
 
     let status = caculateHungerHappy(
@@ -58,7 +64,7 @@ class CreatureCard extends Component {
     );
 
     return (
-      <div ref={this.cardRef}>
+      <div ref={this.cardRef} onMouseEnter={() => this.setState ({ isHovering: true })} onMouseLeave={() => this.setState ({ isHovering: false })}>
         <div className="cardBackground">
           <div className="nameContainer">
             <h2 className="name" />
@@ -107,58 +113,10 @@ class CreatureCard extends Component {
               <p>{status.hunger.toFixed(2)}%</p>
               <h4>Str: {this.props.petStatus.strength_gene}</h4>
             </div>
-
-            <div className="breed-work-feed">
-              <div className="breed-button-container">
-                <button
-                  className="breed-button"
-                  onClick={() => this.props.onSelect(this.props.petStatus)}
-                >
-                  Breed this pet
-                </button>
-
-                <button
-                  className="breed-button"
-                  value={this.state.pet}
-                  onClick={() => {
-                    this.props.sendToWork(this.props.petStatus.id);
-                    window.location.reload();
-                  }}
-                >
-                  Send to Work
-                </button>
-                <button className="breed-button">Feed</button>
-
-                {this.state.isDeleting ? (
-                  <label className="delete-pet-field">
-                    <button
-                      value={this.state.pet}
-                      onClick={() => {
-                        this.props.deletePet(this.props.petStatus);
-                        window.location.reload();
-                      }}
-                    >
-                      {" "}
-                      Click to confirm deletion{" "}
-                    </button>
-                  </label>
-                ) : (
-                  <h2 className="delete-pet">
-                    {" "}
-                    {this.props.petStatus.pet}{" "}
-                    <button
-                      className="breed-button"
-                      type="submit"
-                      name="Delete Pet"
-                      onClick={() => this.setState({ isDeleting: true })}
-                    >
-                      {" "}
-                      Set Free{" "}
-                    </button>
-                  </h2>
-                )}
-              </div>
-            </div>
+            {this.state.isHovering ? (
+              <HoverOver onSelect={this.props.onSelect} petStatus={this.props.petStatus} sendToWork={this.props.sendToWork} isDeleting={this.state.isDeleting} pet={this.state.pet} deletePet={this.props.deletePet} />
+              ) : ('hi')
+            }
           </div>
         </div>
       </div>
