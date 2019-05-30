@@ -20,6 +20,7 @@ import SelectMate from "./SelectMate";
 import Feed from "./Feed";
 import Creature from "./CreatureImg.jsx";
 import CurrentJobs from "./CurrentJobs.js";
+import BuyNewPet from "./BuyNewPet"
 
 
 export default class App extends Component {
@@ -68,8 +69,8 @@ export default class App extends Component {
 
   // changes the owener ID of pet to negative
 
-  deletePet(pet) {
-    axios.post(`/api/pets/${pet.id}/release`, pet).then(response => {
+  deletePet(petid) {
+    axios.post(`/api/pets/${petid}/release`).then(response => {
       this.setState(prev => {
         return {};
       });
@@ -129,6 +130,7 @@ export default class App extends Component {
           }}/>
           <Route path="/browseusers" component={BrowseUsers}/>
           <Route path="/login" component={Login}/>
+          <Route path="/buynewpet" component={BuyNewPet} />
 
           <Route path="/" component={() => {
           return (<Home

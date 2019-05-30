@@ -28,7 +28,7 @@ export default class Home extends Component {
               </div>
             </div>
             <div className="new-pet-button-container">
-              <a href="#" className="new-pet-button">
+              <a href="/buynewpet" className="new-pet-button">
                 Buy New Pet
               </a>
             </div>

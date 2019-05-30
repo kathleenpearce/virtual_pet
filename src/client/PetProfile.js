@@ -3,6 +3,7 @@
   import './Home.css'
   import './creatureCard.css'
   import CreatureCard from './CreatureCard'
+  import './HoverOver.jsx'
 
   export default class PetProfile extends Component {
     state={
@@ -51,8 +52,10 @@
 
 
       <div className="pet-profile-buttons">
+      <button onClick={() => this.props.deletePet(this.props.match.params.petid)} >
+      Set Free
+      </button>
 
-      <a href="#" className="button-free">Set Free</a>
 
      </div>
 

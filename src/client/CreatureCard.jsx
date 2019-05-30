@@ -32,7 +32,7 @@ class CreatureCard extends Component {
   }
 
   handleChange(event) {
-    this.setState({ name: event.target.value }); // call post
+    this.setState({ name: event.target.value });
   }
 
   handleSubmit(event) {
@@ -114,7 +114,7 @@ class CreatureCard extends Component {
               <h4>Str: {this.props.petStatus.strength_gene}</h4>
             </div>
             {this.state.isHovering && (
-              <HoverOver onSelect={this.props.onSelect} petStatus={this.props.petStatus} sendToWork={this.props.sendToWork} isDeleting={this.state.isDeleting} pet={this.state.pet} deletePet={this.props.deletePet} />
+              <HoverOver onSelect={this.props.onSelect} petStatus={this.props.petStatus} sendToWork={this.props.sendToWork} pet={this.state.pet} deletePet={this.props.deletePet} />
             )}
           </div>
         </div>
