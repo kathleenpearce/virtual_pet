@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import "./Home.css";
+import "./creatureCard.css"
 
 class HoverOver extends Component {
   render() {
@@ -12,7 +14,7 @@ class HoverOver extends Component {
               onClick={() => this.props.onSelect(this.props.petStatus)}
             >
               Breed this pet
-            </button>
+            </button><p></p>
 
             <button
               className="breed-button"
@@ -23,7 +25,7 @@ class HoverOver extends Component {
               }}
             >
               Send to Work
-            </button>
+            </button><p></p>
             <button className="breed-button">Feed</button>
 
             {this.props.isDeleting ? (

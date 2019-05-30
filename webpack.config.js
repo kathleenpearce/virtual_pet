@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const outputDirectory = 'dist';
+const outputDirectory = '/dist';
 
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.js'],
@@ -37,7 +37,8 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:8080'
     },
-  watchOptions: { poll: true },
+    watchOptions: { poll: true },
+    historyApiFallback: true
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),

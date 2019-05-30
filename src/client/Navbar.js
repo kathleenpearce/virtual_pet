@@ -12,11 +12,12 @@ export default class Navbar extends Component {
                 <div className="selection">Selection</div>
               </a>
               <div className="nav-links">
-                <a href="http://example.com">
+              <a href="/"><div className="browse-users">Your Profile</div></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/browseusers">
                   <div className="browse-users">Browse Users</div>
                 </a>
 
-                <a href="/">
+                <a href="/login">
                   <div className="logout">Logout</div>
                   <div />
                 </a>

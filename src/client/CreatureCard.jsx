@@ -78,8 +78,8 @@ class CreatureCard extends Component {
               </label>
             ) : (
               <h2 className="name">
-                {" "}
-                {this.props.petStatus.name}{" "}
+               <a href={"/petprofile/" +this.props.petStatus.id} className="name-link"> {" "}
+                {this.props.petStatus.name}{" "}</a>
                 <button
                   className="edit-name-button"
                   type="submit"
@@ -113,10 +113,9 @@ class CreatureCard extends Component {
               <p>{status.hunger.toFixed(2)}%</p>
               <h4>Str: {this.props.petStatus.strength_gene}</h4>
             </div>
-            {this.state.isHovering ? (
+            {this.state.isHovering && (
               <HoverOver onSelect={this.props.onSelect} petStatus={this.props.petStatus} sendToWork={this.props.sendToWork} isDeleting={this.state.isDeleting} pet={this.state.pet} deletePet={this.props.deletePet} />
-              ) : ('hi')
-            }
+            )}
           </div>
         </div>
       </div>

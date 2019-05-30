@@ -19,9 +19,9 @@ export default class Home extends Component {
       <div>
         <div className="header-container">
           <div className="header">
-            <div className="logo">
-              <div className="subscribe">Username</div>
-              <br />
+            <div className="user-name-container"><div className="logo">
+              <div className="username">Username</div></div>
+
 
               <div className="avatar-img">
                 <img src="https://placehold.it/150x80?text=IMAGE" />
@@ -34,46 +34,43 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-          <div className="page_test">
-            <div className="jobsListTest">
-              <p className="job-card-title">
-                <h4>Current Jobs</h4>
-              </p>
-              <div className="job-menu">
-                <CurrentJobs time={this.props.time} />
-              </div>
-            </div>
-            <div className="flex-home-page-elements-container">
-              {pet1 && pet2 ? (
-                <MateFound
-                  left={pet1}
-                  right={pet2}
-                  time={this.props.time}
-                  onNewBaby={baby => this.props.addNewPet(baby)}
-                />
-              ) : (
-                <CreatureContainer
-                  petlist={this.props.petlist}
-                  time={this.props.time}
-                  editPet={this.props.editPet}
-                  deletePet={this.props.deletePet}
-                  sendToWork={this.props.sendToWork}
-                  onSelect={pet => {
-                    if (this.state.pet1 === null) {
-                      this.setState({
-                        pet1: pet
-                      });
-                    } else if (this.state.pet2 === null) {
-                      this.setState({
-                        pet2: pet
-                      });
-                    }
-                  }}
-                />
-              )}
-
-            </div>
+        <div className="flex-home-page-elements-container">
+          {pet1 && pet2 ? (
+            <MateFound
+              left={pet1}
+              right={pet2}
+              time={this.props.time}
+              onNewBaby={baby => this.props.addNewPet(baby)}
+            />
+          ) : (
+            <CreatureContainer
+              petlist={this.props.petlist}
+              time={this.props.time}
+              editPet={this.props.editPet}
+              deletePet={this.props.deletePet}
+              sendToWork={this.props.sendToWork}
+              onSelect={pet => {
+                if (this.state.pet1 === null) {
+                  this.setState({
+                    pet1: pet
+                  });
+                } else if (this.state.pet2 === null) {
+                  this.setState({
+                    pet2: pet
+                  });
+                }
+              }}
+            />
+          )}
+          <div className="current-job-container">
+          <div className="job-card-title">
+            <h4>Current Jobs</h4>
           </div>
+          <div className="job-menu">
+            <CurrentJobs time={this.props.time} />
+          </div>
+          </div>
+        </div>
         <div className="footer">
           <div className="footer-item footer-one" />
         </div>

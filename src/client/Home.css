@@ -1,6 +1,8 @@
 @import url(//fonts.googleapis.com/css?family=Archivo+Narrow|Pacifico);
 
+
 /*navbar css*/
+
 
 .selection {
   font-family: "Pacifico", cursive;
@@ -62,21 +64,12 @@
 }
 
 /*all generic button styles*/
-a.button {
-  background-color: #a3c7b0;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
-  margin: 15px;
-  box-shadow: 3px 3px grey;
-}
+
 /*
 pet profile page CSS*/
+.pet-profile-content {
+  margin-top: 6vw;
+}
 
 .pet-profile-stats {
   margin-top: 30px !important;
@@ -96,19 +89,7 @@ pet profile page CSS*/
 }
 
 /*set free button diff color to differentiate */
-a.button-free {
-  background-color: grey;
-  box-shadow: 3px 3px grey;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
-  margin: 15px;
-}
+
 
 /*browse all users page*/
 .username-list {
@@ -181,7 +162,7 @@ a.button-free {
 }
 
 .creature-card-container {
-  width: 25vw;
+  width: 75%;
   position: relative;
   display: flex;
   justify-content: left;
@@ -224,22 +205,20 @@ a.button-free {
 }
 
 .job-menu {
-  width: 100px;
+width: 25%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
 }
 
-.job-grid-item {
+.current-job-container {
+  margin-top: 2.5vw;
+  width: 20%;
   display: flex;
-  border: 1px solid black;
-  width: 200px;
-  height: 200px;
-  justify-content: space-around;
   flex-direction: column;
-  align-items: center;
+  padding-right: 10vw;
 }
 
 .flex-home-page-elements-container {
@@ -249,26 +228,25 @@ a.button-free {
   justify-content: center;
   flex-direction: row;
   justify-content: space-between;
-  padding-left: 10vw;
-  padding-right: 1vw;
-  padding-top: 6vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-top: 5vw;
 }
 
 /*
 header (username and avatar)*/
 
-.subscribe {
-  margin-top: 1vw;
+/*.user-name-container {
+  margin-bottom: 25px;
+}*/
+.username {
+  font-size: 2vw;
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 2vw;
+
 }
 
-.header-container {
-  color: black;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  height: 9vw;
-  align-content: space-between;
-}
 
 .header {
   margin-top: 2vw;
@@ -276,9 +254,9 @@ header (username and avatar)*/
   background-color: white;
 
   display: flex;
-  justify-content: center;
+
   height: 10vw;
-  width: 40vw;
+  width: 52%;
   justify-content: space-around;
 }
 
@@ -289,27 +267,49 @@ header (username and avatar)*/
 }
 
 .new-pet-button-container {
+  margin-top: 4vw;
   color: black;
   background-color: white;
   display: flex;
-  margin-top: 3vw;
+
   justify-content: space-between;
 }
 
 .new-pet-button {
   display: flex;
-  background-color: #a3c7b0;
-  border: 1px solid black;
-  /*box-shadow: 3px 3px grey;*/
-  color: black;
+  background-color: Gainsboro; color: black;
+  border: none;
   padding: 15px 32px;
+  margin-bottom: 2px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
+  font-size: 1vw;
+  border-radius: 3px;
   justify-content: center;
+  webkit-transition-duration: 0.8s;
+  transition-duration: 0.4s;
+  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+
 }
+
+
+.new-pet-button:hover {
+  background-color: #525267;
+  color: white;
+}
+
+.new-pet-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+
+
+
+  -
 
 .footer {
   display: flex;
@@ -382,42 +382,3 @@ header (username and avatar)*/
   width: 50vw;
 }
 
-.breed-title {
-  color: black;
-}
-
-.breed-button {
-  background-color: #a3c7b0;
-  border: none;
-  color: white;
-  padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  border-radius: 4px;
-  box-shadow: 3px 3px grey;
-  align-content: center;
-  border-radius: 40%;
-}
-
-.breed-button-container {
-  display: flex;
-  position: relative;
-  height: 7em;
-  width: 5em;
-  margin-bottom: 0.5em;
-  margin-right: 17px;
-  justify-content: space-around;
-}
-
-.breed-button:hover {
-  background-color: #3e8e41;
-  color: black;
-}
-
-.breed-button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}

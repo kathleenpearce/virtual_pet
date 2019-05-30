@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+
 
 import "./app.css";
 import "./creature.css";
@@ -94,7 +96,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 1000);
+    //setInterval(() => this.currentTime(), 100000000);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
@@ -111,15 +113,35 @@ export default class App extends Component {
   render() {
     return (
       <div>
+      <BrowserRouter >
         <Navbar />
-        <Home
+        <Switch>
+          <Route path="/petprofile/:petid" component={(props) => {
+            return (<PetProfile {...props}
+          time={this.state.time}
+          addNewPet={this.addNewPet}
+          editPet={this.editPet}
+          deletePet={this.deletePet}
+          sendToWork={this.sendToWork}
+
+              />
+              );
+          }}/>
+          <Route path="/browseusers" component={BrowseUsers}/>
+          <Route path="/login" component={Login}/>
+
+          <Route path="/" component={() => {
+          return (<Home
           petlist={this.state.petlist}
           time={this.state.time}
           addNewPet={this.addNewPet}
           editPet={this.editPet}
           deletePet={this.deletePet}
           sendToWork={this.sendToWork}
-        />
+        />); }} />
+
+        </Switch>
+       </BrowserRouter>
       </div>
     );
   }

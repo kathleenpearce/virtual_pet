@@ -18,7 +18,7 @@ export default class JobCard extends Component {
     return (
       <div>
       {Math.round(payoutTotal.payout)} {Math.round(payoutTotal.hunger)} {Math.round(payoutTotal.happiness)} {payoutTotal.instPayout}
-        <Creature petStatus={this.props.jobStatus}/>
+
       </div>
       )
   }

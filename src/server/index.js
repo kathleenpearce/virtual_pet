@@ -32,6 +32,20 @@ app.get("/api/getPets", (req, res) => {
     });
 });
 
+app.get("/api/getPets/:petid", (req, res) => {
+  console.log("HERE", req.params.petid)
+  const refrenceTime = new Date().getTime();
+  knex
+    .from("pets")
+    .where("id", req.params.petid)
+    .select("*")
+    .asCallback(function(err, pet) {
+      console.log("PETS", pet)
+      res.send({ pet, refrenceTime });
+    });
+
+})
+
 app.post("/api/breed", (req, res) => {
   knex
     .from("pets")
@@ -56,7 +70,7 @@ app.put("/api/pets/:id", (req, res) => {
     .where("id", Number(req.params.id))
     .update(pet);
 
-  console.log(query.toString());
+  // console.log(query.toString());
 
   query.asCallback(function(err) {
     res.status(204).send();
@@ -65,7 +79,7 @@ app.put("/api/pets/:id", (req, res) => {
 
 app.post("/api/pets/:id/release", (req, res) => {
   const pet = req.body;
-  console.log("releasing pet", req.params.id);
+  // console.log("releasing pet", req.params.id);
 
   knex
     .from("pets")
@@ -77,7 +91,7 @@ app.post("/api/pets/:id/release", (req, res) => {
         .where("id", req.params.id)
         .update("user_id", -user[0].user_id)
         .asCallback(function(err) {
-          console.log(err);
+          // console.log(err);
           res.status(204).send();
         });
     });
@@ -90,14 +104,14 @@ app.get("/api/getJobs", (req, res) => {
     .where("user_id", 1)
     .select("*")
     .asCallback(function(err, jobs) {
-      console.log(jobs);
+      // console.log(jobs);
       res.send(jobs);
     });
 });
 
 app.post("/api/pets/:id/work", (req, res) => {
   const pet = req.body;
-  console.log("pet", req.params.id);
+
   knex
     .from("pets")
     .where("id", req.params.id)
@@ -109,8 +123,8 @@ app.post("/api/pets/:id/work", (req, res) => {
       "intelligence_gene"
     )
     .asCallback(function(err, status) {
-      console.log("err", err);
-      console.log("status", status);
+      // console.log("err", err);
+      // console.log("status", status);
       const time = new Date().getTime();
       const jobStart = caculateHungerHappy(
         time,
@@ -132,8 +146,8 @@ app.post("/api/pets/:id/work", (req, res) => {
         .insert(data)
         .into("jobs")
         .asCallback(function(err, resp) {
-          console.log("err", err);
-          console.log("resp", resp);
+          // console.log("err", err);
+          // console.log("resp", resp);
           res.send(204);
         });
     });
