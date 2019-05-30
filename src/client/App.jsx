@@ -94,7 +94,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 16);
+    setInterval(() => this.currentTime(), 1000);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
