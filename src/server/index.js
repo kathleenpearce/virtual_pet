@@ -22,12 +22,17 @@ app.use(express.static("dist"));
 
 app.get("/api/getPets", (req, res) => {
   const refrenceTime = new Date().getTime();
-  knex
-    .from("pets")
+  knex.from("jobs")
     .where("user_id", 1)
     .select("*")
     .orderBy("time_at_birth")
+    .rightJoin('pets', function(){
+      this.on('job_start_time', '=', function(){
+          this.select('job_start_time').from('jobs').whereRaw('pet_id = pets.id').orderBy('job_start_time', 'desc').limit(1)
+      })
+    })
     .asCallback(function(err, pets) {
+      console.log(err)
       res.send({ pets, refrenceTime });
     });
 });
@@ -120,27 +125,29 @@ app.post("/api/pets/:id/work", (req, res) => {
         happy_at_start: Math.round((jobStart.happiness * maxHappy) / 100),
         job_type: parseInt(1)
       };
-      knex
-        .insert(data)
-        .into("jobs")
-        .asCallback(function(err, resp) {
-          res.send(204);
-        });
+      knex.into("pets").where({'id': data.pet_id}).update({'hunger_at_time_last_fed': data.hunger_at_start, 'happiness_at_time_last_fed': data.happy_at_start}).asCallback(function(err){
+        knex
+          .insert(data)
+          .into("jobs")
+          .asCallback(function(err, resp) {
+            res.send(204);
+          });
+      })
     });
 });
 
 app.post("/api/jobs/:id", (req, res) => {
-  console.log(req.params.id)
-  // knex.from("jobs").where("id", req.params.id)
-  //     .join("pets", "pets.id", "=", "jobs.pet_id")
-  //     .select(
-  //       "time_last_fed_or_work",
-  //       "hunger_at_time_last_fed",
-  //       "happiness_at_time_last_fed",
-  //       "strength_gene",
-  //       "intelligence_gene",
+  knex.from("jobs")
+      // .where("id", req.params.id)
+      // .join("pets", "pets.id", "=", "jobs.pet_id")
+      // .select(
+      //   "time_last_fed_or_work",
+      //   "hunger_at_time_last_fed",
+      //   "happiness_at_time_last_fed",
+      //   "strength_gene",
+      //   "intelligence_gene",
 
-  //     )
+      // )
 
 })
 
