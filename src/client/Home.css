@@ -239,14 +239,15 @@ a.button-free {
 }
 
 .flex-home-page-elements-container {
-  width: 150%;
+  width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   padding-left: 10vw;
-  padding-right: 10vw;
+  padding-right: 1vw;
+  padding-top: 6vw;
 }
 
 /*
@@ -260,7 +261,7 @@ header (username and avatar)*/
   color: black;
   background-color: white;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   height: 9vw;
   align-content: space-between;
 }
@@ -269,7 +270,7 @@ header (username and avatar)*/
   margin-top: 2vw;
   color: black;
   background-color: white;
-  border: 1px solid black;
+
   display: flex;
   justify-content: center;
   height: 10vw;

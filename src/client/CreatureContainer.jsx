@@ -11,7 +11,7 @@ export default class CreatureContainer extends Component {
           <br />
           <div className="your-pets-title">{/*<h4>Your Pets</h4>*/}</div>
         </p>
-        <div className="creature-card-container" />
+        <div className="creature-card-container">
         <div className="creature-menu">
           {this.props.petlist.map(pet => {
             return (
@@ -26,6 +26,7 @@ export default class CreatureContainer extends Component {
               />
             );
           })}
+          </div>
         </div>
       </div>
     );
