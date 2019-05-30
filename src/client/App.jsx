@@ -76,12 +76,19 @@ export default class App extends Component {
   // creates a new entery in the jobs table for the petID
 
   sendToWork(pet) {
-    console.log(pet);
     axios.post(`/api/pets/${pet}/work`, {}).then(response => {
       this.setState(prev => {
         return {};
       });
     });
+  }
+
+  returnFromWork(job) {
+    axios.post(`/api/jobs/${job}`, {}).then(response => {
+      this.setState(prev => {
+        return {};
+      })
+    })
   }
 
   // updates global timer
@@ -118,6 +125,7 @@ export default class App extends Component {
           editPet={this.editPet}
           deletePet={this.deletePet}
           sendToWork={this.sendToWork}
+          returnFromWork={this.returnFromWork}
         />
       </div>
     );

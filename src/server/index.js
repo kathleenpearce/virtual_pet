@@ -81,8 +81,8 @@ app.post("/api/pets/:id/release", (req, res) => {
 
 app.get("/api/getJobs", (req, res) => {
   knex
-    .from("jobs")
-    .join("pets", "pets.id", "=", "jobs.pet_id")
+    .from("pets")
+    .join("jobs", "pets.id", "=", "jobs.pet_id")
     .where("user_id", 1)
     .select("*")
     .asCallback(function(err, jobs) {
@@ -91,7 +91,7 @@ app.get("/api/getJobs", (req, res) => {
 });
 
 app.post("/api/pets/:id/work", (req, res) => {
-  const pet = req.body;
+  //const pet = req.body;
   knex
     .from("pets")
     .where("id", req.params.id)
@@ -128,6 +128,21 @@ app.post("/api/pets/:id/work", (req, res) => {
         });
     });
 });
+
+app.post("/api/jobs/:id", (req, res) => {
+  console.log(req.params.id)
+  // knex.from("jobs").where("id", req.params.id)
+  //     .join("pets", "pets.id", "=", "jobs.pet_id")
+  //     .select(
+  //       "time_last_fed_or_work",
+  //       "hunger_at_time_last_fed",
+  //       "happiness_at_time_last_fed",
+  //       "strength_gene",
+  //       "intelligence_gene",
+
+  //     )
+
+})
 
 app.listen(process.env.PORT || 8080, () =>
   console.log(`Listening on port ${process.env.PORT || 8080}!`)

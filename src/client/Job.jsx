@@ -8,6 +8,15 @@ import caculateJobPay from '../scripts/caculate_job_pay.js'
 
 export default class JobCard extends Component {
 
+  jobRef = React.createRef();
+
+  shouldComponentUpdate() {
+    const rect = this.jobRef.current.getBoundingClientRect();
+    return (
+      rect.bottom > 0 &&
+      rect.top < window.innerHeight
+    );
+  }
 
 
   render() {
@@ -17,7 +26,7 @@ export default class JobCard extends Component {
 
 
     return (
-      <div className='jobCard'>
+      <div ref={this.jobRef} className='jobCard' onClick={() => this.props.returnFromWork(this.props.jobStatus.id)} >
         <div className='jobCardTop'>
           <p className='jobName'> {this.props.jobStatus.name} </p>
           <div className='statusJob'>

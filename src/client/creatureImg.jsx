@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './app.css';
 import ReactImage from './react.png';
 import DeliverSvg from './Deliver_svg.jsx'
 
-class Creature extends Component {
+class Creature extends PureComponent {
   render() {
     return(
       <div className="creature">
