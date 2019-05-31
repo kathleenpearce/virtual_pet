@@ -54,8 +54,8 @@ app.get("/api/getPets/:petid", (req, res) => {
 app.post("/api/breed", (req, res) => {
   knex
     .from("pets")
-    .where("id", req.body.pet1)
-    .orWhere("id", req.body.pet2)
+    .where("id", req.body.pet1.id)
+    .orWhere("id", req.body.pet2.id)
     .select("*")
     .asCallback(function(err, mates) {
       const baby = breed(1, mates[0], mates[1]);

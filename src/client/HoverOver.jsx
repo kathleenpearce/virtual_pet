@@ -14,7 +14,8 @@ class HoverOver extends Component {
               onClick={() => this.props.onSelect(this.props.petStatus)}
             >
               Breed this pet
-            </button><p></p>
+            </button>
+            <p></p>
 
             <button
               className="breed-button"

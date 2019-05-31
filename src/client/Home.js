@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {BrowserRouter, Switch, Route, Link, Redirect} from "react-router-dom";
+
 
 import "./Home.css";
 import Creature from "./CreatureImg.jsx";
@@ -35,33 +37,17 @@ export default class Home extends Component {
           </div>
         </div>
         <div className="flex-home-page-elements-container">
-          {pet1 && pet2 ? (
-            <MateFound
-              left={pet1}
-              right={pet2}
-              time={this.props.time}
-              onNewBaby={baby => this.props.addNewPet(baby)}
-            />
-          ) : (
+
+
             <CreatureContainer
               petlist={this.props.petlist}
               time={this.props.time}
               editPet={this.props.editPet}
               deletePet={this.props.deletePet}
               sendToWork={this.props.sendToWork}
-              onSelect={pet => {
-                if (this.state.pet1 === null) {
-                  this.setState({
-                    pet1: pet
-                  });
-                } else if (this.state.pet2 === null) {
-                  this.setState({
-                    pet2: pet
-                  });
-                }
-              }}
+              onSelect={this.props.breed}
             />
-          )}
+
           <div className="current-job-container">
           <div className="job-card-title">
             <h4>Current Jobs</h4>

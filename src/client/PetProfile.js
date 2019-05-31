@@ -43,7 +43,7 @@
             <ul> Energy:  </ul><br />
             <ul> Strength: </ul><br />
             <ul>Hunger: </ul><br />
-            <ul> Intelligence: </ul><br />
+            <ul> Intelligence: {this.state.pet.intelligence_gene}</ul><br />
             <ul>Happiness: </ul><br />
             <ul> Gender:</ul><br />
 

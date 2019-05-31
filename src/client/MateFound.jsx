@@ -5,6 +5,9 @@ import CreatureContainer from "./CreatureContainer";
 import axios from "axios";
 
 export default class MateFound extends Component {
+
+  state = { loaded: false };
+
   breedPets = event => {
     // event.preventDefault();
     const breedData = new FormData(event.target);
@@ -15,15 +18,34 @@ export default class MateFound extends Component {
     // });
     axios
       .post("/api/breed", {
-        pet1: this.props.left.id,
-        pet2: this.props.right.id
+        pet1: this.state.pet1.id,
+        pet2: this.state.pet2.id
       })
       .then(response => {
         this.props.onNewBaby(response.data);
       });
   };
 
+  componentDidMount() {
+      fetch("/api/getPets/"+this.props.match.params.pet1)
+      .then(res => res.json())
+      .then(pet1 => {
+        fetch("/api/getPets/"+this.props.match.params.pet2)
+        .then(res => res.json())
+        .then(pet2 => {
+          this.setState({
+            pet1: pet1,
+            pet2: pet2,
+            loaded: true,
+          });
+        });
+      });
+    }
+
   render() {
+    if (!this.state.loaded) {
+      return <div> Loading... </div>
+    }
     return (
       <div>
         <br />
@@ -33,7 +55,7 @@ export default class MateFound extends Component {
             <div className="pet-profile-creature-card">
               <div className="creature-grid-item">
                 <CreatureCard
-                  petStatus={this.props.left}
+                  petStatus={this.state.pet1}
                   time={this.props.time}
                 />{" "}
               </div>
@@ -54,7 +76,7 @@ export default class MateFound extends Component {
             <div className="pet-profile-creature-card">
               <div className="creature-grid-item">
                 <CreatureCard
-                  petStatus={this.props.right}
+                  petStatus={this.state.pet2}
                   time={this.props.time}
                 />
               </div>

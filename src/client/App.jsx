@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link, Redirect} from "react-router-dom";
 
 
 import "./app.css";
@@ -23,6 +23,8 @@ import CurrentJobs from "./CurrentJobs.js";
 import BuyNewPet from "./BuyNewPet";
 import MateFound from "./MateFound";
 
+import { breedNewPet } from "../services";
+
 
 
 
@@ -43,12 +45,16 @@ export default class App extends Component {
 
   // takes any new pet and adds it to the petlist
 
-  addNewPet(pet) {
-    this.setState(prev => {
-      return {
-        petlist: [pet, ...prev.petlist]
-      };
-    });
+  addNewPet() {
+    breedNewPet(this.state.pet1, this.state.pet2, (pet) => {
+      this.setState(prev => {
+        return {
+          petlist: [pet, ...prev.petlist]
+        };
+      });
+      //return <Redirect to={`/breed/${this.state.pet1.id}/${this.state.pet2.id}`} />
+    })
+
   }
 
   // changes name of pet
@@ -122,12 +128,42 @@ export default class App extends Component {
       });
   }
 
+  // selectPet()
+  // update state pf pet1 and pet2
+  breed = (pet) => {
+
+    if (this.state.pet1 === "") {
+    this.setState({
+      pet1: pet
+    });
+    } else if (this.state.pet2 === "") {
+      let pet1id = this.state.pet1.id;
+      let pet2id = pet.id;
+      this.setState({
+        pet2: pet
+      }, this.addNewPet)
+      // return <Redirect to='/' />
+    }
+  }
+
   render() {
     return (
       <div>
       <BrowserRouter >
         <Navbar />
         <Switch>
+        <Route path="/breed/:pet1/:pet2" render={(props) => {
+          return (
+            <MateFound {...props}
+
+              time={this.state.time}
+              onNewBaby={baby => this.addNewPet(baby)}
+            />
+            )
+
+
+
+        }} />
           <Route path="/petprofile/:petid" render={(props) => {
             return (<PetProfile {...props}
           time={this.state.time}
@@ -153,6 +189,10 @@ export default class App extends Component {
           deletePet={this.deletePet}
           sendToWork={this.sendToWork}
           returnFromWork={this.returnFromWork}
+          breed={this.breed}
+          pet1={this.state.pet1}
+          pet2={this.state.pet2}
+
 
         />); }} />
 
