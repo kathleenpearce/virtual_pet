@@ -6,6 +6,8 @@ const caculateJobPay = function(time, payRate, jobStatus) {
   const maxHunger = 200;
   const maxHappy = 200;
 
+  console.log(jobStatus)
+
   const [job_multiplier_str, job_multiplier_int] = payRate;
 
   const [
@@ -16,8 +18,8 @@ const caculateJobPay = function(time, payRate, jobStatus) {
     strength_gene
   ] = [
     jobStatus.job_start_time,
-    jobStatus.hunger_at_start,
-    jobStatus.happy_at_start,
+    jobStatus.hunger_at_time_last_fed,
+    jobStatus.happiness_at_time_last_fed,
     jobStatus.intelligence_gene,
     jobStatus.strength_gene
   ];

@@ -14,9 +14,11 @@ const knexLogger = require("knex-logger");
 
 const breed = require("../scripts/breeder.js");
 const caculateHungerHappy = require("../scripts/caculate_hunger_and_happiness.js");
+const caculateJobPay = require('../scripts/caculate_job_pay.js');
 
 const maxHunger = 200;
 const maxHappy = 200;
+const payRate = [5,1]
 
 app.use(express.static("dist"));
 
@@ -129,6 +131,7 @@ app.post("/api/pets/:id/work", (req, res) => {
       "intelligence_gene"
     )
     .asCallback(function(err, status) {
+      console.log("send to work err: ", status)
 
       const time = new Date().getTime();
       const jobStart = caculateHungerHappy(
@@ -147,12 +150,14 @@ app.post("/api/pets/:id/work", (req, res) => {
         happy_at_start: Math.round((jobStart.happiness * maxHappy) / 100),
         job_type: parseInt(1)
       };
+      console.log("data ", data)
 
       knex.into("pets").where({'id': data.pet_id}).update({'hunger_at_time_last_fed': data.hunger_at_start, 'happiness_at_time_last_fed': data.happy_at_start}).asCallback(function(err){
         knex
           .insert(data)
           .into("jobs")
-          .asCallback(function(err, resp) {
+          .asCallback(function(err) {
+            console.log("insert job err: ", err)
             res.send(204);
           });
       })
@@ -161,17 +166,32 @@ app.post("/api/pets/:id/work", (req, res) => {
 });
 
 app.post("/api/jobs/:id", (req, res) => {
+  console.log(req.params.id)
   knex.from("jobs")
-      // .where("id", req.params.id)
-      // .join("pets", "pets.id", "=", "jobs.pet_id")
-      // .select(
-      //   "time_last_fed_or_work",
-      //   "hunger_at_time_last_fed",
-      //   "happiness_at_time_last_fed",
-      //   "strength_gene",
-      //   "intelligence_gene",
-
-      // )
+      .where("jobs.id", req.params.id)
+      .join("pets", "pets.id", "=", "pet_id")
+      .join("users", "user_id", "=", "users.id")
+      .select(
+        "job_start_time",
+        "hunger_at_time_last_fed",
+        "happiness_at_time_last_fed",
+        "strength_gene",
+        "intelligence_gene",
+        "user_id",
+        "job_type",
+        "pet_id",
+        "jobs.id",
+        "gold"
+      ).asCallback(function(err, data){
+        console.log(err)
+        console.log("jobs query data: ", data)
+          const payoutTotal = caculateJobPay(new Date().getTime(), payRate, data[0])
+          console.log(payoutTotal)
+          knex.from("users").where("id", data[0].user_id).update({"gold": parseInt(data[0].gold) + Math.round(payoutTotal.payout)}).asCallback(function(err){
+            console.log(err)
+            res.send(204);
+          })
+      })
 
 })
 
