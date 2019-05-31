@@ -8,13 +8,17 @@ const jobPayPerStat = function (timer, statStart, gene, payoutRatio, maxStat, st
 // being earned is not decreased
   const payoutHungerMax = (- (geneDecay) * (statStart/(2 * geneDecay)) * (statStart/(2 * geneDecay)) + (statStart) * (statStart/(2 * geneDecay))) * (payoutRatio) / 400 * 2
 
-  //let instPay = (payoutRatio) * (statStart - 2((geneDecay) * timer))/maxStat * 100 * 2 /200
+  let instPay = (payoutRatio) * (statStart - 2 * ((geneDecay) * timer))/maxStat * 100 * 2 /200
 
   if (status <= 0) {
     payout = payoutHungerMax
 
+  if (instPay <= 0) {
+    instPay = 0
   }
-  return payout
+
+  }
+  return [payout, instPay]
 }
 
 module.exports = jobPayPerStat

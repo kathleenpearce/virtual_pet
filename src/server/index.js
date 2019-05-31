@@ -22,12 +22,17 @@ app.use(express.static("dist"));
 
 app.get("/api/getPets", (req, res) => {
   const refrenceTime = new Date().getTime();
-  knex
-    .from("pets")
+  knex.from("jobs")
     .where("user_id", 1)
     .select("*")
     .orderBy("time_at_birth")
+    .rightJoin('pets', function(){
+      this.on('job_start_time', '=', function(){
+          this.select('job_start_time').from('jobs').whereRaw('pet_id = pets.id').orderBy('job_start_time', 'desc').limit(1)
+      })
+    })
     .asCallback(function(err, pets) {
+      console.log(err)
       res.send({ pets, refrenceTime });
     });
 });
@@ -70,7 +75,6 @@ app.put("/api/pets/:id", (req, res) => {
     .where("id", Number(req.params.id))
     .update(pet);
 
-  // console.log(query.toString());
 
   query.asCallback(function(err) {
     res.status(204).send();
@@ -79,7 +83,7 @@ app.put("/api/pets/:id", (req, res) => {
 
 app.post("/api/pets/:id/release", (req, res) => {
   const pet = req.body;
-  // console.log("releasing pet", req.params.id);
+
 
   knex
     .from("pets")
@@ -91,7 +95,7 @@ app.post("/api/pets/:id/release", (req, res) => {
         .where("id", req.params.id)
         .update("user_id", -user[0].user_id)
         .asCallback(function(err) {
-          // console.log(err);
+
           res.status(204).send();
         });
     });
@@ -99,18 +103,20 @@ app.post("/api/pets/:id/release", (req, res) => {
 
 app.get("/api/getJobs", (req, res) => {
   knex
-    .from("jobs")
-    .join("pets", "pets.id", "=", "jobs.pet_id")
+    .from("pets")
+    .join("jobs", "pets.id", "=", "jobs.pet_id")
     .where("user_id", 1)
     .select("*")
     .asCallback(function(err, jobs) {
-      // console.log(jobs);
+
       res.send(jobs);
     });
 });
 
 app.post("/api/pets/:id/work", (req, res) => {
+
   const pet = req.body;
+
 
   knex
     .from("pets")
@@ -123,8 +129,7 @@ app.post("/api/pets/:id/work", (req, res) => {
       "intelligence_gene"
     )
     .asCallback(function(err, status) {
-      // console.log("err", err);
-      // console.log("status", status);
+
       const time = new Date().getTime();
       const jobStart = caculateHungerHappy(
         time,
@@ -142,16 +147,33 @@ app.post("/api/pets/:id/work", (req, res) => {
         happy_at_start: Math.round((jobStart.happiness * maxHappy) / 100),
         job_type: parseInt(1)
       };
-      knex
-        .insert(data)
-        .into("jobs")
-        .asCallback(function(err, resp) {
-          // console.log("err", err);
-          // console.log("resp", resp);
-          res.send(204);
-        });
+
+      knex.into("pets").where({'id': data.pet_id}).update({'hunger_at_time_last_fed': data.hunger_at_start, 'happiness_at_time_last_fed': data.happy_at_start}).asCallback(function(err){
+        knex
+          .insert(data)
+          .into("jobs")
+          .asCallback(function(err, resp) {
+            res.send(204);
+          });
+      })
+
     });
 });
+
+app.post("/api/jobs/:id", (req, res) => {
+  knex.from("jobs")
+      // .where("id", req.params.id)
+      // .join("pets", "pets.id", "=", "jobs.pet_id")
+      // .select(
+      //   "time_last_fed_or_work",
+      //   "hunger_at_time_last_fed",
+      //   "happiness_at_time_last_fed",
+      //   "strength_gene",
+      //   "intelligence_gene",
+
+      // )
+
+})
 
 app.listen(process.env.PORT || 8080, () =>
   console.log(`Listening on port ${process.env.PORT || 8080}!`)

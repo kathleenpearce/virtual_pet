@@ -67,7 +67,8 @@ export default class Home extends Component {
             <h4>Current Jobs</h4>
           </div>
           <div className="job-menu">
-            <CurrentJobs time={this.props.time} />
+            <CurrentJobs time={this.props.time} returnFromWork={this.props.returnFromWork} />
+
           </div>
           </div>
         </div>

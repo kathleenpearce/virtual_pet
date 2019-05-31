@@ -52,15 +52,28 @@ class CreatureCard extends Component {
 
 
   render() {
+    let working = false
+    if (this.props.petStatus.job_start_time && !this.props.petStatus.job_end_time){
+      working = true
+    }
+
+    let lastInteraction = this.props.petStatus.time_last_fed_or_work
+    if (this.props.petStatus.time_last_fed_or_work < this.props.petStatus.job_start_time) {
+      lastInteraction = this.props.petStatus.job_start_time
+      if (this.props.petStatus.job_start_time < this.props.petStatus.job_end_time) {
+        lastInteraction = this.props.petStatus.job_end_time
+      }
+    }
+
 
     let status = caculateHungerHappy(
       this.props.time,
-      this.props.petStatus.time_last_fed_or_work,
+      lastInteraction,
       this.props.petStatus.hunger_at_time_last_fed,
       this.props.petStatus.happiness_at_time_last_fed,
       this.props.petStatus.strength_gene,
       this.props.petStatus.intelligence_gene,
-      false
+      working
     );
 
     return (

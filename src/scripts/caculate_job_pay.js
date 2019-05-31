@@ -58,10 +58,10 @@ const caculateJobPay = function(time, payRate, jobStatus) {
     happiness
   );
 // combines previous two functions
-  const payout = payoutHunger + payoutHappy;
-  //const instPayout = payoutHunger[1] + payoutHappy[1]
+  const payout = payoutHunger[0] + payoutHappy[0];
+  const instPayout = payoutHunger[1] + payoutHappy[1]
 
-  return { payout, hunger, happiness };
+  return { payout, hunger, happiness, instPayout};
 };
 
 module.exports = caculateJobPay;

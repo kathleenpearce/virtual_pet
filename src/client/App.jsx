@@ -84,12 +84,19 @@ export default class App extends Component {
   // creates a new entery in the jobs table for the petID
 
   sendToWork(pet) {
-    console.log(pet);
     axios.post(`/api/pets/${pet}/work`, {}).then(response => {
       this.setState(prev => {
         return {};
       });
     });
+  }
+
+  returnFromWork(job) {
+    axios.post(`/api/jobs/${job}`, {}).then(response => {
+      this.setState(prev => {
+        return {};
+      })
+    })
   }
 
   // updates global timer
@@ -101,7 +108,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    //setInterval(() => this.currentTime(), 100000000);
+    setInterval(() => this.currentTime(), 1000);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
@@ -121,7 +128,7 @@ export default class App extends Component {
       <BrowserRouter >
         <Navbar />
         <Switch>
-          <Route path="/petprofile/:petid" component={(props) => {
+          <Route path="/petprofile/:petid" render={(props) => {
             return (<PetProfile {...props}
           time={this.state.time}
           addNewPet={this.addNewPet}
@@ -137,18 +144,23 @@ export default class App extends Component {
           <Route path="/buynewpet" component={BuyNewPet} />
 
 
-          <Route path="/" component={() => {
-          return (<Home
+          <Route path="/" render={(props) => {
+          return (<Home {...props}
           petlist={this.state.petlist}
           time={this.state.time}
           addNewPet={this.addNewPet}
           editPet={this.editPet}
           deletePet={this.deletePet}
           sendToWork={this.sendToWork}
+          returnFromWork={this.returnFromWork}
+
         />); }} />
 
         </Switch>
        </BrowserRouter>
+
+
+
       </div>
     );
   }

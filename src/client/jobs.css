@@ -1,0 +1,45 @@
+.jobCard {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  margin: 5px;
+}
+
+.creatureJobWindow {
+  height: 60px;
+  overflow: hidden;
+}
+
+.petJob {
+  position: relative;
+  top: -59px;
+}
+
+.jobCardTop {
+  height: 40px;
+  background-color: grey;
+  padding: 10px;
+}
+.jobCardTop .statusJob {
+  float: right;
+  margin-left: 10px;
+}
+
+.jobCardTop img {
+  height: 24px;
+}
+
+p.jobName {
+  float: left;
+}
+
+.jobCardBottom {
+  background-color: grey;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  height: 40px
+}
