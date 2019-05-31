@@ -52,7 +52,7 @@ export default class App extends Component {
           petlist: [pet, ...prev.petlist]
         };
       });
-      //return <Redirect to={`/breed/${this.state.pet1.id}/${this.state.pet2.id}`} />
+      // <Redirect to={`/breed/${this.state.pet1.id}/${this.state.pet2.id}`} />
     })
 
   }
@@ -150,6 +150,9 @@ export default class App extends Component {
     return (
       <div>
       <BrowserRouter >
+        {/*Delete*/}
+       {/* <Route path='*' component={App}/>*/}
+      {/*End Delete*/}
         <Navbar />
         <Switch>
         <Route path="/breed/:pet1/:pet2" render={(props) => {
