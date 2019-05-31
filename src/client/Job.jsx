@@ -30,7 +30,9 @@ export default class JobCard extends Component {
 
 
 
-      <div ref={this.jobRef} className='jobCard' onClick={() => this.props.returnFromWork(this.props.jobStatus.id)} >
+      <div ref={this.jobRef} className='jobCard' onClick={() => {
+        this.props.returnFromWork(this.props.jobStatus.id)
+        window.location.reload()}} >
         <div className='jobCardTop'>
           <p className='jobName'> {this.props.jobStatus.name} </p>
           <div className='statusJob'>

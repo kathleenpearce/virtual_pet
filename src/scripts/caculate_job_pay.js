@@ -6,8 +6,6 @@ const caculateJobPay = function(time, payRate, jobStatus) {
   const maxHunger = 200;
   const maxHappy = 200;
 
-  console.log(jobStatus)
-
   const [job_multiplier_str, job_multiplier_int] = payRate;
 
   const [

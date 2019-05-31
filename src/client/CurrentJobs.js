@@ -27,9 +27,11 @@ export default class CurrentJobs extends Component {
     return (
       <div>
       {this.state.jobList.map(job => {
-          return (
-            <JobCard jobStatus={job} time={this.props.time} returnFromWork={this.props.returnFromWork} />
-          )
+          if (!job.job_end_time){
+            return (
+              <JobCard jobStatus={job} time={this.props.time} returnFromWork={this.props.returnFromWork} />
+            )
+          }
         })}
       </div>
       )
