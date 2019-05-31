@@ -197,13 +197,14 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
         }
         const currentHungerHappy = caculateHungerHappy(
           time,
-          petStats[0].time_last_fed_or_work,
-          petStats[0].hunger_at_time_last_fed,
           updateTime,
+          petStats[0].hunger_at_time_last_fed,
+          petStats[0].happiness_at_time_last_fed,
           petStats[0].strength_gene,
           petStats[0].intelligence_gene,
           false
           )
+
         console.log("stats at feed: ", currentHungerHappy)
         let newHunger = Math.round(currentHungerHappy.hunger * maxHunger / 100) + foodMenu[req.params.foodId].food
         if (newHunger > maxHunger) {
