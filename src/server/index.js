@@ -70,11 +70,10 @@ app.post("/api/breed", (req, res) => {
 });
 
 app.put("/api/pets/:id", (req, res) => {
-  const pet = req.body;
 
   var query = knex("pets")
     .where("id", Number(req.params.id))
-    .update(pet);
+    .update({'name': req.body.name});
 
 
   query.asCallback(function(err) {

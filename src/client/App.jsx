@@ -142,7 +142,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 100000000000);
+    setInterval(() => this.currentTime(), 16);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
@@ -173,6 +173,7 @@ export default class App extends Component {
           sendToWork={this.sendToWork}
           returnFromWork={this.returnFromWork}
           breed={this.breed}
+          feed={this.feed}
           pet1={this.state.pet1}
           pet2={this.state.pet2}
 
