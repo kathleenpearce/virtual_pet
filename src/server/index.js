@@ -185,11 +185,17 @@ app.post("/api/jobs/:id", (req, res) => {
       ).asCallback(function(err, data){
         console.log(err)
         console.log("jobs query data: ", data)
-          const payoutTotal = caculateJobPay(new Date().getTime(), payRate, data[0])
+          const timeNow = new Date().getTime()
+          const payoutTotal = caculateJobPay(timeNow, payRate, data[0])
           console.log(payoutTotal)
           knex.from("users").where("id", data[0].user_id).update({"gold": parseInt(data[0].gold) + Math.round(payoutTotal.payout)}).asCallback(function(err){
-            console.log(err)
-            res.send(204);
+            knex.from("pets").where("id", data[0].pet_id).update({"hunger_at_time_last_fed": payoutTotal.hunger, "happiness_at_time_last_fed": payoutTotal.happiness}).asCallback(function(err){
+              console.log("pets update err: ", err)
+              knex.from("jobs").where("id", data[0].id).update({"job_end_time": timeNow}).asCallback(function(err){
+                console.log("jobs update err: ", err)
+                res.send(204);
+              })
+            })
           })
       })
 
