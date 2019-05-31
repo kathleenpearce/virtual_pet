@@ -34,12 +34,12 @@ export default class JobCard extends Component {
         <div className='jobCardTop'>
           <p className='jobName'> {this.props.jobStatus.name} </p>
           <div className='statusJob'>
-            <img className="happiness" src="../../lib/img/noun_Heart.svg" />
-            {Math.round(payoutTotal.happiness)}
-          </div>
-          <div className='statusJob'>
             <img className="hunger" src="../../lib/img/noun_Bitten_Apple.svg" />
             {Math.round(payoutTotal.hunger)}
+          </div>
+          <div className='statusJob'>
+            <img className="happiness" src="../../lib/img/noun_Heart.svg" />
+            {Math.round(payoutTotal.happiness)}
           </div>
         </div>
         <div className="creatureJobWindow">
