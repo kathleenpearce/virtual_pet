@@ -40,6 +40,7 @@ class Home extends Component {
               editPet={this.props.editPet}
               deletePet={this.props.deletePet}
               sendToWork={this.props.sendToWork}
+              feed={this.props.feed}
               onSelect={this.props.breed}
             />
 

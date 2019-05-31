@@ -124,6 +124,15 @@ export default class App extends Component {
     })
   }
 
+  feed(pet, foodType) {
+    console.log( "pet: ", pet, " fed food: ", foodType)
+    axios.post(`/api/pets/${pet}/feed/${foodType}`, {}).then(response => {
+      this.setState(prev => {
+        return {};
+      })
+    })
+  }
+
   // updates global timer
 
   currentTime() {
@@ -213,6 +222,24 @@ export default class App extends Component {
           <Route path="/buynewpet" component={BuyNewPet} />
           {content}
 
+
+
+          <Route path="/" render={(props) => {
+          return (<Home {...props}
+          petlist={this.state.petlist}
+          time={this.state.time}
+          addNewPet={this.addNewPet}
+          editPet={this.editPet}
+          deletePet={this.deletePet}
+          sendToWork={this.sendToWork}
+          returnFromWork={this.returnFromWork}
+          breed={this.breed}
+          feed={this.feed}
+          pet1={this.state.pet1}
+          pet2={this.state.pet2}
+
+
+        />); }} />
 
 
         </Switch>

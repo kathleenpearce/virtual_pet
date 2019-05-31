@@ -27,7 +27,15 @@ class HoverOver extends Component {
             >
               Send to Work
             </button><p></p>
-            <button className="breed-button">Feed</button>
+            <button
+              className="breed-button"
+              onClick={() => {
+                this.props.feed(this.props.petStatus.id, 1)
+                window.location.reload();
+              }}
+
+            >
+              Feed</button>
 
             <div></div>
           </div>
