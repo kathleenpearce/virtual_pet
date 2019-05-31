@@ -10,7 +10,7 @@ const caculateHungerHappy = function(
   // how much time since the last feeding or job in seconds
   let timer = (timeNow - timeLast) / 1000;
 
-  console.log(hungerStart, happyStart, str, int, timeLast)
+  // console.log(hungerStart, happyStart, str, int, timeLast)
 
   //1559272916544
   //1559272920904

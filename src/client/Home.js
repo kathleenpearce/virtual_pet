@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {BrowserRouter, Switch, Route, Link, Redirect} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link, Redirect, withRouter} from "react-router-dom";
 
 
 import "./Home.css";
@@ -9,14 +9,9 @@ import CreatureContainer from "./CreatureContainer";
 import MateFound from "./MateFound";
 import CurrentJobs from "./CurrentJobs.js";
 
-export default class Home extends Component {
-  state = {
-    pet1: null, //state holds pets to be bred together
-    pet2: null
-  };
+class Home extends Component {
 
   render() {
-    const { pet1, pet2 } = this.state;
     return (
       <div>
         <div className="header-container">
@@ -65,3 +60,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default withRouter(Home)

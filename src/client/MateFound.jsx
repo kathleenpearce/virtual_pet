@@ -6,16 +6,11 @@ import axios from "axios";
 
 export default class MateFound extends Component {
 
-  state = { loaded: false };
+
 
   breedPets = event => {
     // event.preventDefault();
     const breedData = new FormData(event.target);
-
-    // fetch("/api/breed", {
-    //   method: "POST",
-    //   body: breedData
-    // });
     axios
       .post("/api/breed", {
         pet1: this.state.pet1.id,
@@ -27,25 +22,11 @@ export default class MateFound extends Component {
   };
 
   componentDidMount() {
-      fetch("/api/getPets/"+this.props.match.params.pet1)
-      .then(res => res.json())
-      .then(pet1 => {
-        fetch("/api/getPets/"+this.props.match.params.pet2)
-        .then(res => res.json())
-        .then(pet2 => {
-          this.setState({
-            pet1: pet1,
-            pet2: pet2,
-            loaded: true,
-          });
-        });
-      });
+
     }
 
   render() {
-    if (!this.state.loaded) {
-      return <div> Loading... </div>
-    }
+
     return (
       <div>
         <br />
@@ -55,7 +36,7 @@ export default class MateFound extends Component {
             <div className="pet-profile-creature-card">
               <div className="creature-grid-item">
                 <CreatureCard
-                  petStatus={this.state.pet1}
+                  petStatus={this.props.pet1}
                   time={this.props.time}
                 />{" "}
               </div>
@@ -76,18 +57,18 @@ export default class MateFound extends Component {
             <div className="pet-profile-creature-card">
               <div className="creature-grid-item">
                 <CreatureCard
-                  petStatus={this.state.pet2}
+                  petStatus={this.props.pet2}
                   time={this.props.time}
                 />
               </div>
             </div>
           </div>
         </div>
-        <a href="/">
-          <button className="button" onClick={this.breedPets}>
+
+          <button className="actual-breed-button" onClick={() => {this.props.addNewPet(this.props.pet1, this.props.pet2)}}>
             Breed
           </button>
-        </a>
+
       </div>
     );
   }

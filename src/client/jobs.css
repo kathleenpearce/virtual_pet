@@ -6,6 +6,7 @@
   border-color: black;
   border-width: 3px;
   margin: 5px;
+
 }
 
 .creatureJobWindow {
@@ -43,3 +44,4 @@ p.jobName {
   padding: 10px;
   height: 40px
 }
+

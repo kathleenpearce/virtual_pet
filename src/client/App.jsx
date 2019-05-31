@@ -45,16 +45,35 @@ export default class App extends Component {
 
   // takes any new pet and adds it to the petlist
 
-  addNewPet() {
-    breedNewPet(this.state.pet1, this.state.pet2, (pet) => {
+  addNewPet = (pet1, pet2) => {
+
+    breedNewPet(pet1, pet2, (pet) => {
       this.setState(prev => {
         return {
+          pet1: "",
+          pet2: "",
           petlist: [pet, ...prev.petlist]
         };
       });
-      // <Redirect to={`/breed/${this.state.pet1.id}/${this.state.pet2.id}`} />
     })
 
+  }
+
+//setting pet 1 or pet2
+  breed = (pet) => {
+
+    if (this.state.pet1 === "") {
+    this.setState({
+      pet1: pet
+    });
+    } else if (this.state.pet2 === "") {
+      let pet1id = this.state.pet1.id;
+      let pet2id = pet.id;
+      this.setState({
+        pet2: pet
+      })
+      // return <Redirect to='/' />
+    }
   }
 
   // changes name of pet
@@ -114,7 +133,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 16);
+    setInterval(() => this.currentTime(), 100000000000);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
@@ -130,59 +149,11 @@ export default class App extends Component {
 
   // selectPet()
   // update state pf pet1 and pet2
-  breed = (pet) => {
 
-    if (this.state.pet1 === "") {
-    this.setState({
-      pet1: pet
-    });
-    } else if (this.state.pet2 === "") {
-      let pet1id = this.state.pet1.id;
-      let pet2id = pet.id;
-      this.setState({
-        pet2: pet
-      }, this.addNewPet)
-      // return <Redirect to='/' />
-    }
-  }
 
   render() {
-    return (
-      <div>
-      <BrowserRouter >
-        {/*Delete*/}
-       {/* <Route path='*' component={App}/>*/}
-      {/*End Delete*/}
-        <Navbar />
-        <Switch>
-        <Route path="/breed/:pet1/:pet2" render={(props) => {
-          return (
-            <MateFound {...props}
-
-              time={this.state.time}
-              onNewBaby={baby => this.addNewPet(baby)}
-            />
-            )
-
-
-
-        }} />
-          <Route path="/petprofile/:petid" render={(props) => {
-            return (<PetProfile {...props}
-          time={this.state.time}
-          addNewPet={this.addNewPet}
-          editPet={this.editPet}
-          deletePet={this.deletePet}
-          sendToWork={this.sendToWork}
-
-              />
-              );
-          }}/>
-          <Route path="/browseusers" component={BrowseUsers}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/buynewpet" component={BuyNewPet} />
-
-
+    console.log(this.props)
+    let content = (
           <Route path="/" render={(props) => {
           return (<Home {...props}
           petlist={this.state.petlist}
@@ -198,6 +169,51 @@ export default class App extends Component {
 
 
         />); }} />
+
+
+      );
+    if (this.state.pet1 != "" && this.state.pet2 != ""){
+
+      content = (
+          <MateFound
+          petlist={this.state.petlist}
+          time={this.state.time}
+          addNewPet={this.addNewPet}
+
+          breed={this.breed}
+          pet1={this.state.pet1}
+          pet2={this.state.pet2}
+
+
+        />
+
+        );
+    }
+    return (
+      <div>
+      <BrowserRouter >
+        {/*Delete*/}
+       {/* <Route path='*' component={App}/>*/}
+      {/*End Delete*/}
+        <Navbar />
+        <Switch>
+          <Route path="/petprofile/:petid" render={(props) => {
+            return (<PetProfile {...props}
+          time={this.state.time}
+          addNewPet={this.addNewPet}
+          editPet={this.editPet}
+          deletePet={this.deletePet}
+          sendToWork={this.sendToWork}
+
+              />
+              );
+          }}/>
+          <Route path="/browseusers" component={BrowseUsers}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/buynewpet" component={BuyNewPet} />
+          {content}
+
+
 
         </Switch>
        </BrowserRouter>
