@@ -47,14 +47,18 @@ class CreatureCard extends Component {
     }
   }
 
-
-
-
-
   render() {
+
     let working = false
     if (this.props.petStatus.job_start_time && !this.props.petStatus.job_end_time){
       working = true
+    }
+
+    let breeding = false
+    if (this.props.pet1) {
+      if (this.props.pet1.id === this.props.petStatus.id){
+        breeding = true
+      }
     }
 
     let lastInteraction = this.props.petStatus.time_last_fed_or_work
@@ -83,7 +87,7 @@ class CreatureCard extends Component {
         }
       }}
         onMouseLeave={() => this.setState ({ isHovering: false })}>
-        <div className={working ? "workingBackground" : "cardBackground"}>
+        <div className={working ? "workingBackground" : (breeding ? "breedingBackground" : "cardBackground")}>
           <div className="nameContainer">
             <h2 className="name" />
             {this.state.isEditing ? (
@@ -132,7 +136,15 @@ class CreatureCard extends Component {
               <h4>Str: {this.props.petStatus.strength_gene}</h4>
             </div>
             {this.state.isHovering && (
-              <HoverOver onSelect={this.props.onSelect} petStatus={this.props.petStatus} sendToWork={this.props.sendToWork} pet={this.state.pet} deletePet={this.props.deletePet} feed={this.props.feed} />
+              <HoverOver
+                onSelect={this.props.onSelect}
+                petStatus={this.props.petStatus}
+                sendToWork={this.props.sendToWork}
+                pet={this.props.petStatus}
+                deletePet={this.props.deletePet}
+                feed={this.props.feed}
+                pet1={this.props.pet1}
+              />
             )}
           </div>
         </div>

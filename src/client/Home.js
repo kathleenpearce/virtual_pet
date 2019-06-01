@@ -50,16 +50,36 @@ class Home extends Component {
               sendToWork={this.props.sendToWork}
               feed={this.props.feed}
               onSelect={this.props.breed}
+              pet1={this.props.pet1}
+              pet2={this.props.pet2}
             />
 
           <div className="current-job-container">
-          <div className="job-card-title">
-            <h4>Current Jobs</h4>
-          </div>
-          <div className="job-menu">
-            <CurrentJobs time={this.props.time} returnFromWork={this.props.returnFromWork} />
-
-          </div>
+            { this.props.pet1 === '' &&
+             <div>
+              <div className="job-card-title">
+                <h4>Current Jobs</h4>
+              </div>
+              <div className="job-menu">
+                <CurrentJobs time={this.props.time} returnFromWork={this.props.returnFromWork} />
+              </div>
+             </div>
+            }
+            { this.props.pet1 != '' &&
+             <div>
+              <div className="job-card-title">
+                <h4>Breeding Selected</h4>
+              </div>
+              <div className="job-menu">
+                <CreatureCard
+                  onSelect={this.props.breed}
+                  petStatus={this.props.pet1}
+                  time={this.props.time}
+                  pet1={this.props.pet1}
+                />
+              </div>
+             </div>
+            }
           </div>
         </div>
         <div className="footer">
