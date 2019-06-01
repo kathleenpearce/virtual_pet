@@ -77,13 +77,16 @@ export default class App extends Component {
     this.setState({
       pet1: pet
     });
-    } else if (this.state.pet2 === "") {
+    } else if ((this.state.pet2 === "") && (this.state.pet1.id != pet.id)) {
       let pet1id = this.state.pet1.id;
       let pet2id = pet.id;
       this.setState({
         pet2: pet
       })
+
       // return <Redirect to='/' />
+    } else {
+      alert('please select 2 different pets')
     }
   }
 
@@ -161,7 +164,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 32);
+    setInterval(() => this.currentTime(), 1000);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {

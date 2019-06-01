@@ -19,7 +19,7 @@ const newRandomPet = require('../scripts/new_random_pet.js')
 
 const maxHunger = 200;
 const maxHappy = 200;
-const payRate = [5,1]
+const payRate = [[5,1], [3,3], [1,5]]
 const foodMenu = [{food: 10, price: 30}, {food: 30, price: 70}, {food: 50, price: 100}]
 
 
@@ -78,22 +78,26 @@ app.post("/api/login", (req, res, username) => {
 })
 
 app.post("/api/breed", (req, res) => {
-  knex
-    .from("pets")
-    .where("id", req.body.pet1.id)
-    .orWhere("id", req.body.pet2.id)
-    .select("*")
-    .asCallback(function(err, mates) {
-      const baby = breed(1, mates[0], mates[1]);
-      knex
-        .insert(baby)
-        .into("pets")
-        .returning('*')
-        .asCallback(function(err, newPet) {
-          console.log(newPet)
-          res.status(201).send(newPet[0]);
-        });
-    });
+  if (req.body.pet1.id != req.body.pet2.id){
+    knex
+      .from("pets")
+      .where("id", req.body.pet1.id)
+      .orWhere("id", req.body.pet2.id)
+      .select("*")
+      .asCallback(function(err, mates) {
+        const baby = breed(1, mates[0], mates[1]);
+        knex
+          .insert(baby)
+          .into("pets")
+          .returning('*')
+          .asCallback(function(err, newPet) {
+            console.log(newPet)
+            res.status(201).send(newPet[0]);
+          });
+      });
+    } else {
+      res.status(406)
+    }
 });
 
 app.put("/api/pets/:id", (req, res) => {
@@ -275,7 +279,7 @@ app.post("/api/jobs/:id", (req, res) => {
         console.log(err)
         console.log("jobs query data: ", data)
           const timeNow = new Date().getTime()
-          const payoutTotal = caculateJobPay(timeNow, payRate, data[0])
+          const payoutTotal = caculateJobPay(timeNow, payRate[0], data[0])
           console.log(payoutTotal)
           knex.from("users").where("id", data[0].user_id).update({"gold": parseInt(data[0].gold) + Math.round(payoutTotal.payout)}).asCallback(function(err){
             knex.from("pets").where("id", data[0].pet_id).update({"hunger_at_time_last_fed": Math.round((payoutTotal.hunger * maxHunger) / 100), "happiness_at_time_last_fed": Math.round((payoutTotal.happiness * maxHappy) / 100)}).asCallback(function(err){
