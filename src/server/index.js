@@ -15,6 +15,7 @@ const knexLogger = require("knex-logger");
 const breed = require("../scripts/breeder.js");
 const caculateHungerHappy = require("../scripts/caculate_hunger_and_happiness.js");
 const caculateJobPay = require('../scripts/caculate_job_pay.js');
+const newRandomPet = require('../scripts/new_random_pet.js')
 
 const maxHunger = 200;
 const maxHappy = 200;
@@ -87,8 +88,10 @@ app.post("/api/breed", (req, res) => {
       knex
         .insert(baby)
         .into("pets")
-        .asCallback(function(err) {
-          res.status(201).json(baby);
+        .returning('*')
+        .asCallback(function(err, newPet) {
+          console.log(newPet)
+          res.status(201).send(newPet[0]);
         });
     });
 });
@@ -192,8 +195,14 @@ app.post("/api/pets/:id/work", (req, res) => {
 
 app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
   const time = new Date().getTime();
-  knex("users")
-      .join("pets", "users.id", "=", "pets.user_id")
+  knex("pets")
+      .where("pets.id", req.params.petId)
+      .join("users", "users.id", "=", "pets.user_id")
+      .leftJoin('jobs', function(){
+        this.on('job_start_time', '=', function(){
+            this.select('job_start_time').from('jobs').whereRaw('pet_id = pets.id').orderBy('job_start_time', 'desc').limit(1)
+        })
+      })
       .select(
         "time_last_fed_or_work",
         "hunger_at_time_last_fed",
@@ -201,27 +210,44 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
         "strength_gene",
         "intelligence_gene",
         "user_id",
+        "job_end_time",
         "gold"
         )
-      .where("pets.id", req.params.petId)
       .asCallback(function(err, petStats){
-        console.log(err)
+        console.log("feed err: ", err)
+        console.log("feed pet stats: ", petStats)
+        let updateTime = petStats[0].time_last_fed_or_work
+        if (petStats[0].job_end_time > updateTime){
+          updateTime = petStats[0].job_end_time
+        }
         const currentHungerHappy = caculateHungerHappy(
           time,
-          petStats[0].time_last_fed_or_work,
+          updateTime,
           petStats[0].hunger_at_time_last_fed,
           petStats[0].happiness_at_time_last_fed,
           petStats[0].strength_gene,
           petStats[0].intelligence_gene,
           false
           )
+
+        console.log("stats at feed: ", currentHungerHappy)
         let newHunger = Math.round(currentHungerHappy.hunger * maxHunger / 100) + foodMenu[req.params.foodId].food
         if (newHunger > maxHunger) {
           newHunger = maxHunger
         }
-        knex.from("pets").where("id", req.params.petId).update({"hunger_at_time_last_fed": newHunger, "happiness_at_time_last_fed": Math.round(currentHungerHappy.happiness * maxHappy / 100), "time_last_fed_or_work": time}).asCallback(function(err){
-          knex.from("users").where("id", petStats[0].user_id).update({"gold": petStats[0].gold - foodMenu[req.params.foodId].price}).asCallback(function(err){
-            res.send(204);
+        knex.from("pets")
+            .where("id", req.params.petId)
+            .update({
+              "hunger_at_time_last_fed": newHunger,
+              "happiness_at_time_last_fed": Math.round(currentHungerHappy.happiness * maxHappy / 100),
+              "time_last_fed_or_work": time
+            })
+            .asCallback(function(err){
+              knex.from("users")
+                  .where("id", petStats[0].user_id)
+                  .update({"gold": petStats[0].gold - foodMenu[req.params.foodId].price})
+                  .asCallback(function(err){
+                    res.send(204);
       })
     })
   })
@@ -263,6 +289,17 @@ app.post("/api/jobs/:id", (req, res) => {
             })
           })
       })
+})
+
+app.post("/api/users/:userId/buypet", (req, res) => {
+  const newPet = newRandomPet(req.params.userId)
+  knex
+    .insert(newPet)
+    .into("pets")
+    .returning('*')
+    .asCallback(function(err, newPet) {
+      res.status(201).send(newPet[0]);
+    });
 })
 
 

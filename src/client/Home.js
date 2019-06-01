@@ -30,7 +30,10 @@ class Home extends Component {
               </div>
             </div>
             <div className="new-pet-button-container">
-              <a href="/buynewpet" className="new-pet-button">
+              <a href="/buynewpet" className="new-pet-button" onClick={() => {
+                  this.props.buyNewPet(1)
+                }
+              }>
                 Buy New Pet
               </a>
             </div>
