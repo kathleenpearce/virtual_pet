@@ -38,7 +38,7 @@ export default class App extends Component {
       pet2: "",
       time: new Date().getTime(),
       latency: 0,
-      username: ""
+      user: []
     };
 
     this.editPet = this.editPet.bind(this);
@@ -48,7 +48,7 @@ export default class App extends Component {
   login = (username) => {
     console.log("user: ", username)
     this.setState({
-      username: username
+      user: username
     })
 
 
@@ -198,7 +198,7 @@ export default class App extends Component {
           buyNewPet={this.buyNewPet}
           pet1={this.state.pet1}
           pet2={this.state.pet2}
-          username={this.state.username}
+          username={this.state.user}
 
 
         />); }} />

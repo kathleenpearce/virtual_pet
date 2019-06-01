@@ -36,7 +36,7 @@
     </div>
 
     <div className="pet-profile-info">
-    <div className="pet-profile-name"><h2>Pet Name</h2></div>
+    <div className="pet-profile-name"><h2>Your Pet</h2></div>
 
 
             <div className="pet-profile-stats">

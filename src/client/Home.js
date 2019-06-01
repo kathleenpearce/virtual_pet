@@ -10,11 +10,6 @@ import MateFound from "./MateFound";
 import CurrentJobs from "./CurrentJobs.js";
 
 class Home extends Component {
-  componentDidMount() {
-    const userName = this.props.location.search.split("=")[1]
-
-    // this.props.home(userName)
-  }
 
   render() {
     return (
@@ -22,7 +17,7 @@ class Home extends Component {
         <div className="header-container">
           <div className="header">
             <div className="user-name-container"><div className="logo">
-              <div className="username">{this.props.username}</div></div>
+              <div className="username">{this.props.username.user}</div></div>
 
 
               <div className="avatar-img">
@@ -30,10 +25,7 @@ class Home extends Component {
               </div>
             </div>
             <div className="new-pet-button-container">
-              <a href="/buynewpet" className="new-pet-button" onClick={() => {
-                  this.props.buyNewPet(1)
-                }
-              }>
+              <a href="/buynewpet" className="new-pet-button">
                 Buy New Pet
               </a>
             </div>

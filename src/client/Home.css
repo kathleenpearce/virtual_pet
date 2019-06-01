@@ -320,6 +320,7 @@ header (username and avatar)*/
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 50px;
 }
 
 .pet-profile-content {
@@ -329,10 +330,12 @@ header (username and avatar)*/
   justify-content: center;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 100px;
 }
 
 .pet-profile-info {
   width: 50%;
+  margin-bottom: 2vw;
 }
 
 .pet-profile-name {

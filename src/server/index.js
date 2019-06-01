@@ -27,6 +27,7 @@ app.use(express.static("dist"));
 
 app.get("/api/getPets", (req, res) => {
   const refrenceTime = new Date().getTime();
+
   knex.from("jobs")
     .where("user_id", 1)
     .select("*")
