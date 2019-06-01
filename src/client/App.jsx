@@ -37,10 +37,21 @@ export default class App extends Component {
       pet1: "",
       pet2: "",
       time: new Date().getTime(),
-      latency: 0
+      latency: 0,
+      username: ""
     };
 
     this.editPet = this.editPet.bind(this);
+  }
+
+
+  login = (username) => {
+    console.log("user: ", username)
+    this.setState({
+      username: username
+    })
+
+
   }
 
   // takes any new pet and adds it to the petlist
@@ -142,7 +153,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 16);
+    setInterval(() => this.currentTime(), 100000000);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
@@ -176,6 +187,7 @@ export default class App extends Component {
           feed={this.feed}
           pet1={this.state.pet1}
           pet2={this.state.pet2}
+          username={this.state.username}
 
 
         />); }} />
@@ -219,7 +231,9 @@ export default class App extends Component {
               );
           }}/>
           <Route path="/browseusers" component={BrowseUsers}/>
-          <Route path="/login" component={Login}/>
+
+          <Route path="/login" render={() => { return <Login login={this.login} /> }} />
+
           <Route path="/buynewpet" component={BuyNewPet} />
           {content}
 

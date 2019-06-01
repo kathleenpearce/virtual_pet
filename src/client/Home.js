@@ -10,6 +10,11 @@ import MateFound from "./MateFound";
 import CurrentJobs from "./CurrentJobs.js";
 
 class Home extends Component {
+  componentDidMount() {
+    const userName = this.props.location.search.split("=")[1]
+
+    // this.props.home(userName)
+  }
 
   render() {
     return (
@@ -17,7 +22,7 @@ class Home extends Component {
         <div className="header-container">
           <div className="header">
             <div className="user-name-container"><div className="logo">
-              <div className="username">Username</div></div>
+              <div className="username">{this.props.username}</div></div>
 
 
               <div className="avatar-img">

@@ -40,12 +40,12 @@
 
 
             <div className="pet-profile-stats">
-            <ul> Energy:  </ul><br />
-            <ul> Strength: </ul><br />
+
+            <ul> Strength: {this.state.pet.strength_gene}</ul><br />
             <ul>Hunger: </ul><br />
             <ul> Intelligence: {this.state.pet.intelligence_gene}</ul><br />
-            <ul>Happiness: </ul><br />
-            <ul> Gender:</ul><br />
+            <ul>Happiness:</ul><br />
+
 
 
             </div>

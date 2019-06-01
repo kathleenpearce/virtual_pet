@@ -52,6 +52,30 @@ app.get("/api/getPets/:petid", (req, res) => {
 
 })
 
+app.post("/api/login", (req, res, username) => {
+  // const userName = req.body.username.id;
+
+  knex
+    .from("users")
+    .where("name", req.body.username)
+    .asCallback((err, user) => {
+      if (user.length) {
+        res.send(req.body.username)
+      } else {
+        knex("users")
+        .insert({name: req.body.username, gold: 100000})
+        .asCallback((err, user) => {
+          res.send(req.body.username)
+      })
+    }
+})
+
+
+  // .then(function (username) {
+  //   res.send(username)
+  // })
+})
+
 app.post("/api/breed", (req, res) => {
   knex
     .from("pets")
