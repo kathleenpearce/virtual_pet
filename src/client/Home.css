@@ -29,7 +29,7 @@
 .logout:hover {
   font-size: 1.5vw;
   color: black;
-  text-shadow: 2px 2px 5px white;
+  text-shadow: 1px 1px 2px white;
 }
 
 * {
@@ -126,19 +126,6 @@ pet profile page CSS*/
   height: 30vw;
 }
 
-.add-mate {
-  display: flex;
-  border: 1px solid black;
-  width: 300px;
-  height: 300px;
-  justify-content: space-around;
-  flex-direction: row;
-  align-items: center;
-}
-
-.add-mate-link {
-  font-size: 4em;
-}
 
 .heart-icon {
   display: flex;
@@ -386,3 +373,12 @@ header (username and avatar)*/
   width: 50vw;
 }
 
+
+.new-pet-container {
+  display: flex;
+  margin-left: 35vw;
+margin-top: 10vw;
+  background-color: grey;
+width: 450px;
+height: 500px;
+}

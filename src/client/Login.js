@@ -21,9 +21,10 @@ class Login extends Component {
 
 onClickLogin = () => {
   axios.post("/api/login", {username: this.state.username}).then(response => {
-    console.log("response", response)
-      this.props.login(response.data.username)
+    console.log("response", response.data)
+      this.props.login(this.state.username)
       return this.props.history.push('/?user=kat')
+
     // console.log("response", response.data)
   })
 

@@ -54,14 +54,15 @@ app.get("/api/getPets/:petid", (req, res) => {
 })
 
 app.post("/api/login", (req, res, username) => {
-
+ console.log(req.body)
 
   knex
     .from("users")
     .where("name", req.body.username)
+    .select("*")
     .asCallback((err, user) => {
       if (user.length) {
-        res.send(req.body.username)
+        res.send(user[0])
       } else {
 
         knex("users")
