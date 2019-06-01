@@ -54,7 +54,7 @@ app.get("/api/getPets/:petid", (req, res) => {
 })
 
 app.post("/api/login", (req, res, username) => {
-  // const userName = req.body.username.id;
+
 
   knex
     .from("users")
@@ -63,10 +63,21 @@ app.post("/api/login", (req, res, username) => {
       if (user.length) {
         res.send(req.body.username)
       } else {
+
         knex("users")
-        .insert({name: req.body.username, gold: 100000})
+        .insert({name: req.body.username, gold: 100000}).returning("*")
         .asCallback((err, user) => {
-          res.send(req.body.username)
+
+          const newPets = [newRandomPet(user[0]), newRandomPet(user[0]), newRandomPet(user[0])]
+          console.log("newPets", newPets)
+          console.log("user", user)
+          knex("pets")
+            .insert(newPets).asCallback(function(err) {
+              console.log("error", err)
+
+              res.send(user[0])
+            })
+
       })
     }
 })
