@@ -77,7 +77,12 @@ class CreatureCard extends Component {
     );
 
     return (
-      <div ref={this.cardRef} onMouseEnter={() => this.setState ({ isHovering: true })} onMouseLeave={() => this.setState ({ isHovering: false })}>
+      <div ref={this.cardRef} onMouseEnter={() => {
+        if (!working) {
+        this.setState ({ isHovering: true })
+        }
+      }}
+        onMouseLeave={() => this.setState ({ isHovering: false })}>
         <div className={working ? "workingBackground" : "cardBackground"}>
           <div className="nameContainer">
             <h2 className="name" />
