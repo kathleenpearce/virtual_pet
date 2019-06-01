@@ -31,14 +31,14 @@ const caculateHungerHappy = function(
   // calculates how happy the pet is when it reaches 50% hunger which tells us it's peak happiness
 
   let happiness_at_half =
-    ((time_at_half_hunger - timeLast) / 1000) * (maxHappy / 60) + happyStart;
+    ((time_at_half_hunger - timeLast) / 1000) * (maxHappy / 3600) + happyStart;
   if (happiness_at_half > maxHappy) {
     happiness_at_half = maxHappy;
   }
 // happiness increases by a set value when hunger is above 50%, and decreases by a factor of their intelligence - when they are hungry/at work
   let happiness;
   if (hunger > 50 && !working) {
-    happiness = ((timer * (maxHappy / 3600) + happyStart) / maxHappy) * 100;
+    happiness = ((timer * (maxHappy / 3600) + happiness_at_half) / maxHappy) * 100;
   } else if (working) {
     happiness = ((-(timer * (int / 10)) + happyStart) / maxHappy) * 100;
   } else {

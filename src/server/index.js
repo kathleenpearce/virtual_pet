@@ -216,10 +216,12 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
       .asCallback(function(err, petStats){
         console.log("feed err: ", err)
         console.log("feed pet stats: ", petStats)
+
         let updateTime = petStats[0].time_last_fed_or_work
         if (petStats[0].job_end_time > updateTime){
           updateTime = petStats[0].job_end_time
         }
+
         const currentHungerHappy = caculateHungerHappy(
           time,
           updateTime,
