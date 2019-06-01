@@ -15,6 +15,7 @@ const knexLogger = require("knex-logger");
 const breed = require("../scripts/breeder.js");
 const caculateHungerHappy = require("../scripts/caculate_hunger_and_happiness.js");
 const caculateJobPay = require('../scripts/caculate_job_pay.js');
+const newRandomPet = require('../scripts/new_random_pet.js')
 
 const maxHunger = 200;
 const maxHappy = 200;
@@ -264,6 +265,17 @@ app.post("/api/jobs/:id", (req, res) => {
             })
           })
       })
+})
+
+app.post("/api/users/:userId/buypet", (req, res) => {
+  const newPet = newRandomPet(req.params.userId)
+  knex
+    .insert(newPet)
+    .into("pets")
+    .returning('*')
+    .asCallback(function(err, newPet) {
+      res.status(201).send(newPet[0]);
+    });
 })
 
 

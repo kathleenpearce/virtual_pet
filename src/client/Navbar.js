@@ -5,7 +5,6 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
-        <body>
           <div className="menu-container">
             <div className="menu">
               <a href="/">
@@ -24,7 +23,6 @@ export default class Navbar extends Component {
               </div>
             </div>
           </div>
-        </body>
       </div>
     );
   }
