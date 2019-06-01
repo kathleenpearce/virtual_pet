@@ -25,6 +25,8 @@ export default class CreatureContainer extends Component {
                 deletePet={this.props.deletePet}
                 sendToWork={this.props.sendToWork}
                 feed={this.props.feed}
+                pet1={this.props.pet1}
+                pet2={this.props.pet2}
               />
             );
           })}

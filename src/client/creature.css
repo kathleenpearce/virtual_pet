@@ -1,9 +1,14 @@
 .creature {
-  width: 200px;
-  height: 266px;
+  height: 200px;
+  width: 150px;
   position: relative;
   display: flex;
   justify-content: center;
+}
+
+.petJob .creature {
+  height: 266px;
+  width: 200px;
 }
 
 .body {
