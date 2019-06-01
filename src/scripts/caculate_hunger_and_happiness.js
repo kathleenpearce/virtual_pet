@@ -16,14 +16,20 @@ const caculateHungerHappy = function(
 // calculates how much hunger was lost either at end of a job or the last feeding
   let hunger = ((hungerStart - (str / 10) * timer) / maxHunger) * 100;
 // when hunger is 50%, returns the time
-  let time_at_half_hunger =
-    (-(0.5 * maxHunger - hungerStart) / (str / 10)) * 1000 + parseInt(timeLast);
+  let time_at_half_hunger
+  if (hungerStart > maxHunger * .5){
+    time_at_half_hunger =
+      (-(0.5 * maxHunger - hungerStart) / (str / 10)) * 1000 + parseInt(timeLast);
+  } else {
+    time_at_half_hunger = timeLast;
+  }
 
   if (hunger < 0) {
     hunger = 0;
   }
 
   // calculates how happy the pet is when it reaches 50% hunger which tells us it's peak happiness
+
   let happiness_at_half =
     ((time_at_half_hunger - timeLast) / 1000) * (maxHappy / 60) + happyStart;
   if (happiness_at_half > maxHappy) {
@@ -36,11 +42,7 @@ const caculateHungerHappy = function(
   } else if (working) {
     happiness = ((-(timer * (int / 10)) + happyStart) / maxHappy) * 100;
   } else {
-    happiness =
-      ((-(((timeNow - time_at_half_hunger) / 1000) * (int / 10)) +
-        happiness_at_half) /
-        maxHappy) *
-      100;
+    happiness = ((-(((timeNow - time_at_half_hunger) / 1000) * (int / 10)) + happiness_at_half) / maxHappy) * 100;
   }
 
   if (happiness > 100) {
