@@ -380,12 +380,70 @@ header (username and avatar)*/
   width: 50vw;
 }
 
+/*buy new pet*/
+
+
+
+.buy-info {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+   font-family: "Archivo Narrow", sans-serif;
+
+
+
+}
+
+
+.buy-button {
+  display: flex;
+  background-color: SeaGreen; color: black;
+  border: none;
+  padding: 20px 42px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1vw;
+  border-radius: 3px;
+  justify-content: center;
+  webkit-transition-duration: 0.8s;
+  transition-duration: 0.4s;
+  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+
+.buy-button:hover {
+  background-color: MediumSeaGreen;
+  color: white;
+}
+
+.buy-button:active {
+  background-color: MediumSeaGreen;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.pet-pic {
+  width: 200px;
+  height: 200px;
+}
+
+.pet-pic-1 {
+  width: 230px;
+  height: 180px;
+}
+
+.pet-pic-2 {
+  width:140px;
+  height: 170px;
+}
+
+.pet-pic-container {
+  margin-top: 10px;
+}
+
 
 .new-pet-container {
-  display: flex;
-  margin-left: 35vw;
-margin-top: 10vw;
-  background-color: grey;
-width: 450px;
-height: 500px;
+  margin-top: 50px;
 }

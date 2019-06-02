@@ -14,7 +14,6 @@ import Navbar from "./Navbar";
 import PetProfile from "./PetProfile";
 import BrowseUsers from "./BrowseUsers";
 import Login from "./Login";
-import BreedFirst from "./BreedFirst";
 import Footer from "./Footer";
 import SelectMate from "./SelectMate";
 import Feed from "./Feed";
