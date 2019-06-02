@@ -64,12 +64,11 @@ class CreatureCard extends Component {
     }
 
     let lastInteraction = petAssign.time_last_fed_or_work
-    if (petAssign.time_last_fed_or_work < petAssign.job_start_time) {
-      lastInteraction = petAssign.job_start_time
-      if (petAssign.job_start_time < petAssign.job_end_time) {
-        lastInteraction = petAssign.job_end_time
-      }
-    }
+    if (petAssign.job_end_time > lastInteraction){
+          lastInteraction = petAssign.job_end_time
+        } else if (petAssign.job_start_time > lastInteraction) {
+          lastInteraction = petAssign.job_start_time
+        }
 
 
     let status = caculateHungerHappy(

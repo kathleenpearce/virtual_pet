@@ -36,7 +36,11 @@ app.get("/api/getPets", (req, res) => {
     .orderBy("time_at_birth")
     .rightJoin('pets', function(){
       this.on('job_start_time', '=', function(){
-          this.select('job_start_time').from('jobs').whereRaw('pet_id = pets.id').orderBy('job_start_time', 'desc').limit(1)
+          this.select('job_start_time')
+          .from('jobs')
+          .whereRaw('pet_id = pets.id')
+          .orderBy('job_start_time', 'desc')
+          .limit(1)
       })
     })
     .asCallback(function(err, pets) {
