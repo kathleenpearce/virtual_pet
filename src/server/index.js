@@ -277,12 +277,14 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
               "happiness_at_time_last_fed": Math.round(currentHungerHappy.happiness * maxHappy / 100),
               "time_last_fed_or_work": time
             })
-            .asCallback(function(err){
+            .returning('*')
+            .asCallback(function(err, pet){
+              console.log(pet[0])
               knex.from("users")
                   .where("id", petStats[0].user_id)
                   .update({"gold": petStats[0].gold - foodMenu[req.params.foodId].price})
                   .asCallback(function(err){
-                    res.send(204);
+                    res.status(201).send(pet[0]);
       })
     })
   })

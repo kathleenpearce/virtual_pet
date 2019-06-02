@@ -46,6 +46,7 @@ export default class App extends Component {
     this.sendToWork = this.sendToWork.bind(this);
     this.returnFromWork = this.returnFromWork.bind(this);
     this.deletePet = this.deletePet.bind(this);
+    this.feed = this.feed.bind(this)
   }
 
 
@@ -184,9 +185,19 @@ export default class App extends Component {
 
   feed(pet, foodType) {
     const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
-    newFeedEvent(pet, footType, (petUpdate) => {
+    newFeedEvent(petAssign, foodType, (petUpdate) => {
       this.setState(prev => {
-        return {};
+        const petIndex = prev.petlist.findIndex(item => item.id === petAssign.pet_id)
+        console.log(petIndex)
+        console.log(petUpdate)
+        console.log(Object.assign(petAssign, petUpdate))
+        return {
+          petlist: [
+            ...this.state.petlist.slice(0, petIndex),
+            Object.assign(petAssign, petUpdate),
+            ...this.state.petlist.slice(petIndex + 1)
+            ]
+        };
       })
     })
   }

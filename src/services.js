@@ -39,7 +39,7 @@ export const endJob = (job, callback) => {
 
 export const newFeedEvent = (pet, foodType, callback) => {
   axios
-    .post(`/api/pets/${petAssign.pet_id}/feed/${foodType}`, {
+    .post(`/api/pets/${pet.pet_id}/feed/${foodType}`, {
     })
     .then(response => {
       callback(response.data)
