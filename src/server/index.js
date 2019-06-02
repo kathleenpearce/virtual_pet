@@ -42,6 +42,7 @@ app.get("/api/getPets", (req, res) => {
 });
 
 app.get("/api/getPets/:petid", (req, res) => {
+  console.log(req.params.pet)
   const refrenceTime = new Date().getTime();
   knex
     .from("pets")
@@ -57,6 +58,8 @@ app.get("/api/getPets/:petid", (req, res) => {
         })
       })
     .asCallback(function(err, pet) {
+      console.log("get single pet err: ", err)
+      console.log(pet)
       res.send({ pet, refrenceTime });
     });
 
