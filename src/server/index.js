@@ -47,7 +47,7 @@ app.get("/api/getPets/:petid", (req, res) => {
   const refrenceTime = new Date().getTime();
   knex
     .from("pets")
-    .where("pet_id", req.params.petid)
+    .where("pets.id", req.params.petid)
     .select("*")
     .leftJoin('jobs', function(){
         this.on('job_start_time', '=', function(){
@@ -59,8 +59,9 @@ app.get("/api/getPets/:petid", (req, res) => {
         })
       })
     .asCallback(function(err, pet) {
-      console.log("get single pet err: ", err)
-      console.log(pet)
+      if (err) {
+        console.log("get single pet err: ", err)
+      }
       res.send({ pet, refrenceTime });
     });
 
@@ -110,7 +111,9 @@ app.post("/api/breed", (req, res) => {
       .orWhere("id", req.body.pet2.pet_id)
       .select("*")
       .asCallback(function(err, mates) {
-        console.log("breeding err: ", err)
+        if (err) {
+          console.log("breeding err: ", err)
+        }
         const baby = breed(1, mates[0], mates[1]);
         knex
           .insert(baby)
@@ -118,7 +121,6 @@ app.post("/api/breed", (req, res) => {
           .returning('*')
           .asCallback(function(err, newPet) {
             const withId = Object.assign(newPet[0], {pet_id: newPet[0].id})
-            console.log(withId)
             res.status(201).send(withId);
           });
       });
@@ -152,11 +154,10 @@ app.post("/api/pets/:id/release", (req, res) => {
         .where("id", req.params.id)
         .update("user_id", -user[0].user_id)
         .asCallback(function(err) {
-          console.log('release: ',err)
-          console.log(req.params.id, -user[0].user_id)
-
-
-          res.status(204);
+          if (err) {
+            console.log('release: ',err)
+          }
+          res.status(204).send();
         });
     });
 });
@@ -226,7 +227,6 @@ app.post("/api/pets/:id/work", (req, res) => {
               console.log("insert job err: ", err)
             }
             const output = Object.assign(pet[0], job[0])
-            console.log(output)
             res.status(201).send(output);
           });
 
@@ -260,9 +260,9 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
         "gold"
         )
       .asCallback(function(err, petStats){
-        console.log("feed err: ", err)
-        console.log("feed pet stats: ", petStats)
-
+        if (err) {
+          console.log("feed err: ", err)
+        }
         let updateTime = petStats[0].time_last_fed_or_work
         if (petStats[0].job_end_time > updateTime){
           updateTime = petStats[0].job_end_time
