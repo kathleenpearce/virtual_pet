@@ -28,3 +28,12 @@ export const makeNewJob = (pet, callback) => {
       callback(response.data)
     })
 }
+
+export const endJob = (job, callback) => {
+  axios
+    .post(`/api/jobs/${job.id}`, {
+    })
+    .then(response => {
+      callback(response.data)
+    })
+}

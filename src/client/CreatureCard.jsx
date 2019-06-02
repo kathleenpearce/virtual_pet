@@ -100,7 +100,7 @@ class CreatureCard extends Component {
               </label>
             ) : (
               <h2 className="name">
-               <a href={"/petprofile/" +this.props.petStatus.id} className="name-link"> {" "}
+               <a href={"/petprofile/" + this.props.petStatus.pet_id} className="name-link"> {" "}
                 {this.props.petStatus.name}{" "}</a>
                 <button
                   className="edit-name-button"

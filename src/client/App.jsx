@@ -23,7 +23,7 @@ import CurrentJobs from "./CurrentJobs.js";
 import BuyNewPet from "./BuyNewPet";
 import MateFound from "./MateFound";
 
-import { breedNewPet, makeNewJob } from "../services";
+import { breedNewPet, makeNewJob, endJob } from "../services";
 
 
 
@@ -102,9 +102,10 @@ export default class App extends Component {
     /* Going to want to make an axios request */
     /* PUT /pets/${pet.id} */
 
-    axios.put(`/api/pets/${pet.id}`, pet).then(response => {
+    axios.put(`/api/pets/${pet.pet_id}`, pet).then(response => {
+      console.log(pet)
       this.setState(prev => {
-        const index = prev.petlist.findIndex(item => item.id === pet.id);
+        const index = prev.petlist.findIndex(item => item.pet_id === pet.pet_id);
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
@@ -141,7 +142,7 @@ export default class App extends Component {
   sendToWork = (pet) => {
     makeNewJob (pet, (job) => {
       this.setState(prev => {
-      const index = prev.petlist.findIndex(item => item.id === job.pet_id);
+      const index = prev.petlist.findIndex(item => item.pet_id === job.pet_id);
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
@@ -155,18 +156,26 @@ export default class App extends Component {
   }
 
   returnFromWork(job) {
-    axios.post(`/api/jobs/${job.id}`, {}).then(response => {
+    endJob(job, (pet) => {
       this.setState(prev => {
         const index = prev.jobList.findIndex(item => item.id === job.id);
+        const petIndex = prev.petlist.findIndex(item => item.pet_id === pet.pet_id)
+        console.log(petIndex)
         return {
           jobList: [
             ...this.state.jobList.slice(0, index),
             ...this.state.jobList.slice(index + 1)
+          ],
+          petlist: [
+            ...this.state.petlist.slice(0, petIndex),
+            pet,
+            ...this.state.petlist.slice(petIndex + 1)
             ]
-        };
+        }
       })
     })
   }
+
 
   feed(pet, foodType) {
     axios.post(`/api/pets/${pet}/feed/${foodType}`, {}).then(response => {
