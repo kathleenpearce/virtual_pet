@@ -27,7 +27,7 @@ class Home extends Component {
 
 
               <div className="avatar-img">
-                <img src="https://placehold.it/150x80?text=IMAGE" />
+                <img className="pet-pic" src="../../lib/img/avatar.png" />
               </div>
             </div>
             <div className="new-pet-button-container">
