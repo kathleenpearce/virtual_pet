@@ -1,4 +1,6 @@
   import React, { Component } from 'react';
+  import {BrowserRouter, Switch, Route, Link, Redirect} from "react-router-dom";
+
 
   import './Home.css'
   import './creatureCard.css'
@@ -123,47 +125,43 @@
             </div>
 
 
-      <div className="pet-profile-buttons">
-        <div className="petcare-buttons">
+      {!working && (
+        <div className="pet-profile-buttons">
+          <div className="petcare-buttons">
 
-          <button
-            className="breed-button"
-            value={this.state.pet}
-            onClick={() => {
-              this.props.sendToWork(this.state.pet.id);
-              window.location.reload();
-            }}
-          >
-            Send to Work
+            {/*<button
+              className="breed-button"
+              value={this.state.pet}
+              onClick={() => {
+                this.props.sendToWork(this.state.pet.id);
+                window.location.reload();
+              }}
+            >
+              Send to Work
+            </button>*/}
+
+            {/*<button
+              className="breed-button"
+              onClick={() => {
+                this.props.feed(this.state.pet.id, 1)
+                window.location.reload();
+              }}
+
+            >
+              Feed
+            </button>*/}
+          </div>
+
+          <button className="breed-button set-free" onClick={() => {
+            alert("By pressing ok you will permanently delete this pet!");
+            this.props.deletePet(this.props.match.params.petid);
+            this.props.history.push('/');
+          }} >
+          Set Free
           </button>
 
-          <button
-            className="breed-button"
-            onClick={() => {
-              this.props.feed(this.state.pet.id, 1)
-              window.location.reload();
-            }}
-
-          >
-            Feed
-          </button>
         </div>
-
-        <button className="breed-button set-free" onClick={() => {this.props.deletePet(this.props.match.params.petid);
-          alert("By pressing ok you will permanently delete this pet!");
-          this.props.history.goBack();
-
-        }} >
-        Set Free
-        </button>
-
-
-
-
-
-
-
-     </div>
+        )}
 
     </div>
 
