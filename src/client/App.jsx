@@ -45,6 +45,7 @@ export default class App extends Component {
     this.editPet = this.editPet.bind(this);
     this.sendToWork = this.sendToWork.bind(this);
     this.returnFromWork = this.returnFromWork.bind(this);
+    this.deletePet = this.deletePet.bind(this);
   }
 
 
@@ -124,7 +125,7 @@ export default class App extends Component {
   deletePet(petid) {
     axios.post(`/api/pets/${petid}/release`).then(response => {
       this.setState(prev => {
-        const index = prev.petlist.findIndex(item => item.id === petid)
+        const index = prev.petlist.findIndex(item => item.id == petid)
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
@@ -208,7 +209,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 1000);
+    setInterval(() => this.currentTime(), 32);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
