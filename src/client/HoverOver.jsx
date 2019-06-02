@@ -30,7 +30,7 @@ class HoverOver extends Component {
           <button
             className="breed-button"
             onClick={() => {
-              this.props.feed(this.props.petStatus.id, 1)
+              this.props.feed(this.props.petStatus, 1)
             }}
 
           >

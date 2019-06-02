@@ -183,7 +183,10 @@ export default class App extends Component {
 
 
   feed(pet, foodType) {
-    axios.post(`/api/pets/${pet}/feed/${foodType}`, {}).then(response => {
+    console.log("try to send to work: ", pet)
+    const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
+    console.log("try to send to feed: ", petAssign)
+    axios.post(`/api/pets/${petAssign.pet_id}/feed/${foodType}`, {}).then(response => {
       this.setState(prev => {
         return {};
       })
