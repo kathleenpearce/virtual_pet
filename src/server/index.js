@@ -46,7 +46,7 @@ app.get("/api/getPets/:petid", (req, res) => {
   const refrenceTime = new Date().getTime();
   knex
     .from("pets")
-    .where("pet_id", req.params.petid)
+    .where("pets.id", req.params.petid)
     .select("*")
     .leftJoin('jobs', function(){
         this.on('job_start_time', '=', function(){
