@@ -1,5 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Archivo+Narrow|Pacifico);
 
+
+
 .cardBackground {
   position: relative;
   height: 400px;
@@ -185,30 +187,37 @@
 }
 
 .actual-breed-button {
-  background-color: DarkCyan; color: black;
-  border: none;
-  font-size: 30px;
-  padding: 4px 6.5px;
+  display: flex;
+  background-color: Gainsboro;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
   border-radius: 3px;
   border: none;
-  -webkit-transition-duration: 0.8s;
-  transition-duration: 0.6s;
-  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
-  margin: 2px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  font-size: 1.2em;
+  height: 2.2em;
+  width: 8em;
+  margin-top: 45px;
 
 
 }
 
 .actual-breed-button:hover {
-  background-color: DarkSlateBlue;
-  color: white;
+  background-color: #271C21;
+  color: lightgrey;
 }
 
 .actual-breed-button:active {
-  background-color: #3e8e41;
+ background-color: #271C21;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+
 
 
 .breed-button:hover {
@@ -230,3 +239,4 @@ h2 {
 p {
   margin: 1.4px;
 }
+

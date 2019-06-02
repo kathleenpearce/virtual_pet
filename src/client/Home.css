@@ -293,39 +293,66 @@ width: 25%;
 
   justify-content: space-between;
 }
-
-.new-pet-button {
-  display: flex;
-
+a.new-pet-button {
+ display: flex;
+  background-color: Gainsboro;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 3px;
   border: none;
-  padding: 15px 32px;
-  margin-bottom: 2px;
+  color: darkslategrey;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1vw;
-  border-radius: 3px;
-  justify-content: center;
-  webkit-transition-duration: 0.8s;
-  transition-duration: 0.4s;
-  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  padding-top: 6px;
+  padding-bottom: 4px;
+  font-size: 1.2em;
+  height: 1.9em;
+  margin: 15px;
 
 }
 
 
-.new-pet-button:hover {
-  background-color: #4C8A79;
-  color: white;
+a.new-pet-button:hover {
+  background-color: #271C21;
+  color: lightgrey;
 }
 
-.new-pet-button:active {
-  background-color: #4C8A79;
+a.new-pet-button:active {
+  background-color: #271C21;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
+.buy-pet-button {
+  display: flex;
+  background-color: #271C21;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 3px;
+  border: none;
+  padding: 4px, 4px;
+  color: lightgrey;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  font-size: 2em;
+  height: 1.9em;
+  width: 7em;
+  margin: 15px;
 
+}
 
+.buy-pet-button:hover {
+  background-color: #271C21;
+  color: lightgrey;
+}
+
+.buy-pet-button:active {
+  background-color: #271C21;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 
   -
@@ -487,4 +514,11 @@ width: 25%;
 
 .selection-pic {
   width: 500px;
+}
+
+
+.avatar-img {
+  display: flex;
+  margin-left: 80px;
+  height: 130px;
 }

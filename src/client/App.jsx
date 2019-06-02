@@ -15,7 +15,6 @@ import PetProfile from "./PetProfile";
 import BrowseUsers from "./BrowseUsers";
 import Login from "./Login";
 import Footer from "./Footer";
-import SelectMate from "./SelectMate";
 import Feed from "./Feed";
 import Creature from "./CreatureImg.jsx";
 import CurrentJobs from "./CurrentJobs.js";
