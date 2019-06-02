@@ -1,6 +1,9 @@
 // as the pet gets hungrier and unhappier it earns less money per second while at work
 const jobPayPerStat = function (timer, statStart, gene, payoutRatio, maxStat, status) {
-  const geneDecay = (gene/10)/2
+
+  const statusSpeed = 10
+
+  const geneDecay = (gene/statusSpeed)/2
 // calculates the decrease in pay as a quadratic, that has been doubled in size bug 1/2'd in return - in order to make the max
 // at the point where the stat crosses the zero x intercept
   let payout = timer * (payoutRatio) * (statStart - ((geneDecay) * timer))/maxStat * 100 * 2 /200

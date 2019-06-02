@@ -21,7 +21,7 @@ import CurrentJobs from "./CurrentJobs.js";
 import BuyNewPet from "./BuyNewPet";
 import MateFound from "./MateFound";
 
-import { breedNewPet, makeNewJob, endJob } from "../services";
+import { breedNewPet, makeNewJob, endJob, newFeedEvent } from "../services";
 
 
 
@@ -44,6 +44,7 @@ export default class App extends Component {
     this.sendToWork = this.sendToWork.bind(this);
     this.returnFromWork = this.returnFromWork.bind(this);
     this.deletePet = this.deletePet.bind(this);
+    this.feed = this.feed.bind(this)
   }
 
 
@@ -164,7 +165,6 @@ export default class App extends Component {
       this.setState(prev => {
         const index = prev.jobList.findIndex(item => item.id === job.id);
         const petIndex = prev.petlist.findIndex(item => item.pet_id === pet.pet_id)
-        console.log(petIndex)
         return {
           jobList: [
             ...this.state.jobList.slice(0, index),
@@ -182,12 +182,20 @@ export default class App extends Component {
 
 
   feed(pet, foodType) {
-    console.log("try to send to work: ", pet)
     const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
-    console.log("try to send to feed: ", petAssign)
-    axios.post(`/api/pets/${petAssign.pet_id}/feed/${foodType}`, {}).then(response => {
+    newFeedEvent(petAssign, foodType, (petUpdate) => {
       this.setState(prev => {
-        return {};
+        const petIndex = prev.petlist.findIndex(item => item.id === petAssign.pet_id)
+        console.log(petIndex)
+        console.log(petUpdate)
+        console.log(Object.assign(petAssign, petUpdate).happiness_at_time_last_fed)
+        return {
+          petlist: [
+            ...this.state.petlist.slice(0, petIndex),
+            Object.assign(petAssign, petUpdate),
+            ...this.state.petlist.slice(petIndex + 1)
+            ]
+        };
       })
     })
   }

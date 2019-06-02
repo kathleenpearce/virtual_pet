@@ -19,6 +19,8 @@ const newRandomPet = require('../scripts/new_random_pet.js')
 
 const maxHunger = 200;
 const maxHappy = 200;
+const statusSpeed = 10
+
 const payRate = [[5,1], [3,3], [1,5]]
 const foodMenu = [{food: 10, price: 30}, {food: 30, price: 70}, {food: 50, price: 100}]
 
@@ -175,27 +177,42 @@ app.get("/api/getJobs", (req, res) => {
 });
 
 app.post("/api/pets/:id/work", (req, res) => {
-  console.log(req.params.id)
-
   knex
     .from("pets")
-    .where("id", req.params.id)
+    .where("pets.id", req.params.id)
     .select(
       "time_last_fed_or_work",
       "hunger_at_time_last_fed",
       "happiness_at_time_last_fed",
       "strength_gene",
-      "intelligence_gene"
+      "intelligence_gene",
+      "job_start_time",
+      "job_end_time"
     )
+    .leftJoin('jobs', function(){
+        this.on('job_start_time', '=', function(){
+            this.select('job_start_time')
+                .from('jobs')
+                .whereRaw('pet_id = pets.id')
+                .orderBy('job_start_time', 'desc')
+                .limit(1)
+        })
+      })
     .asCallback(function(err, status) {
       if (err) {
         console.log("send to work err: ", status)
       }
+      let updateTime = status[0].time_last_fed_or_work
+        if (status[0].job_end_time > updateTime){
+          updateTime = status[0].job_end_time
+        } else if (status[0].job_start_time > updateTime) {
+          updateTime = status[0].job_start_time
+        }
 
       const time = new Date().getTime();
       const jobStart = caculateHungerHappy(
         time,
-        status[0].time_last_fed_or_work,
+        updateTime,
         status[0].hunger_at_time_last_fed,
         status[0].happiness_at_time_last_fed,
         status[0].strength_gene,
@@ -215,7 +232,9 @@ app.post("/api/pets/:id/work", (req, res) => {
         .where({'id': data.pet_id})
         .update({
           'hunger_at_time_last_fed': data.hunger_at_start,
-          'happiness_at_time_last_fed': data.happy_at_start})
+          'happiness_at_time_last_fed': data.happy_at_start,
+          'time_last_fed_or_work': time
+        })
         .returning("*")
         .asCallback(function(err, pet){
         knex
@@ -227,6 +246,7 @@ app.post("/api/pets/:id/work", (req, res) => {
               console.log("insert job err: ", err)
             }
             const output = Object.assign(pet[0], job[0])
+            console.log("send pet to work: ", output.hunger_at_time_last_fed)
             res.status(201).send(output);
           });
 
@@ -251,6 +271,8 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
       })
       .select(
         "time_last_fed_or_work",
+        "job_end_time",
+        "job_start_time",
         "hunger_at_time_last_fed",
         "happiness_at_time_last_fed",
         "strength_gene",
@@ -266,6 +288,8 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
         let updateTime = petStats[0].time_last_fed_or_work
         if (petStats[0].job_end_time > updateTime){
           updateTime = petStats[0].job_end_time
+        } else if (petStats[0].job_start_time > updateTime) {
+          updateTime = petStats[0].job_start_time
         }
 
         const currentHungerHappy = caculateHungerHappy(
@@ -283,19 +307,34 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
         if (newHunger > maxHunger) {
           newHunger = maxHunger
         }
+
+        let newHappy = Math.round(currentHungerHappy.happiness * maxHappy / 100)
+        // if (currentHungerHappy.hunger > 50) {
+        //   newHappy =
+        //     Math.round(
+        //       currentHungerHappy.happiness * maxHappy / 100 - ((currentHungerHappy.hunger - 50) * statusSpeed / petStats[0].strength_gene)*(maxHappy/3600)
+        //       )
+        // }
+
+          console.log("newHappy: ",newHappy)
+          console.log(((50 - currentHungerHappy.hunger) * statusSpeed / petStats[0].strength_gene)*(maxHappy/3600))
+
         knex.from("pets")
             .where("id", req.params.petId)
             .update({
               "hunger_at_time_last_fed": newHunger,
-              "happiness_at_time_last_fed": Math.round(currentHungerHappy.happiness * maxHappy / 100),
+              "happiness_at_time_last_fed": newHappy,
               "time_last_fed_or_work": time
             })
-            .asCallback(function(err){
+            .returning('*')
+            .asCallback(function(err, pet){
+              console.log(err)
+              console.log(pet[0])
               knex.from("users")
                   .where("id", petStats[0].user_id)
                   .update({"gold": petStats[0].gold - foodMenu[req.params.foodId].price})
                   .asCallback(function(err){
-                    res.send(204);
+                    res.status(201).send(pet[0]);
       })
     })
   })
@@ -308,6 +347,8 @@ app.post("/api/jobs/:id", (req, res) => {
       .join("users", "user_id", "=", "users.id")
       .select(
         "job_start_time",
+        "job_end_time",
+        "time_last_fed_or_work",
         "hunger_at_time_last_fed",
         "happiness_at_time_last_fed",
         "strength_gene",
@@ -319,9 +360,10 @@ app.post("/api/jobs/:id", (req, res) => {
         "gold"
       ).asCallback(function(err, data){
         console.log(err)
+        console.log("pet going to work: ", data[0].hunger_at_time_last_fed)
           const timeNow = new Date().getTime()
           const payoutTotal = caculateJobPay(timeNow, payRate[0], data[0])
-          console.log(payoutTotal)
+          console.log("payout total: ", payoutTotal)
           knex
             .from("users")
             .where("id", data[0].user_id)
@@ -331,7 +373,7 @@ app.post("/api/jobs/:id", (req, res) => {
                 .from("pets")
                 .where("id", data[0].pet_id)
                 .update({
-                  "hunger_at_time_last_fed": Math.round((payoutTotal.hunger * maxHunger) / 100),
+                  "hunger_at_time_last_fed": Math.round((payoutTotal.hunger * 2)),
                   "happiness_at_time_last_fed": Math.round((payoutTotal.happiness * maxHappy) / 100)})
                 .returning("*")
                 .asCallback(function(err, pet){
@@ -347,8 +389,9 @@ app.post("/api/jobs/:id", (req, res) => {
                       if (err) {
                         console.log("jobs update err: ", err)
                       }
+                      console.log(pet[0])
                       const output = Object.assign(pet[0], job[0])
-                      console.log(output)
+                      console.log("return pet from work: ", output.hunger_at_time_last_fed)
                       res.status(201).send(output);
               })
             })

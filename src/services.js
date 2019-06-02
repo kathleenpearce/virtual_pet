@@ -24,7 +24,6 @@ export const makeNewJob = (pet, callback) => {
     .post(`/api/pets/${pet.pet_id}/work`, {
     })
     .then(response => {
-      console.log(response.data)
       callback(response.data)
     })
 }
@@ -32,6 +31,15 @@ export const makeNewJob = (pet, callback) => {
 export const endJob = (job, callback) => {
   axios
     .post(`/api/jobs/${job.id}`, {
+    })
+    .then(response => {
+      callback(response.data)
+    })
+}
+
+export const newFeedEvent = (pet, foodType, callback) => {
+  axios
+    .post(`/api/pets/${pet.pet_id}/feed/${foodType}`, {
     })
     .then(response => {
       callback(response.data)
