@@ -197,7 +197,8 @@ app.post("/api/pets/:id/work", (req, res) => {
             if (err) {
               console.log("insert job err: ", err)
             }
-            const output = Object.assign(job[0], pet[0])
+            const output = Object.assign(pet[0], job[0])
+            console.log(output)
             res.status(201).send(output);
           });
 
@@ -269,6 +270,7 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
 })
 
 app.post("/api/jobs/:id", (req, res) => {
+  console.log(req.params.id)
   knex.from("jobs")
       .where("jobs.id", req.params.id)
       .join("pets", "pets.id", "=", "pet_id")

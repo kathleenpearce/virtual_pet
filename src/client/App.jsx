@@ -44,6 +44,7 @@ export default class App extends Component {
 
     this.editPet = this.editPet.bind(this);
     this.sendToWork = this.sendToWork.bind(this);
+    this.returnFromWork = this.returnFromWork.bind(this);
   }
 
 
@@ -141,7 +142,6 @@ export default class App extends Component {
     makeNewJob (pet, (job) => {
       this.setState(prev => {
       const index = prev.petlist.findIndex(item => item.id === job.pet_id);
-      console.log("indexSearch: ",index)
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
@@ -155,9 +155,15 @@ export default class App extends Component {
   }
 
   returnFromWork(job) {
-    axios.post(`/api/jobs/${job}`, {}).then(response => {
+    axios.post(`/api/jobs/${job.id}`, {}).then(response => {
       this.setState(prev => {
-        return {};
+        const index = prev.jobList.findIndex(item => item.id === job.id);
+        return {
+          jobList: [
+            ...this.state.jobList.slice(0, index),
+            ...this.state.jobList.slice(index + 1)
+            ]
+        };
       })
     })
   }
