@@ -75,16 +75,18 @@ export default class App extends Component {
 
 //setting pet 1 or pet2
   breed = (pet) => {
-
+    const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
     if (this.state.pet1 === "") {
+
     this.setState({
-      pet1: pet
+      pet1: petAssign
     });
-    } else if ((this.state.pet2 === "") && (this.state.pet1.id != pet.id)) {
-      let pet1id = this.state.pet1.id;
-      let pet2id = pet.id;
+    } else if ((this.state.pet2 === "") && (this.state.pet1.pet_id != petAssign.pet_id)) {
+      let pet1id = this.state.pet1.pet_id;
+      let pet2id = petAssign.pet_id ;
       this.setState({
-        pet2: pet
+
+        pet2: petAssign
       })
 
       // return <Redirect to='/' />

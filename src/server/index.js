@@ -87,20 +87,23 @@ app.post("/api/login", (req, res, username) => {
 })
 
 app.post("/api/breed", (req, res) => {
-  if (req.body.pet1.id != req.body.pet2.id){
+  if (req.body.pet1.pet_id != req.body.pet2.pet_id){
     knex
       .from("pets")
-      .where("id", req.body.pet1.id)
-      .orWhere("id", req.body.pet2.id)
+      .where("id", req.body.pet1.pet_id)
+      .orWhere("id", req.body.pet2.pet_id)
       .select("*")
       .asCallback(function(err, mates) {
+        console.log("breeding err: ", err)
         const baby = breed(1, mates[0], mates[1]);
         knex
           .insert(baby)
           .into("pets")
           .returning('*')
           .asCallback(function(err, newPet) {
-            res.status(201).send(newPet[0]);
+            const withId = Object.assign(newPet[0], {pet_id: newPet[0].id})
+            console.log(withId)
+            res.status(201).send(withId);
           });
       });
     } else {
