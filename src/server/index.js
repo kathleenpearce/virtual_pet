@@ -91,7 +91,6 @@ app.post("/api/breed", (req, res) => {
           .into("pets")
           .returning('*')
           .asCallback(function(err, newPet) {
-            console.log(newPet)
             res.status(201).send(newPet[0]);
           });
       });
@@ -114,20 +113,22 @@ app.put("/api/pets/:id", (req, res) => {
 
 app.post("/api/pets/:id/release", (req, res) => {
   const pet = req.body;
-
-
   knex
     .from("pets")
     .where("id", req.params.id)
     .select("user_id")
     .asCallback(function(err, user) {
+      console.log('release: ',err)
       knex
         .from("pets")
         .where("id", req.params.id)
         .update("user_id", -user[0].user_id)
         .asCallback(function(err) {
+          console.log('release: ',err)
+          console.log(req.params.id, -user[0].user_id)
 
-          res.status(204).send();
+
+          res.status(204);
         });
     });
 });
@@ -145,9 +146,7 @@ app.get("/api/getJobs", (req, res) => {
 });
 
 app.post("/api/pets/:id/work", (req, res) => {
-
-  const pet = req.body;
-
+  console.log(req.params.id)
 
   knex
     .from("pets")
@@ -182,16 +181,26 @@ app.post("/api/pets/:id/work", (req, res) => {
         job_type: parseInt(1)
       };
 
-      knex.into("pets").where({'id': data.pet_id}).update({'hunger_at_time_last_fed': data.hunger_at_start, 'happiness_at_time_last_fed': data.happy_at_start}).asCallback(function(err){
+      knex
+        .into("pets")
+        .where({'id': data.pet_id})
+        .update({
+          'hunger_at_time_last_fed': data.hunger_at_start,
+          'happiness_at_time_last_fed': data.happy_at_start})
+        .returning("*")
+        .asCallback(function(err, pet){
         knex
           .insert(data)
           .into("jobs")
-          .asCallback(function(err) {
+          .returning("*")
+          .asCallback(function(err, job) {
             if (err) {
               console.log("insert job err: ", err)
             }
-            res.send(204);
+            const output = Object.assign(job[0], pet[0])
+            res.status(201).send(output);
           });
+
       })
 
     });

@@ -38,6 +38,8 @@ export default class MateFound extends Component {
                 <CreatureCard
                   petStatus={this.props.pet1}
                   time={this.props.time}
+                  pet1={this.props.pet1}
+                  onSelect={this.props.breed}
                 />{" "}
               </div>
             </div>
@@ -59,6 +61,9 @@ export default class MateFound extends Component {
                 <CreatureCard
                   petStatus={this.props.pet2}
                   time={this.props.time}
+                  pet1={this.props.pet2}
+                  onSelect={this.props.breed}
+
                 />
               </div>
             </div>

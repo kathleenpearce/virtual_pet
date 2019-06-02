@@ -23,7 +23,7 @@ import CurrentJobs from "./CurrentJobs.js";
 import BuyNewPet from "./BuyNewPet";
 import MateFound from "./MateFound";
 
-import { breedNewPet } from "../services";
+import { breedNewPet, makeNewJob } from "../services";
 
 
 
@@ -34,6 +34,7 @@ export default class App extends Component {
     super();
     this.state = {
       petlist: [],
+      jobList: [],
       pet1: "",
       pet2: "",
       time: new Date().getTime(),
@@ -42,6 +43,7 @@ export default class App extends Component {
     };
 
     this.editPet = this.editPet.bind(this);
+    this.sendToWork = this.sendToWork.bind(this);
   }
 
 
@@ -87,7 +89,8 @@ export default class App extends Component {
       // return <Redirect to='/' />
     } else {
       this.setState({
-        pet1: ""
+        pet1: "",
+        pet2: ""
       })
     }
   }
@@ -117,18 +120,37 @@ export default class App extends Component {
   deletePet(petid) {
     axios.post(`/api/pets/${petid}/release`).then(response => {
       this.setState(prev => {
-        return {};
-      });
-    });
+        const index = prev.petlist.findIndex(item => item.id === petid)
+        return {
+          petlist: [
+            ...this.state.petlist.slice(0, index),
+            ...this.state.petlist.slice(index + 1)
+          ]
+        }
+      })
+    })
   }
+    //   .then(pets => {
+    //   const petListUpdate = this.state.petlist.filter(pets => pets.id !== petid)
+    //     this.setState({petlist: petListUpdate});
+    // });
 
   // creates a new entery in the jobs table for the petID
 
-  sendToWork(pet) {
-    axios.post(`/api/pets/${pet}/work`, {}).then(response => {
+  sendToWork = (pet) => {
+    makeNewJob (pet, (job) => {
       this.setState(prev => {
-        return {};
-      });
+      const index = prev.petlist.findIndex(item => item.id === job.pet_id);
+      console.log("indexSearch: ",index)
+        return {
+          petlist: [
+            ...this.state.petlist.slice(0, index),
+            job,
+            ...this.state.petlist.slice(index + 1)
+            ],
+          jobList: [job, ...prev.jobList]
+        }
+      })
     });
   }
 
@@ -166,7 +188,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 32);
+    setInterval(() => this.currentTime(), 1000);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
@@ -178,6 +200,9 @@ export default class App extends Component {
           latency: new Date().getTime() - pets.refrenceTime
         });
       });
+    fetch('/api/getJobs')
+    .then(res => res.json())
+    .then(jobs => this.setState({ jobList: jobs.reverse() }))
   }
 
   // selectPet()
@@ -201,6 +226,7 @@ export default class App extends Component {
           pet1={this.state.pet1}
           pet2={this.state.pet2}
           username={this.state.username}
+          jobList={this.state.jobList}
 
 
         />); }} />
@@ -239,6 +265,7 @@ export default class App extends Component {
           editPet={this.editPet}
           deletePet={this.deletePet}
           sendToWork={this.sendToWork}
+          feed={this.feed}
 
               />
               );

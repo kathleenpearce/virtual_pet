@@ -27,9 +27,6 @@ export default class JobCard extends Component {
 
     return (
 
-
-
-
       <div ref={this.jobRef} className='jobCard' onClick={() => {
         this.props.returnFromWork(this.props.jobStatus.id)
         window.location.reload()}} >
@@ -46,7 +43,7 @@ export default class JobCard extends Component {
         </div>
         <div className="creatureJobWindow">
           <div className="petJob">
-            <Creature petStatus={this.props.jobStatus}/>
+            <Creature petStatus={this.props.jobStatus} happyStatus='1' />
           </div>
         </div>
         <div className='jobCardBottom'>

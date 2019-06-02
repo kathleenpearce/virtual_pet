@@ -23,7 +23,6 @@ class HoverOver extends Component {
             value={this.props.pet}
             onClick={() => {
               this.props.sendToWork(this.props.petStatus.id);
-              window.location.reload();
             }}
           >
             Send to Work
@@ -32,7 +31,6 @@ class HoverOver extends Component {
             className="breed-button"
             onClick={() => {
               this.props.feed(this.props.petStatus.id, 1)
-              window.location.reload();
             }}
 
           >

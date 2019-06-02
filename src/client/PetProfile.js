@@ -2,8 +2,11 @@
 
   import './Home.css'
   import './creatureCard.css'
-  import CreatureCard from './CreatureCard'
-  import './HoverOver.jsx'
+  import Creature from "./CreatureImg.jsx";
+
+
+  import caculateHungerHappy from "../scripts/caculate_hunger_and_happiness.js";
+
 
   export default class PetProfile extends Component {
     state={
@@ -15,36 +18,105 @@
         .then(pet => {
 
           this.setState({
-            pet: pet.pet[0]
+            pet: pet.pet[0],
+            isEditing: false,
+            name: ""
           });
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+          this.onKeyPressEnter = this.onKeyPressEnter.bind(this);
         });
     }
+
+    handleChange(event) {
+      this.setState({ name: event.target.value });
+    }
+
+    handleSubmit(event) {
+      alert("A name wasn't submitted, please " + this.state.name);
+      event.preventDefault();
+    }
+
+    onKeyPressEnter(event) {
+      if (event.key === "Enter") {
+        const newName = this.state.pet
+        newName.name = this.state.name
+        this.props.editPet({ ...this.state.pet, name: this.state.name });
+        this.setState({ isEditing: false, pet: newName });
+        }
+      }
+
+
     render () {
+
+      let working = false
+      if (this.state.pet.job_start_time && !this.state.pet.job_end_time){
+        working = true
+      }
+
+      let lastInteraction = this.state.pet.time_last_fed_or_work
+      if (this.state.pet.time_last_fed_or_work < this.state.pet.job_start_time) {
+        lastInteraction = this.state.pet.job_start_time
+        if (this.state.pet.job_start_time < this.state.pet.job_end_time) {
+          lastInteraction = this.state.pet.job_end_time
+        }
+      }
+
+      let status = caculateHungerHappy(
+        this.props.time,
+        lastInteraction,
+        this.state.pet.hunger_at_time_last_fed,
+        this.state.pet.happiness_at_time_last_fed,
+        this.state.pet.strength_gene,
+        this.state.pet.intelligence_gene,
+        working
+      );
       return (
 
     <div>
     <br /><br />
     <div className="pet-profile-content">
-    <div className="pet-profile-creature-card">
-    <div className='creature-grid-item'><CreatureCard className="creature-grid-item"
-                petStatus={this.state.pet}
-                time={this.props.time}
-                onSelect={this.props.onSelect}
-                editPet={this.props.editPet}
-                deletePet={this.props.deletePet}
-                sendToWork={this.props.sendToWork}/></div>
+    <div className="pet-profile-creature-image">
+              <Creature
+              petStatus={this.state.pet}
+              happyStatus={status.happyId}
+            />
     </div>
 
     <div className="pet-profile-info">
-    <div className="pet-profile-name"><h2>Pet Name</h2></div>
+    <div className="pet-profile-name">{this.state.isEditing ? (
+              <label className="edit-name-field">
+                <input
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  onKeyPress={this.onKeyPressEnter}
+                />
+              </label>
+            ) : (
+              <React.Fragment>
+                <h2 className="name">
+
+                  {this.state.pet.name}
+                </h2>
+                  <button
+                    className="edit-name-button"
+                    type="submit"
+                    name="Edit Name"
+                    onClick={() => this.setState({ isEditing: true })}
+                  >
+                    {" "}
+                    Edit Name{" "}
+                  </button>
+                </React.Fragment>
+            )}</div>
 
 
             <div className="pet-profile-stats">
 
             <ul> Strength: {this.state.pet.strength_gene}</ul><br />
-            <ul>Hunger: </ul><br />
+            <ul>Hunger: {(status.hunger).toFixed(2)}</ul><br />
             <ul> Intelligence: {this.state.pet.intelligence_gene}</ul><br />
-            <ul>Happiness:</ul><br />
+            <ul>Happiness: {(status.happiness).toFixed(2)}</ul><br />
 
 
 
@@ -52,17 +124,38 @@
 
 
       <div className="pet-profile-buttons">
+        <div className="petcare-buttons">
 
+          <button
+            className="breed-button"
+            value={this.state.pet}
+            onClick={() => {
+              this.props.sendToWork(this.state.pet.id);
+              window.location.reload();
+            }}
+          >
+            Send to Work
+          </button>
 
+          <button
+            className="breed-button"
+            onClick={() => {
+              this.props.feed(this.state.pet.id, 1)
+              window.location.reload();
+            }}
 
+          >
+            Feed
+          </button>
+        </div>
 
-      <button className="breed-button" onClick={() => {this.props.deletePet(this.props.match.params.petid);
-        alert("By pressing ok you will permanently delete this pet!");
-        this.props.history.goBack();
+        <button className="breed-button set-free" onClick={() => {this.props.deletePet(this.props.match.params.petid);
+          alert("By pressing ok you will permanently delete this pet!");
+          this.props.history.goBack();
 
-      }} >
-      Set Free
-      </button>
+        }} >
+        Set Free
+        </button>
 
 
 
