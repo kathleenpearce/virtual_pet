@@ -21,7 +21,7 @@ export const breedNewPet = (pet1, pet2, callback) => {
 
 export const makeNewJob = (pet, callback) => {
   axios
-    .post(`/api/pets/${pet}/work`, {
+    .post(`/api/pets/${pet.pet_id}/work`, {
     })
     .then(response => {
       console.log(response.data)

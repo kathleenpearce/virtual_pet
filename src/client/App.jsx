@@ -142,7 +142,10 @@ export default class App extends Component {
   // creates a new entery in the jobs table for the petID
 
   sendToWork = (pet) => {
-    makeNewJob (pet, (job) => {
+    console.log("try to send to work: ", pet)
+    const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
+    console.log("try to send to work: ", petAssign)
+    makeNewJob (petAssign, (job) => {
       this.setState(prev => {
       const index = prev.petlist.findIndex(item => item.pet_id === job.pet_id);
         return {
