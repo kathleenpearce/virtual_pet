@@ -190,7 +190,7 @@ export default class App extends Component {
         const petIndex = prev.petlist.findIndex(item => item.id === petAssign.pet_id)
         console.log(petIndex)
         console.log(petUpdate)
-        console.log(Object.assign(petAssign, petUpdate))
+        console.log(Object.assign(petAssign, petUpdate).happiness_at_time_last_fed)
         return {
           petlist: [
             ...this.state.petlist.slice(0, petIndex),

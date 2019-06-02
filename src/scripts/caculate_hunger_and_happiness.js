@@ -13,13 +13,14 @@ const caculateHungerHappy = function(
 
   let maxHunger = 200;
   let maxHappy = 200;
+  let statusSpeed = 10;
 // calculates how much hunger was lost either at end of a job or the last feeding
-  let hunger = ((hungerStart - (str / 10) * timer) / maxHunger) * 100;
+  let hunger = ((hungerStart - (str / statusSpeed) * timer) / maxHunger) * 100;
 // when hunger is 50%, returns the time
   let time_at_half_hunger
   if (hungerStart > maxHunger * .5){
     time_at_half_hunger =
-      (-(0.5 * maxHunger - hungerStart) / (str / 10)) * 1000 + parseInt(timeLast);
+      (-(0.5 * maxHunger - hungerStart) / (str / statusSpeed)) * 1000 + parseInt(timeLast);
   } else {
     time_at_half_hunger = timeLast;
   }
@@ -38,11 +39,11 @@ const caculateHungerHappy = function(
 // happiness increases by a set value when hunger is above 50%, and decreases by a factor of their intelligence - when they are hungry/at work
   let happiness;
   if (hunger > 50 && !working) {
-    happiness = ((timer * (maxHappy / 3600) + happiness_at_half) / maxHappy) * 100;
+    happiness = ((timer * (maxHappy / 3600) + happyStart) / maxHappy) * 100;
   } else if (working) {
-    happiness = ((-(timer * (int / 10)) + happyStart) / maxHappy) * 100;
+    happiness = ((-(timer * (int / statusSpeed)) + happyStart) / maxHappy) * 100;
   } else {
-    happiness = ((-(((timeNow - time_at_half_hunger) / 1000) * (int / 10)) + happiness_at_half) / maxHappy) * 100;
+    happiness = ((-(((timeNow - time_at_half_hunger) / 1000) * (int / statusSpeed)) + happiness_at_half) / maxHappy) * 100;
   }
 
   if (happiness > 100) {
