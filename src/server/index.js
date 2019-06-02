@@ -43,12 +43,24 @@ app.get("/api/getPets", (req, res) => {
 });
 
 app.get("/api/getPets/:petid", (req, res) => {
+  console.log(req.params.pet)
   const refrenceTime = new Date().getTime();
   knex
     .from("pets")
-    .where("id", req.params.petid)
+    .where("pet_id", req.params.petid)
     .select("*")
+    .leftJoin('jobs', function(){
+        this.on('job_start_time', '=', function(){
+            this.select('job_start_time')
+                .from('jobs')
+                .whereRaw('pet_id = pets.id')
+                .orderBy('job_start_time', 'desc')
+                .limit(1)
+        })
+      })
     .asCallback(function(err, pet) {
+      console.log("get single pet err: ", err)
+      console.log(pet)
       res.send({ pet, refrenceTime });
     });
 
@@ -91,21 +103,23 @@ app.post("/api/login", (req, res, username) => {
 })
 
 app.post("/api/breed", (req, res) => {
-  if (req.body.pet1.id != req.body.pet2.id){
+  if (req.body.pet1.pet_id != req.body.pet2.pet_id){
     knex
       .from("pets")
-      .where("id", req.body.pet1.id)
-      .orWhere("id", req.body.pet2.id)
+      .where("id", req.body.pet1.pet_id)
+      .orWhere("id", req.body.pet2.pet_id)
       .select("*")
       .asCallback(function(err, mates) {
+        console.log("breeding err: ", err)
         const baby = breed(1, mates[0], mates[1]);
         knex
           .insert(baby)
           .into("pets")
           .returning('*')
           .asCallback(function(err, newPet) {
-            console.log(newPet)
-            res.status(201).send(newPet[0]);
+            const withId = Object.assign(newPet[0], {pet_id: newPet[0].id})
+            console.log(withId)
+            res.status(201).send(withId);
           });
       });
     } else {
@@ -127,20 +141,22 @@ app.put("/api/pets/:id", (req, res) => {
 
 app.post("/api/pets/:id/release", (req, res) => {
   const pet = req.body;
-
-
   knex
     .from("pets")
     .where("id", req.params.id)
     .select("user_id")
     .asCallback(function(err, user) {
+      console.log('release: ',err)
       knex
         .from("pets")
         .where("id", req.params.id)
         .update("user_id", -user[0].user_id)
         .asCallback(function(err) {
+          console.log('release: ',err)
+          console.log(req.params.id, -user[0].user_id)
 
-          res.status(204).send();
+
+          res.status(204);
         });
     });
 });
@@ -158,9 +174,7 @@ app.get("/api/getJobs", (req, res) => {
 });
 
 app.post("/api/pets/:id/work", (req, res) => {
-
-  const pet = req.body;
-
+  console.log(req.params.id)
 
   knex
     .from("pets")
@@ -195,16 +209,27 @@ app.post("/api/pets/:id/work", (req, res) => {
         job_type: parseInt(1)
       };
 
-      knex.into("pets").where({'id': data.pet_id}).update({'hunger_at_time_last_fed': data.hunger_at_start, 'happiness_at_time_last_fed': data.happy_at_start}).asCallback(function(err){
+      knex
+        .into("pets")
+        .where({'id': data.pet_id})
+        .update({
+          'hunger_at_time_last_fed': data.hunger_at_start,
+          'happiness_at_time_last_fed': data.happy_at_start})
+        .returning("*")
+        .asCallback(function(err, pet){
         knex
           .insert(data)
           .into("jobs")
-          .asCallback(function(err) {
+          .returning("*")
+          .asCallback(function(err, job) {
             if (err) {
               console.log("insert job err: ", err)
             }
-            res.send(204);
+            const output = Object.assign(pet[0], job[0])
+            console.log(output)
+            res.status(201).send(output);
           });
+
       })
 
     });
@@ -217,7 +242,11 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
       .join("users", "users.id", "=", "pets.user_id")
       .leftJoin('jobs', function(){
         this.on('job_start_time', '=', function(){
-            this.select('job_start_time').from('jobs').whereRaw('pet_id = pets.id').orderBy('job_start_time', 'desc').limit(1)
+            this.select('job_start_time')
+                .from('jobs')
+                .whereRaw('pet_id = pets.id')
+                .orderBy('job_start_time', 'desc')
+                .limit(1)
         })
       })
       .select(
@@ -290,20 +319,37 @@ app.post("/api/jobs/:id", (req, res) => {
         "gold"
       ).asCallback(function(err, data){
         console.log(err)
-        console.log("jobs query data: ", data)
           const timeNow = new Date().getTime()
           const payoutTotal = caculateJobPay(timeNow, payRate[0], data[0])
           console.log(payoutTotal)
-          knex.from("users").where("id", data[0].user_id).update({"gold": parseInt(data[0].gold) + Math.round(payoutTotal.payout)}).asCallback(function(err){
-            knex.from("pets").where("id", data[0].pet_id).update({"hunger_at_time_last_fed": Math.round((payoutTotal.hunger * maxHunger) / 100), "happiness_at_time_last_fed": Math.round((payoutTotal.happiness * maxHappy) / 100)}).asCallback(function(err){
-              if (err) {
-                console.log("pets update err: ", err)
-              }
-              knex.from("jobs").where("id", data[0].id).update({"job_end_time": timeNow}).asCallback(function(err){
-                if (err) {
-                  console.log("jobs update err: ", err)
-                }
-                res.send(204);
+          knex
+            .from("users")
+            .where("id", data[0].user_id)
+            .update({"gold": parseInt(data[0].gold) + Math.round(payoutTotal.payout)})
+            .asCallback(function(err){
+              knex
+                .from("pets")
+                .where("id", data[0].pet_id)
+                .update({
+                  "hunger_at_time_last_fed": Math.round((payoutTotal.hunger * maxHunger) / 100),
+                  "happiness_at_time_last_fed": Math.round((payoutTotal.happiness * maxHappy) / 100)})
+                .returning("*")
+                .asCallback(function(err, pet){
+                  if (err) {
+                    console.log("pets update err: ", err)
+                  }
+                  knex
+                    .from("jobs")
+                    .where("id", data[0].id)
+                    .update({"job_end_time": timeNow})
+                    .returning("*")
+                    .asCallback(function(err, job){
+                      if (err) {
+                        console.log("jobs update err: ", err)
+                      }
+                      const output = Object.assign(pet[0], job[0])
+                      console.log(output)
+                      res.status(201).send(output);
               })
             })
           })

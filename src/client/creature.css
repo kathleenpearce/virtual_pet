@@ -6,6 +6,11 @@
   justify-content: center;
 }
 
+.pet-profile-creature-image .creature{
+  height: 600px;
+  width: 450px;
+}
+
 .petJob .creature {
   height: 266px;
   width: 200px;

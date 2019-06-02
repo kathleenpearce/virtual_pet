@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import {BrowserRouter, Switch, Route, Link, Redirect, withRouter} from "react-router-dom";
-
+import axios from "axios";
 
 import "./Home.css";
+
 import Creature from "./CreatureImg.jsx";
 import CreatureCard from "./CreatureCard.jsx";
 import CreatureContainer from "./CreatureContainer";
@@ -10,6 +11,11 @@ import MateFound from "./MateFound";
 import CurrentJobs from "./CurrentJobs.js";
 
 class Home extends Component {
+  componentDidMount() {
+    const userName = this.props.location.search.split("=")[1]
+  }
+
+
 
   render() {
     return (
@@ -53,7 +59,7 @@ class Home extends Component {
                 <h4>Current Jobs</h4>
               </div>
               <div className="job-menu">
-                <CurrentJobs time={this.props.time} returnFromWork={this.props.returnFromWork} />
+                <CurrentJobs time={this.props.time} returnFromWork={this.props.returnFromWork} jobList={this.props.jobList} />
               </div>
              </div>
             }

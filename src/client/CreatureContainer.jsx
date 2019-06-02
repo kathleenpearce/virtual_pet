@@ -13,11 +13,12 @@ export default class CreatureContainer extends Component {
         </div>
         <div className="creature-card-container">
         <div className="creature-menu">
-          {this.props.petlist.map(pet => {
+          {this.props.petlist.map((pet, index) => {
+
             return (
               <CreatureCard
                 className="creature-grid-item"
-                key={pet.id}
+                key={index}
                 petStatus={pet}
                 time={this.props.time}
                 onSelect={this.props.onSelect}

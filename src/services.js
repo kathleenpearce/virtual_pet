@@ -18,3 +18,22 @@ export const breedNewPet = (pet1, pet2, callback) => {
         callback(response.data);
       });
   };
+
+export const makeNewJob = (pet, callback) => {
+  axios
+    .post(`/api/pets/${pet.pet_id}/work`, {
+    })
+    .then(response => {
+      console.log(response.data)
+      callback(response.data)
+    })
+}
+
+export const endJob = (job, callback) => {
+  axios
+    .post(`/api/jobs/${job.id}`, {
+    })
+    .then(response => {
+      callback(response.data)
+    })
+}
