@@ -23,7 +23,7 @@ export default class BuyNewPet extends Component {
       A new pet costs $20,000
       </div>
 
-      <div className="buy-button-container"><a href="/"><button className="buy-button">Buy New Pet</button></a></div>
+      <div className="buy-button-container"><a href="/"><button className="new-pet-button">Buy New Pet</button></a></div>
 
       </div>
       </div>

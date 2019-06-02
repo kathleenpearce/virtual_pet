@@ -44,7 +44,7 @@ onChangeUsername = (e) => {
         <h2>Welcome to Selection!</h2>
         <br />
         Username <input type="username" name="username" className="email" onChange={this.onChangeUsername}/><br /><br />
-        <button onClick={this.onClickLogin}>Login</button>
+        <button className="login-button" onClick={this.onClickLogin}>Login</button>
       </div>
     )
   }

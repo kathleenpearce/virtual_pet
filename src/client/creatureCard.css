@@ -4,7 +4,6 @@
   position: relative;
   height: 400px;
   width: 300px;
-  background-color: #525267;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -12,9 +11,10 @@
   align-items: center;
   margin: .5em;
   color: white;
-  border: 1px solid black;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  border: 2px solid black;
+  box-shadow: 0 20px 60px 0 rgba(0,0,0,0.24), 0 50px 80px 0 rgba(0,0,0,0.19);
   border-radius: 6px;
+  background-image: url("../../lib/img/ep_naturalblack.png")
 
 }
 
@@ -22,7 +22,7 @@
   position: relative;
   height: 400px;
   width: 300px;
-  background-color: DarkCyan ;
+  background-image: url("../../lib/img/green-fibers.png");
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -30,8 +30,9 @@
   align-items: center;
   margin: .5em;
   color: white;
-  border: 1px solid black;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  border: 2px solid black;
+  box-shadow: 0 5px 6px 0 rgba(0,0,0,0.24), 0 15px 20px 0 rgba(0,0,0,0.30);
+  border-radius: 6px;
 
 }
 
@@ -39,7 +40,7 @@
   position: relative;
   height: 400px;
   width: 300px;
-  background-color: darkred ;
+  background-color: #440621;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -47,52 +48,50 @@
   align-items: center;
   margin: .5em;
   color: white;
-  border: 1px solid black;
+  border: 2px solid black;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 6px;
 }
 
 .current-job-container .breedingBackground {
   height: 400px;
   width: 300px;
+
 }
 
 .nameContainer {
   width: 90%;
   z-index: 20;
+
 }
 
 
 
 
 .name-link {
-  color: LavenderBlush;
+  color: white;
   font-family: "Archivo Narrow", sans-serif;
   font-weight: bold;
-
-  background-color: #525267;
   padding-right: 7px;
   padding-left: 7px;
-
-
   align-items: center;
 
 }
 
 .name-link:hover {
-  color: #452889;
+  color: lightgrey;
   font-weight: bold;
 }
 
 .creatureWindow {
   width: 90%;
   height: 50%;
-  background-color: Lavender;
+  background-color: #EDEEF0;
   z-index: 5;
   display: flex;
   justify-content: center;
   padding-top: 1em;
-  border: 1px solid black;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 48%;
 }
 
 .creatureStats {
@@ -100,7 +99,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  color: black;
+  color: lightgrey;
   position: relative;
 }
 
@@ -181,6 +180,7 @@
   transition-duration: 0.6s;
   box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
   margin: 2px;
+  font-family: "Archivo Narrow", sans-serif;
 
 }
 

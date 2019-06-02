@@ -4,8 +4,10 @@
   color: white;
   border-style: solid;
   border-color: black;
-  border-width: 3px;
+  border-width: 2px;
   margin: 5px;
+  border-radius: 4px;
+  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
 
 }
 
@@ -23,6 +25,8 @@
   height: 40px;
   background-color: grey;
   padding: 10px;
+  background-image: url("../../lib/img/green-fibers.png");
+  border-radius: 1px;
 }
 .jobCardTop .statusJob {
   float: right;
@@ -37,11 +41,16 @@ p.jobName {
   float: left;
 }
 
-.jobCardBottom {
+.jobcardbottom {
   background-color: grey;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  height: 40px
+  height: 40px;
+  background-image: url("../../lib/img/green-fibers.png");
+  border-radius: 1px;
 }
 
+h4 {
+  font-family: "Archivo Narrow", sans-serif;
+}

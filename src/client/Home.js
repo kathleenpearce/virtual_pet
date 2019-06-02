@@ -27,7 +27,7 @@ class Home extends Component {
 
 
               <div className="avatar-img">
-                <img className="pet-pic" src="../../lib/img/avatar.png" />
+                // avatar here
               </div>
             </div>
             <div className="new-pet-button-container">

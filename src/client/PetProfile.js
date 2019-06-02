@@ -100,6 +100,7 @@
                 <h2 className="name">
 
                   {this.state.pet.name}
+
                 </h2>
                   <button
                     className="edit-name-button"
