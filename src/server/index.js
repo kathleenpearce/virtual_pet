@@ -68,6 +68,7 @@ app.get("/api/getPets/:petid", (req, res) => {
       if (err) {
         console.log("get single pet err: ", err)
       }
+      const withId = Object.assign(pet[0], {pet_id: req.params.petid})
       res.send({ pet, refrenceTime });
     });
 
@@ -136,6 +137,7 @@ app.post("/api/breed", (req, res) => {
 });
 
 app.put("/api/pets/:id", (req, res) => {
+  console.log(req.params.id, req.body.name)
 
   var query = knex("pets")
     .where("id", Number(req.params.id))
@@ -313,15 +315,7 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
         }
 
         let newHappy = Math.round(currentHungerHappy.happiness * maxHappy / 100)
-        // if (currentHungerHappy.hunger > 50) {
-        //   newHappy =
-        //     Math.round(
-        //       currentHungerHappy.happiness * maxHappy / 100 - ((currentHungerHappy.hunger - 50) * statusSpeed / petStats[0].strength_gene)*(maxHappy/3600)
-        //       )
-        // }
 
-          console.log("newHappy: ",newHappy)
-          console.log(((50 - currentHungerHappy.hunger) * statusSpeed / petStats[0].strength_gene)*(maxHappy/3600))
 
         knex.from("pets")
             .where("id", req.params.petId)

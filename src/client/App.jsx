@@ -103,15 +103,16 @@ export default class App extends Component {
   editPet(pet) {
     /* Going to want to make an axios request */
     /* PUT /pets/${pet.id} */
-
-    axios.put(`/api/pets/${pet.pet_id}`, pet).then(response => {
-      console.log(pet)
+    const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
+    console.log(pet)
+    console.log(petAssign.pet_id)
+    axios.put(`/api/pets/${petAssign.pet_id}`, petAssign).then(response => {
       this.setState(prev => {
-        const index = prev.petlist.findIndex(item => item.pet_id === pet.pet_id);
+        const index = prev.petlist.findIndex(item => item.id === petAssign.pet_id);
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
-            pet,
+            petAssign,
             ...this.state.petlist.slice(index + 1)
           ]
         };
@@ -218,7 +219,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 32);
+    //setInterval(() => this.currentTime(), 32);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
