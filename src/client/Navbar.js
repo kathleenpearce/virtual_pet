@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./Home.css";
 
 export default class Navbar extends Component {
+
   render() {
+
     return (
       <div>
           <div className="menu-container">

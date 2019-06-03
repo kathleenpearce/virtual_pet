@@ -64,6 +64,10 @@
   background-image: url("../../lib/img/wheat.png")
 }
 
+.fixed-menu-container {
+  position: fixed;
+}
+
 .menu {
   width: 900px;
   display: flex;
@@ -90,8 +94,9 @@ pet profile page CSS*/
 }
 
 .back-button {
-  margin-right: 1520px;
-  margin-top: -10px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 50px;
 }
 
 .pet-profile-stats {
@@ -234,8 +239,8 @@ width: 25%;
 }
 
 .current-job-container {
-  margin-top: 2.5vw;
-  width: 400px;
+  margin-top: 15px;
+  width: 1000px;
   display: flex;
   flex-direction: column;
   padding-right: 5vw;
@@ -252,12 +257,11 @@ width: 25%;
   width: 100%;
   display: flex;
   align-items: flex-start;
-
   flex-direction: row;
   justify-content: space-around;
-  padding-left: 5vw;
-  padding-right: 5vw;
-  padding-top: 5vw;
+  padding-left: 25px;
+  padding-right: 35px;
+  padding-top: 20px;
 }
 
 
@@ -273,9 +277,9 @@ width: 25%;
 
 
 .header {
-  margin-top: 2vw;
+  margin-top: 2px;
   color: black;
-  background-color: white;
+
 
   display: flex;
 
