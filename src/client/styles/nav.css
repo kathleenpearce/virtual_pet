@@ -1,0 +1,39 @@
+@import url(//fonts.googleapis.com/css?family=Archivo+Narrow|Pacifico|Bangers|Bungee);
+
+
+/*navbar css*/
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  color: #fff;
+  background-color: #5F907A;
+  padding: 20px 10vw;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.24), 0 7px 22px 0 rgba(0,0,0,0.19);
+  background-image: url("../../../lib/img/wheat.png")
+}
+
+.selection {
+  font-family: 'Bungee', cursive;
+  color: white;
+  font-size: 52px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: space-around;
+  font-family: "Archivo Narrow", sans-serif;
+  font-size: 25px;
+}
+
+.nav-links a {
+  color: white;
+  padding-left: 2em
+}
+
+.nav-links a:hover {
+  color: white;
+  text-shadow: 1px 1px 2px white;
+}

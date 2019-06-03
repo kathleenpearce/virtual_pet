@@ -44,9 +44,18 @@ app.get("/api/getPets", (req, res) => {
       })
     })
     .asCallback(function(err, pets) {
-      res.send({ pets, refrenceTime });
+      res.status(201).send({ pets, refrenceTime });
     });
 });
+
+app.get("/api/getUser", (req, res) => {
+  knex.from("users")
+      .where("id", 1)
+      .first("*")
+      .asCallback(function(err, user) {
+        res.status(201).send(user)
+      })
+})
 
 app.get("/api/getPets/:petid", (req, res) => {
   console.log(req.params.pet)
@@ -69,7 +78,7 @@ app.get("/api/getPets/:petid", (req, res) => {
         console.log("get single pet err: ", err)
       }
       const withId = Object.assign(pet[0], {pet_id: req.params.petid})
-      res.send({ pet, refrenceTime });
+      res.status(201).send({ pet, refrenceTime });
     });
 
 })
@@ -97,7 +106,7 @@ app.post("/api/login", (req, res, username) => {
             .insert(newPets).asCallback(function(err) {
               console.log("error", err)
 
-              res.send(user[0])
+              res.status(201).send(user[0])
             })
 
       })
