@@ -93,7 +93,7 @@ class CreatureCard extends Component {
         }
       }}
         onMouseLeave={() => this.setState ({ isHovering: false })}>
-        <div className={working ? "workingBackground" : (breeding ? "breedingBackground" : (this.state.isHovering ? "selectedBackground" : "cardBackground"))}>
+        <div className={working ? "workingBackground" : (breeding ? "breedingBackground animate" : (this.state.isHovering ? "selectedBackground animate" : "cardBackground"))}>
           <div className="nameContainer">
             <h2 className="name" />
 
