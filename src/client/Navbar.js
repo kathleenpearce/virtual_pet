@@ -5,15 +5,23 @@ export default class Navbar extends Component {
 
   render() {
 
+    let gold = null
+    let user = null
 
-    const money  = Number(this.props.user.gold).toLocaleString()
+    if (this.props.user) {
+      gold = this.props.user.gold
+      user = this.props.user.name
+    }
+
+
+    const money  = Number(gold).toLocaleString()
 
 
     return (
           <div className="menu-container">
             <a href="/" className="selection">Selection</a>
             <div className="nav-links">
-              <a href="/"><h3>{this.props.user.name} - {money}G</h3></a>
+              <a href="/"><h3>{user} - {money}G</h3></a>
               <a href="/browseusers"><h3>Browse Users</h3></a>
               <a href="/login"> <h3>Logout</h3></a>
             </div>
