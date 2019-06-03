@@ -1,9 +1,21 @@
 import React, { Component } from "react";
 import "./Home.css";
+import axios from "axios";
+
 
 
 
 export default class BuyNewPet extends Component {
+
+  buyNewPet(user) {
+    axios.post(`/api/users/${user}/buypet`, {}).then(response => {
+      this.setState(prev => {
+        return {};
+      })
+    })
+
+  }
+
   render() {
     return (
       <div>
@@ -23,7 +35,7 @@ export default class BuyNewPet extends Component {
       A new pet costs $20,000
       </div>
 
-      <div className="buy-button-container"><a href="/"><button className="buy-pet-button">Buy New Pet</button></a></div>
+      <div className="buy-button-container"><a href="/"><button onClick={() => this.buyNewPet(1)} className="buy-pet-button">Buy New Pet</button></a></div>
 
       </div>
       </div>

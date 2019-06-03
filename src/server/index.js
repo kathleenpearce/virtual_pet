@@ -398,6 +398,7 @@ app.post("/api/jobs/:id", (req, res) => {
 })
 
 app.post("/api/users/:userId/buypet", (req, res) => {
+  console.log("new pet")
   const newPet = newRandomPet(req.params.userId)
   knex
     .insert(newPet)

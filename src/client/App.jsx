@@ -201,14 +201,14 @@ export default class App extends Component {
     })
   }
 
-  buyNewPet(user) {
-    axios.post(`/api/users/${1}/buypet`, {}).then(response => {
-      this.setState(prev => {
-        return {};
-      })
-    })
+  // buyNewPet(user) {
+  //   axios.post(`/api/users/${user}/buypet`, {}).then(response => {
+  //     this.setState(prev => {
+  //       return {};
+  //     })
+  //   })
 
-  }
+  // }
 
   // updates global timer
 
@@ -219,7 +219,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    //setInterval(() => this.currentTime(), 32);
+    setInterval(() => this.currentTime(), 32);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
