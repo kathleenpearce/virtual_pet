@@ -1,19 +1,44 @@
-.creature {
+.creature-size{
   height: 200px;
   width: 150px;
+}
+
+.pet-profile-creature-image .creature-size{
+  height: 600px;
+  width: 450px;
+}
+
+.petJob .creature-size {
+  height: 266px;
+  width: 200px;
+}
+
+.creature {
+  height: 100%;
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
 }
 
-.pet-profile-creature-image .creature{
-  height: 600px;
-  width: 450px;
+@keyframes bob {
+  from {top: 0%;}
+  50%  {top: 1%;}
+  to   {top: 0%;}
 }
 
-.petJob .creature {
-  height: 266px;
-  width: 200px;
+.animate .notFeet {
+  animation-name: bob;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.notFeet {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .body {
@@ -50,10 +75,24 @@
   position: absolute;
   z-index: 3
 }
-
 .eye img{
   position: absolute;
   z-index: 4
+}
+
+@keyframes blink {
+  from {opacity: 1;}
+  49% {opacity: 1;}
+  50% {opacity: 0;}
+  51% {opacity: 0;}
+  52% {opacity: 1;}
+  to {opacity: 1;}
+}
+
+.animate .open {
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
 }
 
 .earL svg{
