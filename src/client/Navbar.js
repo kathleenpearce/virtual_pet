@@ -1,31 +1,23 @@
 import React, { Component } from "react";
-import "./Home.css";
+import "./styles/nav.css";
 
 export default class Navbar extends Component {
 
   render() {
 
-    return (
-      <div>
-          <div className="menu-container">
-            <div className="menu">
-              <a href="/">
-                <div className="selection">Selection</div>
-              </a>
-              <div className="nav-links">
-              <a href="/"><div className="browse-users">Your Profile</div></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/browseusers">
-                  <div className="browse-users">Browse Users</div>
-                </a>
 
-                <a href="/login">
-                  <div className="logout">Logout</div>
-                  <div />
-                </a>
-              </div>
+    const money  = Number(this.props.user.gold).toLocaleString()
+
+
+    return (
+          <div className="menu-container">
+            <a href="/" className="selection">Selection</a>
+            <div className="nav-links">
+              <a href="/"><h3>{this.props.user.name} - {money}G</h3></a>
+              <a href="/browseusers"><h3>Browse Users</h3></a>
+              <a href="/login"> <h3>Logout</h3></a>
             </div>
           </div>
-      </div>
     );
   }
 }

@@ -24,9 +24,6 @@ import MateFound from "./MateFound";
 import { breedNewPet, makeNewJob, endJob, newFeedEvent } from "../services";
 
 
-
-
-
 export default class App extends Component {
   constructor() {
     super();
@@ -37,7 +34,7 @@ export default class App extends Component {
       pet2: "",
       time: new Date().getTime(),
       latency: 0,
-      user: []
+      user: ""
     };
 
     this.editPet = this.editPet.bind(this);
@@ -234,6 +231,9 @@ export default class App extends Component {
     fetch('/api/getJobs')
     .then(res => res.json())
     .then(jobs => this.setState({ jobList: jobs.reverse() }))
+    fetch('/api/getUser')
+    .then(res => res.json())
+    .then(currentUser => this.setState({ user: currentUser}))
   }
 
   // selectPet()
@@ -288,7 +288,7 @@ export default class App extends Component {
         {/*Delete*/}
        {/* <Route path='*' component={App}/>*/}
       {/*End Delete*/}
-        <Navbar />
+        <Navbar user={this.state.user} />
         <Switch>
           <Route path="/petprofile/:petid" render={(props) => {
             return (<PetProfile {...props}
