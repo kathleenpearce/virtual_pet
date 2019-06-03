@@ -74,6 +74,20 @@
   box-shadow: 0 0 15px #4F3A59;
 }
 
+.status-bar {
+  height: 2px;
+  width: 100px;
+  background-color: grey;
+  border-radius: 2px;
+}
+
+.status-bar .filled {
+  height: 100%;
+  background-color: #6DC29E;
+  z-index: -10;
+  border-radius: 2px;
+}
+
 .current-job-container .breedingBackground {
   height: 400px;
   width: 300px;
@@ -193,16 +207,19 @@
 .breed-button {
   background-color: Gainsboro; color: black;
   border: none;
-  font-size: 0.8vw;
-  padding: 4px 6.5px;
+  font-size: 16px;
+  padding: 2px 6.5px;
   border-radius: 3px;
   border: none;
   -webkit-transition-duration: 0.8s;
   transition-duration: 0.6s;
   box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
-  margin: 2px;
+  margin: 1px;
   font-family: "Archivo Narrow", sans-serif;
+}
 
+.petProfile .breed-Button{
+  font-size: 24px;
 }
 
 .actual-breed-button {
@@ -235,8 +252,6 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-
-
 
 
 .breed-button:hover {

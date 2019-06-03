@@ -86,6 +86,10 @@ class CreatureCard extends Component {
       working
     );
 
+    const happinessBar = {width: `${Math.round(status.happiness)}px`}
+    const hungerBar = {width: `${Math.round(status.hunger)}px`}
+
+
     return (
       <div ref={this.cardRef} onMouseEnter={() => {
         if (!working) {
@@ -114,6 +118,10 @@ class CreatureCard extends Component {
             <div className="happinessGague">
               <img className="happiness" src="../../lib/img/noun_Heart.svg" />
               <p>{status.happiness.toFixed(2)}%</p>
+              {!this.state.isHovering &&
+                <div className="status-bar">
+                  <div className="filled" style={happinessBar}></div>
+              </div> }
               <h4>Int: {petAssign.intelligence_gene}</h4>
             </div>
             <div className="hungerGague">
@@ -122,6 +130,10 @@ class CreatureCard extends Component {
                 src="../../lib/img/noun_Bitten_Apple.svg"
               />
               <p>{status.hunger.toFixed(2)}%</p>
+              {!this.state.isHovering &&
+                <div className="status-bar">
+                   <div className="filled" style={hungerBar}></div>
+                </div> }
               <h4>Str: {petAssign.strength_gene}</h4>
             </div>
             {this.state.isHovering && (

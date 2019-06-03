@@ -75,104 +75,85 @@
       );
       return (
 
-    <div>
-    <br /><br />
-    <div className="back-button"><a href="/"><button className="breed-button">Back</button></a><br /><br /><br /><br /></div>
-    <div className="pet-profile-content">
-    <div className="pet-profile-creature-image animate">
-              <Creature
-              petStatus={this.state.pet}
-              happyStatus={status.happyId}
-            />
-    </div>
+    <div className='petProfile'>
+      <div className="back-button"><a href="/"><button className="breed-button">Back</button></a><br /><br /><br /><br /></div>
+        <div className="pet-profile-content">
+          <div className="pet-profile-creature-image animate">
+                    <Creature
+                    petStatus={this.state.pet}
+                    happyStatus={status.happyId}
+                  />
+          </div>
 
-    <div className="pet-profile-info">
+        <div className="pet-profile-info">
 
-    <div className="pet-profile-name">{this.state.isEditing ? (
-              <label className="edit-name-field">
-                <input
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                  onKeyPress={this.onKeyPressEnter}
-                />
-              </label>
-            ) : (
-              <React.Fragment>
-                <h2 className="name">
-
-                  {this.state.pet.name}
-
-                </h2>
-                  <button
-                    className="edit-name-button"
-                    type="submit"
-                    name="Edit Name"
-                    onClick={() => this.setState({ isEditing: true })}
-                  >
-                    {" "}
-                    Edit Name{" "}
-                  </button>
-                </React.Fragment>
-            )}</div>
+          <div className="pet-profile-name">{this.state.isEditing ? (
+            <label className="edit-name-field">
+              <input
+                value={this.state.name}
+                onChange={this.handleChange}
+                onKeyPress={this.onKeyPressEnter}
+              />
+            </label>
+          ) : (
+            <div className='name-and-edit'>
+              <h2 className="name">{this.state.pet.name}</h2>
+              <button
+                className="edit-name-button"
+                type="submit"
+                name="Edit Name"
+                onClick={() => this.setState({ isEditing: true })}>
+              </button>
+            </div>
+          )}
+          </div>
 
 
-
-            <div className="pet-profile-stats">
-
+          <div className="pet-profile-stats">
             <ul> Strength: {this.state.pet.strength_gene}</ul><br />
             <ul>Hunger: {(status.hunger).toFixed(2)}</ul><br />
             <ul> Intelligence: {this.state.pet.intelligence_gene}</ul><br />
             <ul>Happiness: {(status.happiness).toFixed(2)}</ul><br />
-
-
-
-            </div>
-
-
-      {!working && (
-        <div className="pet-profile-buttons">
-          <div className="petcare-buttons">
-
-            {/*<button
-              className="breed-button"
-              value={this.state.pet}
-              onClick={() => {
-                this.props.sendToWork(this.state.pet.id);
-                window.location.reload();
-              }}
-            >
-              Send to Work
-            </button>*/}
-
-            {/*<button
-              className="breed-button"
-              onClick={() => {
-                this.props.feed(this.state.pet.id, 1)
-                window.location.reload();
-              }}
-
-            >
-              Feed
-            </button>*/}
           </div>
 
-          <button className="breed-button set-free" onClick={() => {
-            alert("By pressing ok you will permanently delete this pet!");
-            this.props.deletePet(this.props.match.params.petid);
-            this.props.history.push('/');
-          }} >
-          Set Free
-          </button>
 
+          {!working && (
+            <div className="pet-profile-buttons">
+              <div className="petcare-buttons">
+
+                {/*<button
+                  className="breed-button"
+                  value={this.state.pet}
+                  onClick={() => {
+                    this.props.sendToWork(this.state.pet.id);
+                    window.location.reload();
+                  }}
+                >
+                  Send to Work
+                </button>*/}
+
+                {/*<button
+                  className="breed-button"
+                  onClick={() => {
+                    this.props.feed(this.state.pet.id, 1)
+                    window.location.reload();
+                  }}
+
+                >
+                  Feed
+                </button>*/}
+              </div>
+
+              <button className="breed-button set-free" onClick={() => {
+                alert("By pressing ok you will permanently delete this pet!");
+                this.props.deletePet(this.props.match.params.petid);
+                this.props.history.push('/');}} >
+                Set Free
+              </button>
+            </div>
+            )}
         </div>
-        )}
-
-    </div>
-
-    </div>
-
-
-
+      </div>
     </div>
 
 

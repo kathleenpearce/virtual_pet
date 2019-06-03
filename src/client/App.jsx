@@ -283,7 +283,7 @@ export default class App extends Component {
         );
     }
     return (
-      <div>
+      <div className='app'>
       <BrowserRouter >
         {/*Delete*/}
        {/* <Route path='*' component={App}/>*/}
