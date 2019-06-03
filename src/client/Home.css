@@ -134,6 +134,8 @@ pet profile page CSS*/
   flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
+  width: 315px;
+
 }
 
 .job-card-container {
@@ -153,8 +155,12 @@ width: 25%;
   flex-direction: column;
 }
 
+.current-job-container .no-breed {
+  display: flex;
+  }
+
 .current-job-container {
-  margin-top: 15px;
+  margin-top: 5px;
   width: 1000px;
   display: flex;
   flex-direction: column;
@@ -182,56 +188,38 @@ width: 25%;
 
 
 
-.username {
-  font-size: 2vw;
-  font-weight: bold;
-  display: flex;
-  margin-bottom: 2vw;
 
-}
 
 
 .header {
-  margin-top: 2px;
   color: black;
-
-
   display: flex;
-
-  height: 10vw;
-  width: 52%;
+  height: 135px;
+  width: 50%;
   justify-content: space-around;
+
 }
 
-.avatar-info,
-.new-pet-button {
-  height: 3vw;
-  align-self: center;
-}
 
-.new-pet-button-container {
+
+/*.new-pet-button-container {
   margin-top: 4vw;
   color: black;
   background-color: white;
   display: flex;
 
   justify-content: space-between;
-}
+}*/
 a.new-pet-button {
- display: flex;
+  display: flex;
   background-color: Gainsboro;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
   border-radius: 3px;
-  border: none;
   color: darkslategrey;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  padding-top: 6px;
+  padding-top: 8px;
   padding-bottom: 4px;
-  font-size: 1.2em;
   height: 1.9em;
-  margin: 15px;
+  font-size: 28px;
 
 }
 
@@ -263,7 +251,9 @@ a.new-pet-button:active {
   font-size: 2em;
   height: 1.9em;
   width: 7em;
-  margin: 15px;
+  margin: 150px;
+  margin-top: 5px;
+
 
 }
 
@@ -443,6 +433,16 @@ a.new-pet-button:active {
 
 .avatar-img {
   display: flex;
-  margin-left: 80px;
+  margin-top: -30px;
   height: 130px;
+}
+
+.user-info {
+  font-size: 60px;
+  font-weight: bold;
+  display: flex;
+  margin-right: 180px;
+  margin-top: 55px;
+  font-family: "Archivo Narrow", sans-serif;
+
 }

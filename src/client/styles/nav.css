@@ -26,6 +26,7 @@
   justify-content: space-around;
   font-family: "Archivo Narrow", sans-serif;
   font-size: 25px;
+
 }
 
 .nav-links a {
@@ -36,4 +37,11 @@
 .nav-links a:hover {
   color: white;
   text-shadow: 1px 1px 2px white;
+
+}
+
+.coin {
+  height: 30px;
+  margin-bottom: 2.5px;
+
 }

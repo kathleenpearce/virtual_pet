@@ -22,19 +22,18 @@ class Home extends Component {
       <div>
         <div className="header-container">
           <div className="header">
-            <div className="user-name-container"><div className="logo">
-              <div className="username">{this.props.username.user}</div></div>
 
+              <div className="user-info"> Ash
 
-              <div className="avatar-img">
                 <img className="avatar-img" src="../../lib/img/avatar-black.png" />
-              </div>
-            </div>
+
+
             <div className="new-pet-button-container">
               <a href="/buynewpet" className="new-pet-button">
                 Buy New Pet
               </a>
             </div>
+          </div>
           </div>
         </div>
         <div className="flex-home-page-elements-container">
@@ -54,7 +53,7 @@ class Home extends Component {
 
           <div className="current-job-container">
             { this.props.pet1 === '' &&
-             <div>
+             <div className='no-breeding'>
               <div className="job-card-title">
                 <h4>Current Jobs</h4>
               </div>

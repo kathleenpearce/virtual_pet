@@ -13,8 +13,8 @@ export default class Navbar extends Component {
           <div className="menu-container">
             <a href="/" className="selection">Selection</a>
             <div className="nav-links">
-              <a href="/"><h3>{this.props.user.name} - {money}G</h3></a>
-              <a href="/browseusers"><h3>Browse Users</h3></a>
+              <a href="/"><h3>{this.props.user.name}&nbsp; - &nbsp;{money} <img className="coin" src="../../lib/img/coin3.png" /></h3></a>
+
               <a href="/login"> <h3>Logout</h3></a>
             </div>
           </div>

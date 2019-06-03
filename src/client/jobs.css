@@ -8,6 +8,7 @@
   margin: 5px;
   border-radius: 4px;
   box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  margin-left: 55px;
 
 }
 
@@ -53,4 +54,6 @@ p.jobName {
 
 h4 {
   font-family: "Archivo Narrow", sans-serif;
+
+
 }
