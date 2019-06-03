@@ -7,9 +7,12 @@ body {
   margin: auto;
 }
 
+.app {
+  margin-top: 114px
+}
+
 .dynamicPets{
   display: flex;
-
 }
 
 .geneTestForm {
