@@ -79,7 +79,7 @@
     <br /><br />
     <div className="back-button"><a href="/"><button className="breed-button">Back</button></a><br /><br /><br /><br /></div>
     <div className="pet-profile-content">
-    <div className="pet-profile-creature-image">
+    <div className="pet-profile-creature-image animate">
               <Creature
               petStatus={this.state.pet}
               happyStatus={status.happyId}
