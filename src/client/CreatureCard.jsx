@@ -15,6 +15,7 @@ class CreatureCard extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onKeyPressEnter = this.onKeyPressEnter.bind(this);
+    this.handleHoverChange = this.handleHoverChange.bind(this);
   }
 
   // doesn't re-render elements that are off screen
@@ -44,6 +45,10 @@ class CreatureCard extends Component {
       this.props.editPet({ ...petAssign, name: this.state.name });
       this.setState({ isEditing: false });
     }
+  }
+
+  handleHoverChange() {
+    this.setState({isHovering : false})
   }
 
   render() {
@@ -128,6 +133,7 @@ class CreatureCard extends Component {
                 deletePet={this.props.deletePet}
                 feed={this.props.feed}
                 pet1={this.props.pet1}
+                handleHoverChange={this.handleHoverChange}
               />
             )}
           </div>
