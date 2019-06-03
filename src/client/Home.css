@@ -85,8 +85,13 @@
 /*
 pet profile page CSS*/
 .pet-profile-content {
-  margin-top: 6vw;
+  margin-top: 12vw;
 
+}
+
+.back-button {
+  margin-right: 1520px;
+  margin-top: -10px;
 }
 
 .pet-profile-stats {
@@ -313,24 +318,24 @@ a.new-pet-button {
 
 
 a.new-pet-button:hover {
-  background-color: #271C21;
+  background-color: #42314B;
   color: lightgrey;
 }
 
 a.new-pet-button:active {
-  background-color: #271C21;
+  background-color: #42314B;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
 .buy-pet-button {
   display: flex;
-  background-color: #271C21;
+  background-color: Gainsboro;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
   border-radius: 3px;
   border: none;
   padding: 4px, 4px;
-  color: lightgrey;
+  color: darkslategrey;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -344,12 +349,12 @@ a.new-pet-button:active {
 }
 
 .buy-pet-button:hover {
-  background-color: #271C21;
+  background-color: #42314B;
   color: lightgrey;
 }
 
 .buy-pet-button:active {
-  background-color: #271C21;
+  background-color: #42314B;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }

@@ -42,7 +42,7 @@
   position: relative;
   height: 400px;
   width: 300px;
-  background-color: #440621;
+  background-color: #6C2E46;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@
   position: relative;
   height: 400px;
   width: 300px;
-  background-color: #565656;
+  background-color: #707070;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -67,9 +67,11 @@
   align-items: center;
   margin: .5em;
   color: white;
-  border: 2px solid black;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  border: 2px solid #271C21;
   border-radius: 6px;
+  outline: none;
+  border-color: #271C21;
+  box-shadow: 0 0 15px #4F3A59;
 }
 
 .current-job-container .breedingBackground {
@@ -224,12 +226,12 @@
 }
 
 .actual-breed-button:hover {
-  background-color: #271C21;
+  background-color: #4F3A59;
   color: lightgrey;
 }
 
 .actual-breed-button:active {
- background-color: #271C21;
+ background-color: #4F3A59;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -238,12 +240,12 @@
 
 
 .breed-button:hover {
-  background-color: #656594;
+  background-color: #4F3A59;
   color: white;
 }
 
 .breed-button:active {
-  background-color: #3e8e41;
+  background-color: #4F3A59;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
