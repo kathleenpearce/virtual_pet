@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import Creature from "./CreatureImg.jsx";
 import HoverOver from "./HoverOver.jsx"
 
@@ -103,8 +104,8 @@ class CreatureCard extends Component {
             <h2 className="name" />
 
               <h2 className="name">
-               <a href={"/petprofile/" + petAssign.pet_id} className="name-link"> {" "}
-                {petAssign.name}{" "}</a>
+               <Link to={"/petprofile/" + petAssign.pet_id} className="name-link"> {" "}
+                {petAssign.name}{" "}</Link>
               </h2>
 
             <div className="nameBackground" />

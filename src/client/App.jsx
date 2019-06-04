@@ -109,11 +109,9 @@ export default class App extends Component {
     /* Going to want to make an axios request */
     /* PUT /pets/${pet.id} */
     const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
-    console.log(pet)
-    console.log(petAssign.pet_id)
     axios.put(`/api/pets/${petAssign.pet_id}`, petAssign).then(response => {
       this.setState(prev => {
-        const index = prev.petlist.findIndex(item => item.id === petAssign.pet_id);
+        const index = prev.petlist.findIndex(item => item.id == petAssign.pet_id);
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
