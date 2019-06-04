@@ -180,20 +180,23 @@ width: 25%;
   display: flex;
   }
 
+
+
 .current-job-container {
   margin-top: 5px;
   width: 1000px;
+  height: 100vw;
   display: flex;
   flex-direction: column;
   padding-right: 5vw;
   margin-right: 5vw;
   padding: 0px;
-
-  /*position: fixed;
-  top: 0;
-  right: 0;*/
-
 }
+
+  .job-items {
+    position: sticky;
+    top: 150px;
+  }
 
 .flex-home-page-elements-container {
   width: 100%;

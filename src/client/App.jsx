@@ -35,7 +35,8 @@ export default class App extends Component {
       time: new Date().getTime(),
       latency: 0,
       user: "",
-      buying: false
+      buying: false,
+      profile: false
     };
 
     this.editPet = this.editPet.bind(this);
@@ -45,6 +46,7 @@ export default class App extends Component {
     this.feed = this.feed.bind(this)
     this.buyNewPet = this.buyNewPet.bind(this);
     this.handleBuying = this.handleBuying.bind(this)
+    this.viewProfile = this.viewProfile.bind(this)
   }
 
 
@@ -223,9 +225,15 @@ export default class App extends Component {
           buying: false
 
         }
+      })
     })
-  })
-}
+  }
+
+  viewProfile(id) {
+    this.setState (prev => {
+      return {profile: true}
+    })
+  }
 
 
 
@@ -238,7 +246,7 @@ export default class App extends Component {
   }
   // refreshes the timer every 16 MS
   componentWillMount() {
-    setInterval(() => this.currentTime(), 1000);
+    setInterval(() => this.currentTime(), 32);
   }
   // inits the timer, loads all pets that a user has
   componentDidMount() {
@@ -281,6 +289,7 @@ export default class App extends Component {
           username={this.state.user}
           jobList={this.state.jobList}
           handleBuying={this.handleBuying}
+          viewProfile={this.viewProfile}
 
 
 
@@ -311,6 +320,20 @@ export default class App extends Component {
         <BuyNewPet
           buyNewPet={this.buyNewPet}
         />
+        )
+    }
+
+    if (this.state.profile) {
+      content = (
+        <PetProfile
+          time={this.state.time}
+          addNewPet={this.addNewPet}
+          editPet={this.editPet}
+          deletePet={this.deletePet}
+          sendToWork={this.sendToWork}
+          feed={this.feed}
+
+         />
         )
     }
     return (

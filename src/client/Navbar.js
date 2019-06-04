@@ -28,7 +28,7 @@ export default class Navbar extends Component {
             <a href="/" className="selection">Selection</a>
             <div className="nav-links">
 
-              <a href="/"><h3>{user} | </h3><Odometer value={money} format="(,ddd,ddd)" /><img className="coin" src="../../lib/img/coin3.png" /></a>
+              <a href="/"><h3>{user} | </h3><div className='money-counter'><Odometer  value={money} format="(,ddd)" /></div><img className="coin" src="../../lib/img/coin3.png" /></a>
               <a href="/login"> <h3>Logout</h3></a>
             </div>
           </div>

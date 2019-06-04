@@ -91,6 +91,7 @@ class CreatureCard extends Component {
 
 
     return (
+
       <div ref={this.cardRef} onMouseEnter={() => {
         // if (!working) {
         this.setState ({ isHovering: true })

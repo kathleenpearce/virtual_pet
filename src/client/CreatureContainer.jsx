@@ -28,6 +28,7 @@ export default class CreatureContainer extends Component {
                 feed={this.props.feed}
                 pet1={this.props.pet1}
                 pet2={this.props.pet2}
+                viewProfile={this.props.viewProfile}
               />
             );
           })}
