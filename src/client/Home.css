@@ -6,8 +6,8 @@ pet profile page CSS*/
 
 .back-button {
 position: absolute;
-left: 5%;
-top: 124px;
+left: 3%;
+top: 160px;
 }
 
 .pet-profile-stats {
@@ -70,8 +70,8 @@ top: 124px;
   width: 300px;
   border-radius: 6px;
   margin: 0 auto 0 auto;
-  margin-top: 45px;
-  maring-top: 40px;
+  margin-top: 190px;
+
   padding: 0px 0px 70px 0px;
   border: #black 2px solid;
   font-family: "Archivo Narrow", sans-serif;
@@ -242,6 +242,7 @@ a.new-pet-button {
   height: 1.9em;
   font-size: 28px;
 
+
 }
 
 
@@ -257,24 +258,17 @@ a.new-pet-button:active {
 }
 
 .buy-pet-button {
-  display: flex;
-  background-color: Gainsboro;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  background-color: Gainsboro; color: black;
+  border: none;
+  font-size: 30px;
+  padding: 4px 6.5px;
   border-radius: 3px;
   border: none;
-  padding: 4px, 4px;
-  color: darkslategrey;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  padding-top: 6px;
-  padding-bottom: 4px;
-  font-size: 2em;
-  height: 1.9em;
-  width: 7em;
-  margin: 150px;
-  margin-top: 5px;
-
+  -webkit-transition-duration: 0.8s;
+  transition-duration: 0.6s;
+  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 5px 20px 0 rgba(0,0,0,0.19);
+  margin: 2px;
+  font-family: "Archivo Narrow", sans-serif;
 }
 
 
@@ -353,6 +347,8 @@ body .petProfile{
   overflow-y: hidden;
 }
 
+
+
 .pet-profile-content {
   width: 100%;
   display: flex;
@@ -360,7 +356,7 @@ body .petProfile{
   justify-content: center;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 .pet-profile-info {
@@ -424,9 +420,9 @@ body .petProfile{
 }
 
 .new-pet-button {
-  background-color: DarkCyan; color: black;
+  background-color: Gainsboro; color: black;
   border: none;
-  font-size: 30px;
+  font-size: 28px;
   padding: 4px 6.5px;
   border-radius: 3px;
   border: none;
@@ -439,12 +435,12 @@ body .petProfile{
 }
 
 .new-pet-button:hover {
-  background-color: DarkSlateBlue;
+  background-color: #42314B;
   color: white;
 }
 
 .new-pet-button:active {
-  background-color: #3e8e41;
+  background-color: #42314B;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -469,7 +465,7 @@ body .petProfile{
 }
 
 .pet-pic-container {
-  margin-top: 65px;
+  margin-top: 185px;
 }
 
 
