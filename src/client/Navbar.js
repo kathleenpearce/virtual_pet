@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./styles/nav.css";
 import Odometer from 'react-odometerjs';
 
+
 export default class Navbar extends Component {
 
 
