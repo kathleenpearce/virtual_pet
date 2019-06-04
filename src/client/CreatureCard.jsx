@@ -92,12 +92,12 @@ class CreatureCard extends Component {
 
     return (
       <div ref={this.cardRef} onMouseEnter={() => {
-        if (!working) {
+        // if (!working) {
         this.setState ({ isHovering: true })
-        }
+        // }
       }}
         onMouseLeave={() => this.setState ({ isHovering: false })}>
-        <div className={working ? "workingBackground" : (breeding ? "breedingBackground animate" : (this.state.isHovering ? "selectedBackground animate" : "cardBackground"))}>
+        <div className={(working && this.state.isHovering) ? "workingBackground animate" : (working ? "workingBackground" : (breeding ? "breedingBackground animate" : (this.state.isHovering ? "selectedBackground animate" : "cardBackground")))}>
           <div className="nameContainer">
             <h2 className="name" />
 
@@ -118,7 +118,7 @@ class CreatureCard extends Component {
             <div className="happinessGague">
               <img className="happiness" src="../../lib/img/noun_Heart.svg" />
               <p>{status.happiness.toFixed(2)}%</p>
-              {!this.state.isHovering &&
+              {(!this.state.isHovering || working) &&
                 <div className="status-bar">
                   <div className="filled" style={happinessBar}></div>
               </div> }
@@ -130,13 +130,13 @@ class CreatureCard extends Component {
                 src="../../lib/img/noun_Bitten_Apple.svg"
               />
               <p>{status.hunger.toFixed(2)}%</p>
-              {!this.state.isHovering &&
+              {(!this.state.isHovering || working) &&
                 <div className="status-bar">
                    <div className="filled" style={hungerBar}></div>
                 </div> }
               <h4>Str: {petAssign.strength_gene}</h4>
             </div>
-            {this.state.isHovering && (
+            {this.state.isHovering && !working && (
               <HoverOver
                 onSelect={this.props.onSelect}
                 petStatus={petAssign}
