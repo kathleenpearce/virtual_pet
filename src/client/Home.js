@@ -49,9 +49,11 @@ class Home extends Component {
               onSelect={this.props.breed}
               pet1={this.props.pet1}
               pet2={this.props.pet2}
+              viewProfile={this.props.viewProfile}
             />
 
           <div className="current-job-container">
+          <div className="job-items">
             { this.props.pet1 === '' &&
              <div className='no-breeding'>
               <div className="job-card-title">
@@ -73,10 +75,12 @@ class Home extends Component {
                   petStatus={this.props.pet1}
                   time={this.props.time}
                   pet1={this.props.pet1}
+                  viewProfile={this.props.viewProfile}
                 />
               </div>
              </div>
             }
+          </div>
           </div>
         </div>
         <div className="footer">

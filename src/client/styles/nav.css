@@ -35,7 +35,18 @@
 
 .nav-links a {
   color: white;
-  padding-left: 2em
+  padding-left: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.money-counter {
+  margin-top: 9px;
+  margin-left: 5px;
+}
+
+.coin {
+  margin-top: 4px;
 }
 
 .nav-links a:hover {
