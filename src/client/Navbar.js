@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./styles/nav.css";
+<link rel="stylesheet" href="odometer-theme-minimal.css" />
 
 export default class Navbar extends Component {
 

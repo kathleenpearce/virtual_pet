@@ -6,15 +6,19 @@ import axios from "axios";
 
 
 export default class BuyNewPet extends Component {
+  constructor() {
+    super();
+    this.state = {
+      buying: false
+    }
+  }
 
-  // buyNewPet(user) {
-  //   axios.post(`/api/users/${user}/buypet`, {}).then(response => {
-  //     this.setState(prev => {
-  //       return {};
-  //     })
-  //   })
+    buttonClick () {
+      this.setState(prev => {
+        return {buying: true}
+      })
+    }
 
-  // }
 
   render() {
     return (
@@ -35,7 +39,10 @@ export default class BuyNewPet extends Component {
       A new pet costs $20,000
       </div>
 
-      <div className="buy-button-container"><a href="/"><button onClick={() => this.props.buyNewPet(1)} className="buy-pet-button">Buy New Pet</button></a></div>
+      <div className="buy-button-container">
+        {!this.state.buying && <button onClick={() => {this.buttonClick(), this.props.buyNewPet(1)}} className="buy-pet-button">Buy New Pet</button>}
+        {this.state.buying && <div className='loader-box'><div className='loader large'></div><div className='loader medium'></div><div className='loader small'></div></div> }
+      </div>
 
       </div>
       </div>

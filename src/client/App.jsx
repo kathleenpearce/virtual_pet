@@ -34,7 +34,8 @@ export default class App extends Component {
       pet2: "",
       time: new Date().getTime(),
       latency: 0,
-      user: ""
+      user: "",
+      buying: false
     };
 
     this.editPet = this.editPet.bind(this);
@@ -43,6 +44,7 @@ export default class App extends Component {
     this.deletePet = this.deletePet.bind(this);
     this.feed = this.feed.bind(this)
     this.buyNewPet = this.buyNewPet.bind(this);
+    this.handleBuying = this.handleBuying.bind(this)
   }
 
 
@@ -206,12 +208,19 @@ export default class App extends Component {
     })
   }
 
+  handleBuying() {
+    this.setState(prev => {
+      return {buying: true}
+    })
+  }
+
   buyNewPet(user) {
     buyPetRequest(user, (purchase) => {
       this.setState(prev => {
         return {
           petlist: [purchase.newPet[0], ...prev.petlist],
-          user: purchase.userUpdate[0]
+          user: purchase.userUpdate[0],
+          buying: false
 
         }
     })
@@ -271,6 +280,7 @@ export default class App extends Component {
           pet2={this.state.pet2}
           username={this.state.user}
           jobList={this.state.jobList}
+          handleBuying={this.handleBuying}
 
 
 
@@ -294,6 +304,14 @@ export default class App extends Component {
         />
 
         );
+    }
+
+    if (this.state.buying) {
+      content = (
+        <BuyNewPet
+          buyNewPet={this.buyNewPet}
+        />
+        )
     }
     return (
       <div className='app'>

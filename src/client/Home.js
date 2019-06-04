@@ -29,9 +29,9 @@ class Home extends Component {
 
 
             <div className="new-pet-button-container">
-              <a href="/buynewpet" className="new-pet-button">
+              <button onClick={() => this.props.handleBuying()} className="new-pet-button">
                 Buy New Pet
-              </a>
+              </button>
             </div>
           </div>
           </div>

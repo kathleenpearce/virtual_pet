@@ -5,6 +5,12 @@ import CreatureContainer from "./CreatureContainer";
 import axios from "axios";
 
 export default class MateFound extends Component {
+  constructor() {
+    super();
+    this.state = {
+      mating: false
+    }
+  }
 
 
 
@@ -14,15 +20,17 @@ export default class MateFound extends Component {
     axios
       .post("/api/breed", {
         pet1: this.state.pet1.id,
-        pet2: this.state.pet2.id
+        pet2: this.state.pet2.id,
       })
       .then(response => {
         this.props.onNewBaby(response.data);
       });
   };
 
-  componentDidMount() {
-
+  buttonClick () {
+      this.setState(prev => {
+        return {mating: true}
+      })
     }
 
   render() {
@@ -70,9 +78,10 @@ export default class MateFound extends Component {
           </div>
         </div>
 
-          <button className="actual-breed-button" onClick={() => {this.props.addNewPet(this.props.pet1, this.props.pet2)}}>
+          {!this.state.mating && <button className="actual-breed-button" onClick={() => {this.buttonClick(), this.props.addNewPet(this.props.pet1, this.props.pet2)}}>
             Breed
-          </button>
+          </button> }
+          {this.state.mating && <div className='loader-box'><div className='loader large'></div><div className='loader medium'></div><div className='loader small'></div></div> }
 
       </div>
     );
