@@ -47,7 +47,18 @@ top: 124px;
   margin-top: 30px !important;
 }
 
+.petProfile .status-bar {
+  height: 10px;
+  width: 300px;
 
+
+}
+
+.petProfile .status-bar .filled {
+  height: 100%;
+  z-index: 3;
+
+}
 
 
 
@@ -279,7 +290,6 @@ a.new-pet-button:active {
 }
 
 
-  -
 
 .footer {
   display: flex;

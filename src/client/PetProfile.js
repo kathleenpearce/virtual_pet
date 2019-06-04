@@ -73,6 +73,15 @@
         this.state.pet.intelligence_gene,
         working
       );
+
+      const hungerBar =  {
+        width: status.hunger * 3
+      }
+
+      const happinessBar = {
+        width: status.happiness * 3
+      }
+
       return (
 
     <div className='petProfile'>
@@ -111,9 +120,11 @@
 
           <div className="pet-profile-stats">
             <ul> Strength: {this.state.pet.strength_gene}</ul><br />
-            <ul>Hunger: {(status.hunger).toFixed(2)}</ul><br />
+            <ul><div className="hunger">Hunger: {(status.hunger).toFixed(2)}
+              <div className="status-bar"><div className="filled" style={hungerBar}></div></div></div></ul><br />
             <ul> Intelligence: {this.state.pet.intelligence_gene}</ul><br />
-            <ul>Happiness: {(status.happiness).toFixed(2)}</ul><br />
+            <ul><div className="happiness">Happiness: {(status.happiness).toFixed(2)}
+            <div className="status-bar"><div className="filled" style={happinessBar}></div></div></div></ul><br />
           </div>
 
 
