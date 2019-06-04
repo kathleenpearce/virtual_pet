@@ -78,14 +78,14 @@
   height: 2px;
   width: 100px;
   background-color: grey;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
 .status-bar .filled {
   height: 100%;
   background-color: #6DC29E;
   z-index: -10;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
 .current-job-container .breedingBackground {

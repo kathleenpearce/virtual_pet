@@ -21,7 +21,7 @@ import CurrentJobs from "./CurrentJobs.js";
 import BuyNewPet from "./BuyNewPet";
 import MateFound from "./MateFound";
 
-import { breedNewPet, makeNewJob, endJob, newFeedEvent } from "../services";
+import { breedNewPet, makeNewJob, endJob, newFeedEvent, buyPetRequest } from "../services";
 
 
 export default class App extends Component {
@@ -42,6 +42,7 @@ export default class App extends Component {
     this.returnFromWork = this.returnFromWork.bind(this);
     this.deletePet = this.deletePet.bind(this);
     this.feed = this.feed.bind(this)
+    this.buyNewPet = this.buyNewPet.bind(this);
   }
 
 
@@ -63,7 +64,10 @@ export default class App extends Component {
         return {
           pet1: "",
           pet2: "",
-          petlist: [pet, ...prev.petlist]
+          petlist: [pet.withId, ...prev.petlist],
+          user: {name: this.state.user.name,
+          gold: pet.newGold,
+          id: this.state.user.id}
         };
       });
     })
@@ -162,7 +166,7 @@ export default class App extends Component {
     endJob(job, (pet) => {
       this.setState(prev => {
         const index = prev.jobList.findIndex(item => item.id === job.id);
-        const petIndex = prev.petlist.findIndex(item => item.pet_id === pet.pet_id)
+        const petIndex = prev.petlist.findIndex(item => item.pet_id === pet.output.pet_id)
         return {
           jobList: [
             ...this.state.jobList.slice(0, index),
@@ -170,9 +174,10 @@ export default class App extends Component {
           ],
           petlist: [
             ...this.state.petlist.slice(0, petIndex),
-            pet,
+            pet.output,
             ...this.state.petlist.slice(petIndex + 1)
-            ]
+            ],
+          user: pet.gold[0]
         }
       })
     })
@@ -184,28 +189,36 @@ export default class App extends Component {
     newFeedEvent(petAssign, foodType, (petUpdate) => {
       this.setState(prev => {
         const petIndex = prev.petlist.findIndex(item => item.id === petAssign.pet_id)
-        console.log(petIndex)
-        console.log(petUpdate)
-        console.log(Object.assign(petAssign, petUpdate).happiness_at_time_last_fed)
         return {
           petlist: [
             ...this.state.petlist.slice(0, petIndex),
-            Object.assign(petAssign, petUpdate),
+            Object.assign(petAssign, petUpdate.pet),
             ...this.state.petlist.slice(petIndex + 1)
-            ]
-        };
+            ],
+          user: {
+            name: this.state.user.name,
+            gold: petUpdate.gold,
+            id: this.state.user.id
+
+          }
+        }
       })
     })
   }
 
-  // buyNewPet(user) {
-  //   axios.post(`/api/users/${user}/buypet`, {}).then(response => {
-  //     this.setState(prev => {
-  //       return {};
-  //     })
-  //   })
+  buyNewPet(user) {
+    buyPetRequest(user, (purchase) => {
+      this.setState(prev => {
+        return {
+          petlist: [purchase.newPet[0], ...prev.petlist],
+          user: purchase.userUpdate[0]
 
-  // }
+        }
+    })
+  })
+}
+
+
 
   // updates global timer
 
@@ -306,7 +319,12 @@ export default class App extends Component {
 
           <Route path="/login" render={() => { return <Login login={this.login} /> }} />
 
-          <Route path="/buynewpet" component={BuyNewPet} />
+          <Route path="/buynewpet" render={(props) => {
+            return (<BuyNewPet {...props}
+              buyNewPet={this.buyNewPet}
+              /> )
+          }} />
+
           {content}
 
         </Switch>

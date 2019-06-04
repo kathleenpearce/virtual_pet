@@ -45,3 +45,11 @@ export const newFeedEvent = (pet, foodType, callback) => {
       callback(response.data)
     })
 }
+
+export const buyPetRequest = (user, callback) => {
+  axios
+    .post(`/api/users/${user}/buypet`, {})
+    .then(response => {
+      callback(response.data)
+    })
+}

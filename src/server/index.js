@@ -22,7 +22,7 @@ const maxHappy = 200;
 const statusSpeed = 10
 
 const payRate = [[5,1], [3,3], [1,5]]
-const foodMenu = [{food: 10, price: 30}, {food: 30, price: 70}, {food: 50, price: 100}]
+const foodMenu = [{food: 10, price: 125}, {food: 30, price: 250}, {food: 50, price: 350}]
 
 
 app.use(express.static("dist"));
@@ -136,8 +136,25 @@ app.post("/api/breed", (req, res) => {
           .into("pets")
           .returning('*')
           .asCallback(function(err, newPet) {
-            const withId = Object.assign(newPet[0], {pet_id: newPet[0].id})
-            res.status(201).send(withId);
+            knex
+              .from("users")
+              .select("gold")
+              .where("id", 1)
+              .asCallback(function(err, gold) {
+                knex
+                  .from("users")
+                  .update({"gold": gold[0].gold - 20000})
+                  .returning("gold")
+                  .where("id", 1)
+                  .asCallback(function(err, newGold) {
+                    console.log("newGold", newGold)
+                    const withId = Object.assign(newPet[0], {pet_id: newPet[0].id})
+                    res.status(201).send({withId, newGold});
+
+                  })
+
+              })
+
           });
       });
     } else {
@@ -340,8 +357,9 @@ app.post("/api/pets/:petId/feed/:foodId", (req,res) => {
               knex.from("users")
                   .where("id", petStats[0].user_id)
                   .update({"gold": petStats[0].gold - foodMenu[req.params.foodId].price})
-                  .asCallback(function(err){
-                    res.status(201).send(pet[0]);
+                  .returning("gold")
+                  .asCallback(function(err, gold){
+                    res.status(201).send({pet: pet[0], gold: gold[0]});
       })
     })
   })
@@ -375,7 +393,8 @@ app.post("/api/jobs/:id", (req, res) => {
             .from("users")
             .where("id", data[0].user_id)
             .update({"gold": parseInt(data[0].gold) + Math.round(payoutTotal.payout)})
-            .asCallback(function(err){
+            .returning("*")
+            .asCallback(function(err, gold){
               knex
                 .from("pets")
                 .where("id", data[0].pet_id)
@@ -396,10 +415,9 @@ app.post("/api/jobs/:id", (req, res) => {
                       if (err) {
                         console.log("jobs update err: ", err)
                       }
-                      console.log(pet[0])
+
                       const output = Object.assign(pet[0], job[0])
-                      console.log("return pet from work: ", output.hunger_at_time_last_fed)
-                      res.status(201).send(output);
+                      res.status(201).send({output, gold});
               })
             })
           })
@@ -414,8 +432,22 @@ app.post("/api/users/:userId/buypet", (req, res) => {
     .into("pets")
     .returning('*')
     .asCallback(function(err, newPet) {
-      res.status(201).send(newPet[0]);
-    });
+      knex
+      .from("users")
+      .where("id", 1)
+      .select("gold")
+      .asCallback(function(err, gold) {
+        knex
+        .from("users")
+        .where("id", 1)
+        .update({"gold": gold[0].gold - 20000})
+        .returning("*")
+      .asCallback(function(err, userUpdate) {
+        res.status(201).send({newPet, userUpdate});
+      })
+    })
+
+  });
 })
 
 
