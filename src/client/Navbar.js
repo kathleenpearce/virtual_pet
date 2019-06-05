@@ -30,8 +30,9 @@ export default class Navbar extends Component {
           <div className="menu-container">
             <Link to="/" className="selection">Selection</Link>
             <div className="nav-links">
-
+            {this.props.user &&
               <Link to="/"><h3>{user} | </h3><div className='money-counter'><Odometer  value={money} format="(,ddd)" /></div><img className="coin" src="../../lib/img/coin3.png" /></Link>
+            }
               <Link to="/login"> <h3>Logout</h3></Link>
             </div>
           </div>

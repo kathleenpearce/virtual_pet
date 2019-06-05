@@ -111,7 +111,8 @@ export default class App extends Component {
     const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
     axios.put(`/api/pets/${petAssign.pet_id}`, petAssign).then(response => {
       this.setState(prev => {
-        const index = prev.petlist.findIndex(item => item.id == petAssign.pet_id);
+        const index = prev.petlist.findIndex(item => item.pet_id ? (item.pet_id == petAssign.pet_id) : (item.id == petAssign.pet_id));
+        console.log(index)
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
@@ -151,7 +152,7 @@ export default class App extends Component {
     console.log("try to send to work: ", petAssign)
     makeNewJob (petAssign, (job) => {
       this.setState(prev => {
-      const index = prev.petlist.findIndex(item => item.pet_id === job.pet_id);
+      const index = prev.petlist.findIndex(item => item.pet_id ? (item.pet_id == job.pet_id) : (item.id == job.pet_id));
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
