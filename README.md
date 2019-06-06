@@ -1,4 +1,4 @@
-# **🗣️ Selection 🗣️**
+# **🌀 Selection 🌀**
 
 "Selection" is an online virtual pet game created by Julian Tomlin and Kathleen Pearce - where users can collect and interact with their pets in a variety of diferent ways. Users can breed pets together to to achieve desired physical/stat-related attributes, such as intelligence, strength, body colour and more. The DNA of each parent (which is based off of a series of equations and algorithims in the back end)  is mixed together to create a new pet based off of the parent's combined DNA and mutations. Users can also send their pets to work to collect gold coins, which they can use to keep their pets fed and happy, as well as to purchase new pets.
 
@@ -26,7 +26,6 @@ _*Here are some screenshots of what "Selection" looks like.*_
 
 
 ### Dependencies
-
 * React
 * Webpack
 * React Router and React Router Dom
