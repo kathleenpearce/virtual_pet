@@ -5,13 +5,13 @@
 ## Final Product
 _*Here are some screenshots of what "Selection" looks like.*_
 
-## _Here is an example of a user profile. Here you can interact with your pets by breeding them, sending them to work to collect gold coins, and feeding them to keep them happy!_
+### _Here is an example of a user profile. Here you can interact with your pets by breeding them, sending them to work to collect gold coins, and feeding them to keep them happy!_
 ![Alt text](https://github.com/juliantomlin/virtual_pet/blob/ReadMe/lib/img/USERPROFILE.png?raw=true)
 
-## _Here is an example of an individual pet profile. Here you can see your pet up close, check in on it's status, edit it's name and also set it free (if that's something you want to do!)_
+### _Here is an example of an individual pet profile. Here you can see your pet up close, check in on it's status, edit it's name and also set it free (if that's something you want to do!)_
 ![Alt text](https://github.com/juliantomlin/virtual_pet/blob/ReadMe/lib/img/PETPROFILE.png?raw=true)
 
-## _One of the main aspects of this game is to breed pets together to try and get specific trait in the offspring. Here are two pets selected to be bred together. _
+### _One of the main aspects of this game is to breed pets together to try and get specific trait in the offspring. Here are two pets selected to be bred together. _
 ![Alt text](https://github.com/juliantomlin/virtual_pet/blob/ReadMe/lib/img/BREED.png?raw=true)
 
 
