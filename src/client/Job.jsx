@@ -32,7 +32,7 @@ export default class JobCard extends Component {
         }} >
         <div className='jobCardTop'>
           { this.props.jobStatus.name.length < 15 && <p className='jobName'> {this.props.jobStatus.name} </p> }
-          { this.props.jobStatus.name.length >= 15 && <p className='jobName'> {this.props.jobStatus.name.substring(0,10) + "..."} </p>}
+          { this.props.jobStatus.name.length >= 15 && <p className='jobName'> {this.props.jobStatus.name.substring(0,8) + "..."} </p>}
           <div className='statusJob'>
             <img className="hunger" src="../../lib/img/noun_Bitten_Apple.svg" />
             {Math.round(payoutTotal.hunger)}
