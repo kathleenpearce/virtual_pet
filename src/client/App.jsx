@@ -111,13 +111,30 @@ export default class App extends Component {
     const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
     axios.put(`/api/pets/${petAssign.pet_id}`, petAssign).then(response => {
       this.setState(prev => {
-        const index = prev.petlist.findIndex(item => item.id == petAssign.pet_id);
-        return {
-          petlist: [
-            ...this.state.petlist.slice(0, index),
-            petAssign,
-            ...this.state.petlist.slice(index + 1)
-          ]
+        const index = prev.petlist.findIndex(item => item.pet_id ? (item.pet_id == petAssign.pet_id) : (item.id == petAssign.pet_id));
+        const jobIndex = prev.jobList.findIndex(item => item.id == pet.id)
+
+        if (jobIndex >= 0) {
+          return {
+            petlist: [
+              ...this.state.petlist.slice(0, index),
+              petAssign,
+              ...this.state.petlist.slice(index + 1)
+            ],
+            jobList: [
+              ...this.state.jobList.slice(0, jobIndex),
+              petAssign,
+              ...this.state.jobList.slice(jobIndex + 1)
+            ]
+          }
+        } else {
+          return {
+            petlist: [
+              ...this.state.petlist.slice(0, index),
+              petAssign,
+              ...this.state.petlist.slice(index + 1)
+            ]
+          }
         };
       });
     });
@@ -128,7 +145,7 @@ export default class App extends Component {
   deletePet(petid) {
     axios.post(`/api/pets/${petid}/release`).then(response => {
       this.setState(prev => {
-        const index = prev.petlist.findIndex(item => item.id == petid)
+        const index = prev.petlist.findIndex(item => item.pet_id ? (item.pet_id == petid) : (item.id == petid))
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
@@ -151,7 +168,7 @@ export default class App extends Component {
     console.log("try to send to work: ", petAssign)
     makeNewJob (petAssign, (job) => {
       this.setState(prev => {
-      const index = prev.petlist.findIndex(item => item.pet_id === job.pet_id);
+      const index = prev.petlist.findIndex(item => item.pet_id ? (item.pet_id == job.pet_id) : (item.id == job.pet_id));
         return {
           petlist: [
             ...this.state.petlist.slice(0, index),
@@ -167,8 +184,8 @@ export default class App extends Component {
   returnFromWork(job) {
     endJob(job, (pet) => {
       this.setState(prev => {
-        const index = prev.jobList.findIndex(item => item.id === job.id);
-        const petIndex = prev.petlist.findIndex(item => item.pet_id === pet.output.pet_id)
+        const index = prev.jobList.findIndex(item => item.id == job.id);
+        const petIndex = prev.petlist.findIndex(item => item.pet_id == pet.output.pet_id)
         return {
           jobList: [
             ...this.state.jobList.slice(0, index),
@@ -190,7 +207,7 @@ export default class App extends Component {
     const petAssign = (pet.pet_id ? pet : Object.assign(pet, {pet_id: pet.id}))
     newFeedEvent(petAssign, foodType, (petUpdate) => {
       this.setState(prev => {
-        const petIndex = prev.petlist.findIndex(item => item.id === petAssign.pet_id)
+        const petIndex = prev.petlist.findIndex(item => item.id == petAssign.pet_id)
         return {
           petlist: [
             ...this.state.petlist.slice(0, petIndex),
